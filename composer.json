@@ -1,0 +1,24 @@
+{
+    "name": "componenta/mimetype-detector",
+    "description": "MIME type detection helpers for Componenta",
+    "type": "library",
+    "license": "MIT",
+    "require": {
+        "php": "^8.4",
+        "ext-fileinfo": "*",
+        "psr/http-message": "^2.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Componenta\\Detector\\": "src/"
+        }
+    },
+    "extra": {
+        "componenta": {
+            "config-providers": [
+                "Componenta\\Detector\\ConfigProvider"
+            ]
+        }
+    },
+    "minimum-stability": "stable"
+}
