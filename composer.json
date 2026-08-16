@@ -6,12 +6,27 @@
     "require": {
         "php": "^8.4",
         "ext-fileinfo": "*",
+        "componenta/config": "^1.0 || ^2.0.2",
         "psr/http-message": "^2.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^12.0"
     },
     "autoload": {
         "psr-4": {
             "Componenta\\Detector\\": "src/"
         }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Componenta\\Detector\\Tests\\": "tests/"
+        }
+    },
+    "scripts": {
+        "test": "@php vendor/bin/phpunit tests"
+    },
+    "config": {
+        "sort-packages": true
     },
     "extra": {
         "componenta": {
@@ -20,5 +35,6 @@
             ]
         }
     },
-    "minimum-stability": "stable"
+    "minimum-stability": "stable",
+    "prefer-stable": true
 }
