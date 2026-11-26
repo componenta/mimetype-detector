@@ -9,7 +9,8 @@ use Psr\Container\ContainerInterface;
 /** @internal Container integration; use FinfoDetector directly without DI. */
 final class FinfoDetectorFactory
 {
-    public static function create(ContainerInterface $container): FinfoDetector
+    /** @param array<array-key, mixed> $parameters Container invocation parameters; configuration is resolved from the map binding. */
+    public static function create(ContainerInterface $container, array $parameters = []): FinfoDetector
     {
         $map = $container->get(MimeMapInterface::class);
         if (!$map instanceof MimeMapInterface) {

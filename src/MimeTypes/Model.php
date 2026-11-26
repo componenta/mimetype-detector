@@ -63,7 +63,8 @@ enum Model: string
      */
     public static function isModel(string $mimeType): bool
     {
-        return \Componenta\Detector\MimeType::tryCreate($mimeType)?->isModel() ?? false;
+        $value = \Componenta\Detector\Internal\MediaTypeParser::tryNormalize($mimeType);
+        return $value !== null && str_starts_with($value, 'model/');
     }
 
     /**

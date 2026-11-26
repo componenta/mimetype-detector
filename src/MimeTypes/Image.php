@@ -115,7 +115,8 @@ enum Image: string
      */
     public static function isImage(string $mimeType): bool
     {
-        return \Componenta\Detector\MimeType::tryCreate($mimeType)?->isImage() ?? false;
+        $value = \Componenta\Detector\Internal\MediaTypeParser::tryNormalize($mimeType);
+        return $value !== null && str_starts_with($value, 'image/');
     }
 
     /**
@@ -141,7 +142,7 @@ enum Image: string
     }
 
     /**
-     * Get common web formats image types
+     * Get common browser-oriented image formats (not a security guarantee).
      * 
      * @return list<self>
      */

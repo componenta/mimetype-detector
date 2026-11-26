@@ -90,6 +90,16 @@ final class MediaTypeParser
         return [$type, $subtype, $parameters];
     }
 
+    public static function tryNormalize(string $input): ?string
+    {
+        try {
+            [$type, $subtype] = self::parse($input);
+            return $type . '/' . $subtype;
+        } catch (InvalidMimeTypeException) {
+            return null;
+        }
+    }
+
     private static function skipWhitespace(string $value, int &$offset): void
     {
         $offset += strspn($value, " \t", $offset);

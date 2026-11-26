@@ -3,6 +3,9 @@
 declare(strict_types=1);
 
 $root = dirname(__DIR__);
+require_once $root . '/src/InvalidMimeTypeException.php';
+require_once $root . '/src/Internal/MediaTypeParser.php';
+require_once $root . '/src/Ext.php';
 $catalog = json_decode(file_get_contents($root . '/resources/mime-catalog.json'), true, flags: JSON_THROW_ON_ERROR);
 $types = $catalog['types'];
 $check = in_array('--check', $argv, true);
@@ -26,7 +29,7 @@ $write = static function (string $path, string $content) use ($root, $check, &$f
 };
 
 foreach ($types as $mime => $record) {
-    if (!is_string($mime) || preg_match('~\A[a-z0-9][a-z0-9!#$&^_.+-]{0,126}/[a-z0-9][a-z0-9!#$&^_.+-]{0,126}\z~D', $mime) !== 1) {
+    if (!is_string($mime) || \Componenta\Detector\Internal\MediaTypeParser::tryNormalize($mime) !== $mime) {
         throw new RuntimeException('Invalid canonical MIME type: ' . $mime);
     }
     if (isset($record['extensions']) && isset($record['extensionAliasOf'])) {
@@ -41,7 +44,7 @@ foreach ($types as $mime => $record) {
             throw new RuntimeException("Invalid extension list for $mime");
         }
         foreach ($extensions as $extension) {
-            if (!is_string($extension) || preg_match('/\A[a-z0-9][a-z0-9_+-]*(?:\.[a-z0-9][a-z0-9_+-]*)*\z/D', $extension) !== 1) {
+            if (!is_string($extension) || \Componenta\Detector\Ext::tryCreate($extension)?->value !== $extension) {
                 throw new RuntimeException("Invalid extension for $mime");
             }
         }
@@ -82,7 +85,8 @@ final class DefaultMimeMap
 PHP;
 $write('src/Internal/DefaultMimeMap.php', $header . "\n" . implode("\n", $lines) . "\n    ];\n}\n");
 
-foreach ($enums as $enum => $cases) {
+foreach (['Application', 'Audio', 'Font', 'Image', 'Message', 'Model', 'Multipart', 'Text', 'Video'] as $enum) {
+    $cases = $enums[$enum] ?? throw new RuntimeException("Missing enum $enum from catalog");
     ksort($cases, SORT_NUMERIC);
     $names = [];
     $values = [];

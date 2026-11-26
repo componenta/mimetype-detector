@@ -27,3 +27,18 @@ test('aliases refer to canonical cases', function (): void {
     Assert::assertSame(Video::Asf, Video::MsAsf);
     Assert::assertSame(Text::VndIptc, Text::VndIptcAnpa);
 });
+
+test('classifies concrete media type names without depending on value objects', function (): void {
+    Assert::assertTrue(Image::isImage('IMAGE/PNG; x=1'));
+    Assert::assertFalse(Image::isImage('image/*'));
+    Assert::assertFalse(Image::isImage('image/'));
+    Assert::assertTrue(Audio::isAudio('Audio/L16'));
+    Assert::assertTrue(Video::isVideo('video/H264'));
+    Assert::assertTrue(Font::isFont('application/x-font-ttf'));
+    Assert::assertFalse(Font::isFont('application/not-a-font'));
+    Assert::assertFalse(Application::isApplication('application/invalid; x='));
+    Assert::assertTrue(Text::isText('text/plain'));
+    Assert::assertTrue(Message::isMessage('message/CPIM'));
+    Assert::assertTrue(Model::isModel('model/JT'));
+    Assert::assertTrue(Multipart::isMultipart('multipart/form-data; boundary=abc'));
+});

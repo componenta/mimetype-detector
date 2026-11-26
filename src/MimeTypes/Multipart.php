@@ -39,7 +39,8 @@ enum Multipart: string
      */
     public static function isMultipart(string $mimeType): bool
     {
-        return \Componenta\Detector\MimeType::tryCreate($mimeType)?->isMultipart() ?? false;
+        $value = \Componenta\Detector\Internal\MediaTypeParser::tryNormalize($mimeType);
+        return $value !== null && str_starts_with($value, 'multipart/');
     }
 
     /**

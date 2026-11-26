@@ -62,7 +62,10 @@ final class MimeMap implements MimeMapInterface
         $this->extensionIndex = null;
     }
 
-    /** @return array<string, list<string>> */
+    /**
+     * @param array<array-key, mixed> $map
+     * @return array<string, list<string>>
+     */
     private static function normalizeMap(array $map): array
     {
         $result = [];
@@ -91,7 +94,7 @@ final class MimeMap implements MimeMapInterface
         if (isset($this->mimeToExt[$mimeType])) {
             return $this->mimeToExt[$mimeType];
         }
-        $key = MimeType::tryCreate($mimeType)?->value;
+        $key = Internal\MediaTypeParser::tryNormalize($mimeType);
         return $key === null ? [] : ($this->mimeToExt[$key] ?? []);
     }
 
@@ -123,7 +126,7 @@ final class MimeMap implements MimeMapInterface
 
     public function hasMimeType(string $mimeType): bool
     {
-        $key = MimeType::tryCreate($mimeType)?->value;
+        $key = Internal\MediaTypeParser::tryNormalize($mimeType);
         return $key !== null && array_key_exists($key, $this->mimeToExt);
     }
 

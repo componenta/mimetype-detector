@@ -227,7 +227,8 @@ enum Application: string
      */
     public static function isApplication(string $mimeType): bool
     {
-        return \Componenta\Detector\MimeType::tryCreate($mimeType)?->isApplication() ?? false;
+        $value = \Componenta\Detector\Internal\MediaTypeParser::tryNormalize($mimeType);
+        return $value !== null && str_starts_with($value, 'application/');
     }
 
     /**

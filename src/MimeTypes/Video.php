@@ -130,7 +130,8 @@ enum Video: string
      */
     public static function isVideo(string $mimeType): bool
     {
-        return \Componenta\Detector\MimeType::tryCreate($mimeType)?->isVideo() ?? false;
+        $value = \Componenta\Detector\Internal\MediaTypeParser::tryNormalize($mimeType);
+        return $value !== null && str_starts_with($value, 'video/');
     }
 
     /**

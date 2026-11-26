@@ -43,7 +43,8 @@ enum Message: string
      */
     public static function isMessage(string $mimeType): bool
     {
-        return \Componenta\Detector\MimeType::tryCreate($mimeType)?->isMessage() ?? false;
+        $value = \Componenta\Detector\Internal\MediaTypeParser::tryNormalize($mimeType);
+        return $value !== null && str_starts_with($value, 'message/');
     }
 
     /**

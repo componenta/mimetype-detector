@@ -44,7 +44,8 @@ enum Font: string
      */
     public static function isFont(string $mimeType): bool
     {
-        return \Componenta\Detector\MimeType::tryCreate($mimeType)?->isFont() ?? false;
+        $value = \Componenta\Detector\Internal\MediaTypeParser::tryNormalize($mimeType);
+        return $value !== null && (str_starts_with($value, 'font/') || self::tryFrom($value) !== null);
     }
 
     /**

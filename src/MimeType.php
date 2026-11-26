@@ -66,8 +66,8 @@ final readonly class MimeType implements \Stringable
     public function equals(self|string ...$types): bool
     {
         foreach ($types as $type) {
-            $candidate = $type instanceof self ? $type : self::tryCreate($type);
-            if ($candidate !== null && $candidate->value === $this->value) {
+            $candidate = $type instanceof self ? $type->value : MediaTypeParser::tryNormalize($type);
+            if ($candidate === $this->value) {
                 return true;
             }
         }
@@ -185,5 +185,4 @@ final readonly class MimeType implements \Stringable
     {
         return Multipart::tryFrom($this->value);
     }
-
 }
