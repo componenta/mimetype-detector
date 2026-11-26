@@ -22,46 +22,47 @@ enum Video: string
     case ThreeGpp2 = 'video/3gpp2';
     
     // H.264 / AVC
-    case H264 = 'video/H264';
-    case H264Rcdo = 'video/H264-RCDO';
-    case H264Svc = 'video/H264-SVC';
+    case H264 = 'video/h264';
+    case H264Rcdo = 'video/h264-rcdo';
+    case H264Svc = 'video/h264-svc';
     
     // H.265 / HEVC
-    case H265 = 'video/H265';
+    case H265 = 'video/h265';
     case Hevc = 'video/hevc';
     
     // H.266 / VVC
-    case H266 = 'video/H266';
+    case H266 = 'video/h266';
     case Vvc = 'video/vvc';
     
     // AV1
-    case Av1 = 'video/AV1';
+    case Av1 = 'video/av1';
     
     // VP8/VP9
-    case Vp8 = 'video/VP8';
-    case Vp9 = 'video/VP9';
+    case Vp8 = 'video/vp8';
+    case Vp9 = 'video/vp9';
     
     // Other codecs
-    case H261 = 'video/H261';
-    case H263 = 'video/H263';
-    case H2631998 = 'video/H263-1998';
-    case H2632000 = 'video/H263-2000';
-    case Jpeg = 'video/JPEG';
+    case H261 = 'video/h261';
+    case H263 = 'video/h263';
+    case H2631998 = 'video/h263-1998';
+    case H2632000 = 'video/h263-2000';
+    case Jpeg = 'video/jpeg';
     case Jpeg2000 = 'video/jpeg2000';
     case Jpm = 'video/jpm';
     case Jpx = 'video/jpx';
     case Mj2 = 'video/mj2';
-    case Mp1s = 'video/MP1S';
-    case Mp2p = 'video/MP2P';
-    case Mp2t = 'video/MP2T';
-    case Mp4vEs = 'video/MP4V-ES';
-    case Mpv = 'video/MPV';
+    case Mp1s = 'video/mp1s';
+    case Mp2p = 'video/mp2p';
+    case Mp2t = 'video/mp2t';
+    case Mp4vEs = 'video/mp4v-es';
+    case Mpv = 'video/mpv';
     case Mpeg4Generic = 'video/mpeg4-generic';
     case Raw = 'video/raw';
     case Theora = 'video/theora';
     
     // Microsoft
-    case MsAsf = 'video/x-ms-asf';
+    /** Alias of Asf. */
+    public const MsAsf = self::Asf;
     case MsWm = 'video/x-ms-wm';
     case MsWmx = 'video/x-ms-wmx';
     case MsWvx = 'video/x-ms-wvx';
@@ -93,7 +94,7 @@ enum Video: string
     case Rtspt264 = 'video/vnd.iptvforum.ttsmpeg2';
     
     // Vendor specific
-    case VndCctv = 'video/vnd.CCTV';
+    case VndCctv = 'video/vnd.cctv';
     case VndFvt = 'video/vnd.fvt';
     case VndHns = 'video/vnd.hns.video';
     case VndMotorolaVideo = 'video/vnd.motorola.video';
@@ -114,10 +115,10 @@ enum Video: string
     case VndYoutube = 'video/vnd.youtube.yt';
     
     // Other
-    case Bmpeg = 'video/BMPEG';
-    case Bt656 = 'video/BT656';
-    case CelB = 'video/CelB';
-    case Dv = 'video/DV';
+    case Bmpeg = 'video/bmpeg';
+    case Bt656 = 'video/bt656';
+    case CelB = 'video/celb';
+    case Dv = 'video/dv';
     case Encap = 'video/encaprtp';
     case Example = 'video/example';
     case Flexfec = 'video/flexfec';

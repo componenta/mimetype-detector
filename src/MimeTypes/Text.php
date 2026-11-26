@@ -136,7 +136,8 @@ enum Text: string
     case VndIn3d3dml = 'text/vnd.in3d.3dml';
     case VndIn3dSpot = 'text/vnd.in3d.spot';
     case VndIptc = 'text/vnd.iptc.nitf';
-    case VndIptcAnpa = 'text/vnd.IPTC.NITF';
+    /** Alias of VndIptc. */
+    public const VndIptcAnpa = self::VndIptc;
     case VndLatexZ = 'text/vnd.latex-z';
     case VndMotorola = 'text/vnd.motorola.reflex';
     case VndMsMediapackage = 'text/vnd.ms-mediapackage';

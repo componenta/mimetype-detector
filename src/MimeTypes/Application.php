@@ -44,9 +44,9 @@ enum Application: string
     case MsExcel = 'application/vnd.ms-excel';
     case MsExcelX = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet';
     case MsExcelTemplate = 'application/vnd.openxmlformats-officedocument.spreadsheetml.template';
-    case MsExcelAddin = 'application/vnd.ms-excel.addin.macroEnabled.12';
-    case MsExcelSheetMacro = 'application/vnd.ms-excel.sheet.macroEnabled.12';
-    case MsExcelSheetBinary = 'application/vnd.ms-excel.sheet.binary.macroEnabled.12';
+    case MsExcelAddin = 'application/vnd.ms-excel.addin.macroenabled.12';
+    case MsExcelSheetMacro = 'application/vnd.ms-excel.sheet.macroenabled.12';
+    case MsExcelSheetBinary = 'application/vnd.ms-excel.sheet.binary.macroenabled.12';
     case MsPowerpoint = 'application/vnd.ms-powerpoint';
     case MsPowerpointX = 'application/vnd.openxmlformats-officedocument.presentationml.presentation';
     case MsPowerpointTemplate = 'application/vnd.openxmlformats-officedocument.presentationml.template';
@@ -93,8 +93,8 @@ enum Application: string
     case MathMl = 'application/mathml+xml';
     case Yaml = 'application/x-yaml';
     case Toml = 'application/toml';
-    case EdiX12 = 'application/EDI-X12';
-    case Edifact = 'application/EDIFACT';
+    case EdiX12 = 'application/edi-x12';
+    case Edifact = 'application/edifact';
     case Cbor = 'application/cbor';
     case CborSeq = 'application/cbor-seq';
     case Msgpack = 'application/msgpack';
@@ -161,7 +161,8 @@ enum Application: string
     case XPemFile = 'application/x-pem-file';
     case XPkcs7Certificates = 'application/x-pkcs7-certificates';
     case XPkcs7Certreqresp = 'application/x-pkcs7-certreqresp';
-    case XPkcs12 = 'application/x-pkcs12';
+    /** Alias of Pkcs12. */
+    public const XPkcs12 = self::Pkcs12;
     case XSshKey = 'application/x-ssh-key';
     case Pgp = 'application/pgp-encrypted';
     case PgpKeys = 'application/pgp-keys';

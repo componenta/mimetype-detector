@@ -52,7 +52,7 @@ enum Model: string
     case Mesh = 'model/mesh';
     case Prc = 'model/prc';
     case U3d = 'model/u3d';
-    case Jt = 'model/JT';
+    case Jt = 'model/jt';
     
     // 3MF
     case ThreeMf = 'model/3mf';

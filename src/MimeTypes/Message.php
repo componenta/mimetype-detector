@@ -6,7 +6,7 @@ namespace Componenta\Detector\MimeTypes;
 
 enum Message: string
 {
-    case Cpim = 'message/CPIM';
+    case Cpim = 'message/cpim';
     case DeliveryStatus = 'message/delivery-status';
     case DispositionNotification = 'message/disposition-notification';
     case Example = 'message/example';
