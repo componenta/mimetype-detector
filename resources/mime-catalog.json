@@ -8,7 +8,13 @@
     "https://www.iana.org/assignments/media-types/image/vnd.dwg (registered DWG label; observed with PHP fileinfo)",
     "https://www.rfc-editor.org/rfc/rfc4047 (FITS media types)",
     "https://www.iana.org/assignments/media-types/application/vnd.hdfgroup.hdf5",
-    "Debian media-types and shared-mime-info extension associations; PHP 8.4.24 fileinfo observed in a local file corpus"
+    "Debian media-types and shared-mime-info extension associations; PHP 8.4.24 fileinfo observed in a local file corpus",
+    "https://www.rfc-editor.org/rfc/rfc3839",
+    "https://www.rfc-editor.org/rfc/rfc4393",
+    "https://www.iana.org/assignments/media-types/model/prc",
+    "https://www.iana.org/assignments/media-types/model/vnd.mts",
+    "https://www.iana.org/assignments/media-types/model/x3d-vrml",
+    "https://www.iana.org/assignments/media-types/model/x3d+fastinfoset"
   ],
   "types": {
     "image/avif": {
@@ -1358,7 +1364,10 @@
       }
     },
     "audio/3gpp": {
-      "extensions": [],
+      "extensions": [
+        "3gp",
+        "3gpp"
+      ],
       "enums": {
         "Audio": [
           {
@@ -1369,7 +1378,10 @@
       }
     },
     "audio/3gpp2": {
-      "extensions": [],
+      "extensions": [
+        "3g2",
+        "3gpp2"
+      ],
       "enums": {
         "Audio": [
           {
@@ -5405,11 +5417,13 @@
         ]
       }
     },
-    "model/x3d+vrml": {
+    "model/x3d-vrml": {
       "extensions": [
         "x3dv",
         "x3dvz"
-      ],
+      ]
+    },
+    "model/x3d+vrml": {
       "enums": {
         "Model": [
           {
@@ -5417,7 +5431,8 @@
             "order": 13
           }
         ]
-      }
+      },
+      "extensionAliasOf": "model/x3d-vrml"
     },
     "model/x3d+xml": {
       "extensions": [
@@ -5433,22 +5448,11 @@
         ]
       }
     },
-    "model/x3d+binary": {
+    "model/x3d+fastinfoset": {
       "extensions": [
         "x3db",
         "x3dbz"
       ],
-      "enums": {
-        "Model": [
-          {
-            "name": "X3dBinary",
-            "order": 15
-          }
-        ]
-      }
-    },
-    "model/x3d+fastinfoset": {
-      "extensions": [],
       "enums": {
         "Model": [
           {
@@ -5458,8 +5462,16 @@
         ]
       }
     },
-    "model/x3d-vrml": {
-      "extensions": []
+    "model/x3d+binary": {
+      "enums": {
+        "Model": [
+          {
+            "name": "X3dBinary",
+            "order": 15
+          }
+        ]
+      },
+      "extensionAliasOf": "model/x3d+fastinfoset"
     },
     "model/vnd.usdz+zip": {
       "extensions": [
@@ -5514,7 +5526,9 @@
       }
     },
     "model/vnd.mts": {
-      "extensions": [],
+      "extensions": [
+        "mts"
+      ],
       "enums": {
         "Model": [
           {
@@ -5579,7 +5593,9 @@
       }
     },
     "model/prc": {
-      "extensions": [],
+      "extensions": [
+        "prc"
+      ],
       "enums": {
         "Model": [
           {

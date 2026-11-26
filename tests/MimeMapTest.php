@@ -113,3 +113,19 @@ test('maps real fileinfo labels for scientific formats and C++ without losing pr
     Assert::assertSame('ps', $map->getExtension('application/postscript'));
     Assert::assertContains('ai', $map->getExtensions('application/postscript'));
 });
+
+test('preserves all registered extension associations for shared multimedia and model suffixes', function (): void {
+    $map = new MimeMap();
+    Assert::assertSame(['3gp', '3gpp'], $map->getExtensions('audio/3gpp'));
+    Assert::assertSame(['3g2', '3gpp2'], $map->getExtensions('audio/3gpp2'));
+    Assert::assertSame(['video/3gpp', 'audio/3gpp'], $map->getMimeTypes('3gp'));
+    Assert::assertSame(['video/3gpp2', 'audio/3gpp2'], $map->getMimeTypes('3g2'));
+    Assert::assertSame('prc', $map->getExtension('model/prc'));
+    Assert::assertSame('mts', $map->getExtension('model/vnd.mts'));
+    Assert::assertSame(['application/x-mobipocket-ebook', 'model/prc'], $map->getMimeTypes('prc'));
+    Assert::assertSame(['video/mp2t', 'model/vnd.mts'], $map->getMimeTypes('mts'));
+    Assert::assertSame(['x3dv', 'x3dvz'], $map->getExtensions('model/x3d-vrml'));
+    Assert::assertSame(['x3db', 'x3dbz'], $map->getExtensions('model/x3d+fastinfoset'));
+    Assert::assertSame(['model/x3d-vrml', 'model/x3d+vrml'], $map->getMimeTypes('x3dv'));
+    Assert::assertSame(['model/x3d+fastinfoset', 'model/x3d+binary'], $map->getMimeTypes('x3db'));
+});
