@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Componenta\Detector\Tests;
 
-use Componenta\Detector\{DetectorException, FileNotFoundException, FileNotReadableException, FinfoDetector, MimeMap, StreamPositionRestoreException};
+use Componenta\Detector\{DetectorException, FileNotFoundException, FileNotReadableException, FinfoDetector, MimeMap, MimeMapInterface, StreamPositionRestoreException};
 use GuzzleHttp\Psr7\Utils;
 use PHPUnit\Framework\Assert;
 use PHPUnit\Framework\TestCase;
@@ -257,4 +257,25 @@ test('rejects a stream that returns more than the requested number of bytes', fu
     $stream->expects(TestCase::once())->method('read')->with(4)->willReturn('12345');
     $this->expectException(DetectorException::class);
     (new FinfoDetector(maxBytes: 4))->detectMimeType($stream);
+});
+
+test('normalizes failures of injected extension maps without affecting MIME detection', function (): void {
+    $cause = new \RuntimeException('custom map unavailable');
+    $map = $this->createMock(MimeMapInterface::class);
+    $map->expects(TestCase::once())->method('getExtension')->with('text/plain')->willThrowException($cause);
+    $detector = new FinfoDetector($map);
+    Assert::assertSame('text/plain', $detector->detectMimeType('plain text')?->value);
+    try {
+        $detector->detectExtension('plain text');
+        Assert::fail('Expected detector exception');
+    } catch (DetectorException $exception) {
+        Assert::assertSame($cause, $exception->getPrevious());
+    }
+});
+
+test('rejects malformed extension values from a custom map', function (): void {
+    $map = $this->createMock(MimeMapInterface::class);
+    $map->method('getExtension')->willReturn('../invalid');
+    $this->expectException(DetectorException::class);
+    (new FinfoDetector($map))->detectExtension('plain text');
 });
