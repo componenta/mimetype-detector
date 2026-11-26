@@ -74,8 +74,7 @@ enum Model: string
      */
     public static function isModel(string $mimeType): bool
     {
-        return self::tryFrom($mimeType) !== null 
-            || str_starts_with($mimeType, 'model/');
+        return \Componenta\Detector\MimeType::tryCreate($mimeType)?->isModel() ?? false;
     }
 
     /**
@@ -96,7 +95,7 @@ enum Model: string
     /**
      * @return list<self>
      */
-    public static function webSafe(): array
+    public static function commonWebFormats(): array
     {
         return [
             self::Gltf,

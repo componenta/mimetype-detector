@@ -113,8 +113,7 @@ enum Image: string
      */
     public static function isImage(string $mimeType): bool
     {
-        return self::tryFrom($mimeType) !== null 
-            || str_starts_with($mimeType, 'image/');
+        return \Componenta\Detector\MimeType::tryCreate($mimeType)?->isImage() ?? false;
     }
 
     /**
@@ -140,11 +139,11 @@ enum Image: string
     }
 
     /**
-     * Get web-safe image types
+     * Get common web formats image types
      * 
      * @return list<self>
      */
-    public static function webSafe(): array
+    public static function commonWebFormats(): array
     {
         return [
             self::Jpeg,

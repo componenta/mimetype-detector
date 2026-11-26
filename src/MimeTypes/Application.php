@@ -265,8 +265,7 @@ enum Application: string
      */
     public static function isApplication(string $mimeType): bool
     {
-        return self::tryFrom($mimeType) !== null 
-            || str_starts_with($mimeType, 'application/');
+        return \Componenta\Detector\MimeType::tryCreate($mimeType)?->isApplication() ?? false;
     }
 
     /**

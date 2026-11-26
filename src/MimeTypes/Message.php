@@ -41,8 +41,7 @@ enum Message: string
      */
     public static function isMessage(string $mimeType): bool
     {
-        return self::tryFrom($mimeType) !== null 
-            || str_starts_with($mimeType, 'message/');
+        return \Componenta\Detector\MimeType::tryCreate($mimeType)?->isMessage() ?? false;
     }
 
     /**

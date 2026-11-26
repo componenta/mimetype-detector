@@ -48,15 +48,13 @@ enum Font: string
      */
     public static function isFont(string $mimeType): bool
     {
-        return self::tryFrom($mimeType) !== null 
-            || str_starts_with($mimeType, 'font/')
-            || str_contains($mimeType, 'font');
+        return \Componenta\Detector\MimeType::tryCreate($mimeType)?->isFont() ?? false;
     }
 
     /**
      * @return list<self>
      */
-    public static function webSafe(): array
+    public static function commonWebFormats(): array
     {
         return [
             self::Woff,

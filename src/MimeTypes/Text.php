@@ -189,8 +189,7 @@ enum Text: string
      */
     public static function isText(string $mimeType): bool
     {
-        return self::tryFrom($mimeType) !== null 
-            || str_starts_with($mimeType, 'text/');
+        return \Componenta\Detector\MimeType::tryCreate($mimeType)?->isText() ?? false;
     }
 
     /**

@@ -169,8 +169,7 @@ enum Audio: string
      */
     public static function isAudio(string $mimeType): bool
     {
-        return self::tryFrom($mimeType) !== null 
-            || str_starts_with($mimeType, 'audio/');
+        return \Componenta\Detector\MimeType::tryCreate($mimeType)?->isAudio() ?? false;
     }
 
     /**
@@ -210,7 +209,7 @@ enum Audio: string
     /**
      * @return list<self>
      */
-    public static function webSafe(): array
+    public static function commonWebFormats(): array
     {
         return [
             self::Mp3,

@@ -156,8 +156,7 @@ enum Video: string
      */
     public static function isVideo(string $mimeType): bool
     {
-        return self::tryFrom($mimeType) !== null 
-            || str_starts_with($mimeType, 'video/');
+        return \Componenta\Detector\MimeType::tryCreate($mimeType)?->isVideo() ?? false;
     }
 
     /**
@@ -181,7 +180,7 @@ enum Video: string
     /**
      * @return list<self>
      */
-    public static function webSafe(): array
+    public static function commonWebFormats(): array
     {
         return [
             self::Mp4,
