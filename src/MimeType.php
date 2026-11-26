@@ -17,13 +17,8 @@ final readonly class MimeType implements \Stringable
     public array $parameters;
     public string $raw;
 
-    public ?string $charset {
-        get => $this->getParameter('charset');
-    }
-
-    public ?string $boundary {
-        get => $this->getParameter('boundary');
-    }
+    public ?string $charset;
+    public ?string $boundary;
 
     public function __construct(string $value)
     {
@@ -33,6 +28,8 @@ final readonly class MimeType implements \Stringable
         $this->subtype = $subtype;
         $this->value = $type . '/' . $subtype;
         $this->parameters = $parameters;
+        $this->charset = $parameters['charset'] ?? null;
+        $this->boundary = $parameters['boundary'] ?? null;
     }
 
     public static function tryCreate(string $value): ?self
@@ -138,7 +135,6 @@ final readonly class MimeType implements \Stringable
     {
         return $this->type === 'font' || Font::tryFrom($this->value) !== null;
     }
-
 
     public function isMedia(): bool
     {
