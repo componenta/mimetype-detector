@@ -323,3 +323,14 @@ test('rejects a regular file replaced with a FIFO before open without blocking',
         rmdir($directory);
     }
 });
+
+test('accepts an empty terminal read when EOF becomes true', function (): void {
+    $stream = $this->createMock(StreamInterface::class);
+    $stream->method('isReadable')->willReturn(true);
+    $stream->method('isSeekable')->willReturn(false);
+    $stream->method('eof')->willReturnOnConsecutiveCalls(false, false, true);
+    $stream->expects(TestCase::exactly(2))->method('read')
+        ->willReturnOnConsecutiveCalls('plain text', '');
+
+    Assert::assertSame('text/plain', (new FinfoDetector())->detectMimeType($stream)?->value);
+});

@@ -24,3 +24,4 @@ jobs:
       - run: composer validate --strict
       - run: composer install --no-interaction --prefer-dist
       - run: composer check
+      - run: composer bench

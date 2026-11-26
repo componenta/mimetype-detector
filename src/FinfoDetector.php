@@ -107,19 +107,23 @@ final readonly class FinfoDetector implements DetectorInterface
                 $stream->rewind();
             }
 
-            while (strlen($content) < $this->maxBytes && !$stream->eof()) {
-                $remaining = min(self::READ_CHUNK_BYTES, $this->maxBytes - strlen($content));
-                $chunk = $stream->read($remaining);
-                if ($chunk === '') {
-                    if ($stream->eof()) {
-                        break;
-                    }
+            $remaining = $this->maxBytes;
+            $madeProgress = true;
+            while ($remaining > 0 && !$stream->eof()) {
+                // An empty read is valid only if the stream has now reached EOF.
+                if (!$madeProgress) {
                     throw new DetectorException('Stream read made no progress before EOF.');
                 }
-                if (strlen($chunk) > $remaining) {
+
+                $length = min(self::READ_CHUNK_BYTES, $remaining);
+                $chunk = $stream->read($length);
+                $bytes = strlen($chunk);
+                if ($bytes > $length) {
                     throw new DetectorException('Stream returned more bytes than requested.');
                 }
+                $madeProgress = $bytes !== 0;
                 $content .= $chunk;
+                $remaining -= $bytes;
             }
         } catch (Throwable $exception) {
             $failure = $exception instanceof DetectorException
@@ -172,13 +176,20 @@ final readonly class FinfoDetector implements DetectorInterface
                     throw FileNotReadableException::forPath($filename);
                 }
                 $content = '';
-                while (strlen($content) < $this->maxBytes && !feof($handle)) {
-                    $remaining = min(self::READ_CHUNK_BYTES, $this->maxBytes - strlen($content));
-                    $chunk = @fread($handle, $remaining);
-                    if ($chunk === false || ($chunk === '' && !feof($handle))) {
+                $remaining = $this->maxBytes;
+                $madeProgress = true;
+                while ($remaining > 0 && !feof($handle)) {
+                    if (!$madeProgress) {
                         throw new DetectorException('Unable to read file content.');
                     }
+                    $chunk = @fread($handle, min(self::READ_CHUNK_BYTES, $remaining));
+                    if ($chunk === false) {
+                        throw new DetectorException('Unable to read file content.');
+                    }
+                    $bytes = strlen($chunk);
+                    $madeProgress = $bytes !== 0;
                     $content .= $chunk;
+                    $remaining -= $bytes;
                 }
                 return $content;
             } finally {
