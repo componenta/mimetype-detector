@@ -30,9 +30,12 @@
         "analyse": "@php vendor/bin/phpstan analyse src --level=max --no-progress",
         "bench": "@php vendor/bin/phpbench run --report=aggregate",
         "check": [
+            "@catalog-check",
             "@test",
             "@analyse"
-        ]
+        ],
+        "catalog-generate": "@php scripts/generate-catalog.php",
+        "catalog-check": "@php scripts/generate-catalog.php --check"
     },
     "config": {
         "sort-packages": true,

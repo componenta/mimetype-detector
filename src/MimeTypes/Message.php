@@ -6,6 +6,7 @@ namespace Componenta\Detector\MimeTypes;
 
 enum Message: string
 {
+    // BEGIN GENERATED MIME CASES
     case Cpim = 'message/cpim';
     case DeliveryStatus = 'message/delivery-status';
     case DispositionNotification = 'message/disposition-notification';
@@ -27,6 +28,7 @@ enum Message: string
     case TrackingStatus = 'message/tracking-status';
     case VndSiSimp = 'message/vnd.si.simp';
     case VndWfaWsc = 'message/vnd.wfa.wsc';
+    // END GENERATED MIME CASES
 
     /**
      * @return list<string>

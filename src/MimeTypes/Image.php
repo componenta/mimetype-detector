@@ -6,6 +6,7 @@ namespace Componenta\Detector\MimeTypes;
 
 enum Image: string
 {
+    // BEGIN GENERATED MIME CASES
     case Avif = 'image/avif';
     case Bmp = 'image/bmp';
     case Cgm = 'image/cgm';
@@ -99,6 +100,7 @@ enum Image: string
     case XXpixmap = 'image/x-xpixmap';
     case XXwindowdump = 'image/x-xwindowdump';
     case XCur = 'image/x-cur';
+    // END GENERATED MIME CASES
 
     /**
      * @return list<string>

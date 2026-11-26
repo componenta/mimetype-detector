@@ -6,26 +6,21 @@ namespace Componenta\Detector\MimeTypes;
 
 enum Font: string
 {
+    // BEGIN GENERATED MIME CASES
     case Collection = 'font/collection';
     case Otf = 'font/otf';
     case Sfnt = 'font/sfnt';
     case Ttf = 'font/ttf';
     case Woff = 'font/woff';
     case Woff2 = 'font/woff2';
-    
-    // Application aliases (for compatibility)
     case ApplicationOtf = 'application/font-otf';
     case ApplicationTtf = 'application/font-ttf';
     case ApplicationWoff = 'application/font-woff';
     case ApplicationWoff2 = 'application/font-woff2';
     case ApplicationSfnt = 'application/font-sfnt';
-    
-    // X-prefixed (legacy)
     case XOtf = 'application/x-font-otf';
     case XTtf = 'application/x-font-ttf';
     case XWoff = 'application/x-font-woff';
-    
-    // Other font types
     case Eot = 'application/vnd.ms-fontobject';
     case Bdf = 'application/x-font-bdf';
     case Ghostscript = 'application/x-font-ghostscript';
@@ -34,6 +29,7 @@ enum Font: string
     case Snf = 'application/x-font-snf';
     case Speedo = 'application/x-font-speedo';
     case Type1 = 'application/x-font-type1';
+    // END GENERATED MIME CASES
 
     /**
      * @return list<string>

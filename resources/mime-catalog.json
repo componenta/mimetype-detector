@@ -1,0 +1,9429 @@
+{
+  "sources": [
+    "Existing Componenta MIME catalog, reviewed and normalized in this branch",
+    "https://www.iana.org/assignments/media-types/",
+    "https://httpd.apache.org/docs/current/mod/mod_mime.html"
+  ],
+  "types": {
+    "image/avif": {
+      "extensions": [
+        "avif"
+      ],
+      "enums": {
+        "Image": [
+          {
+            "name": "Avif",
+            "order": 0
+          }
+        ]
+      }
+    },
+    "image/webp": {
+      "extensions": [
+        "webp"
+      ],
+      "enums": {
+        "Image": [
+          {
+            "name": "Webp",
+            "order": 72
+          }
+        ]
+      }
+    },
+    "image/jxl": {
+      "extensions": [
+        "jxl"
+      ],
+      "enums": {
+        "Image": [
+          {
+            "name": "Jxl",
+            "order": 22
+          }
+        ]
+      }
+    },
+    "image/apng": {
+      "extensions": [
+        "apng"
+      ],
+      "enums": {
+        "Image": [
+          {
+            "name": "Apng",
+            "order": 33
+          }
+        ]
+      }
+    },
+    "image/jpeg": {
+      "extensions": [
+        "jpg",
+        "jpeg",
+        "jpe"
+      ],
+      "enums": {
+        "Image": [
+          {
+            "name": "Jpeg",
+            "order": 17
+          }
+        ]
+      }
+    },
+    "image/jp2": {
+      "extensions": [
+        "jp2",
+        "jpg2"
+      ],
+      "enums": {
+        "Image": [
+          {
+            "name": "Jp2",
+            "order": 16
+          }
+        ]
+      }
+    },
+    "image/jpx": {
+      "extensions": [
+        "jpx",
+        "jpf"
+      ],
+      "enums": {
+        "Image": [
+          {
+            "name": "Jpx",
+            "order": 21
+          }
+        ]
+      }
+    },
+    "image/jpm": {
+      "extensions": [
+        "jpm"
+      ],
+      "enums": {
+        "Image": [
+          {
+            "name": "Jpm",
+            "order": 20
+          }
+        ]
+      }
+    },
+    "image/jxr": {
+      "extensions": [
+        "jxr"
+      ],
+      "enums": {
+        "Image": [
+          {
+            "name": "Jxr",
+            "order": 23
+          }
+        ]
+      }
+    },
+    "image/jph": {
+      "extensions": [
+        "jph"
+      ],
+      "enums": {
+        "Image": [
+          {
+            "name": "Jph",
+            "order": 18
+          }
+        ]
+      }
+    },
+    "image/jxs": {
+      "extensions": [
+        "jxs"
+      ],
+      "enums": {
+        "Image": [
+          {
+            "name": "Jxs",
+            "order": 26
+          }
+        ]
+      }
+    },
+    "image/png": {
+      "extensions": [
+        "png"
+      ],
+      "enums": {
+        "Image": [
+          {
+            "name": "Png",
+            "order": 32
+          }
+        ]
+      }
+    },
+    "image/gif": {
+      "extensions": [
+        "gif"
+      ],
+      "enums": {
+        "Image": [
+          {
+            "name": "Gif",
+            "order": 7
+          }
+        ]
+      }
+    },
+    "image/tiff": {
+      "extensions": [
+        "tiff",
+        "tif"
+      ],
+      "enums": {
+        "Image": [
+          {
+            "name": "Tiff",
+            "order": 40
+          }
+        ]
+      }
+    },
+    "image/bmp": {
+      "extensions": [
+        "bmp",
+        "dib"
+      ],
+      "enums": {
+        "Image": [
+          {
+            "name": "Bmp",
+            "order": 1
+          }
+        ]
+      }
+    },
+    "image/heif": {
+      "extensions": [
+        "heif",
+        "hif"
+      ],
+      "enums": {
+        "Image": [
+          {
+            "name": "Heif",
+            "order": 10
+          }
+        ]
+      }
+    },
+    "image/heic": {
+      "extensions": [
+        "heic"
+      ],
+      "enums": {
+        "Image": [
+          {
+            "name": "Heic",
+            "order": 8
+          }
+        ]
+      }
+    },
+    "image/heif-sequence": {
+      "extensions": [
+        "heifs"
+      ],
+      "enums": {
+        "Image": [
+          {
+            "name": "HeifSequence",
+            "order": 11
+          }
+        ]
+      }
+    },
+    "image/heic-sequence": {
+      "extensions": [
+        "heics"
+      ],
+      "enums": {
+        "Image": [
+          {
+            "name": "HeicSequence",
+            "order": 9
+          }
+        ]
+      }
+    },
+    "image/svg+xml": {
+      "extensions": [
+        "svg",
+        "svgz"
+      ],
+      "enums": {
+        "Image": [
+          {
+            "name": "SvgXml",
+            "order": 38
+          }
+        ]
+      }
+    },
+    "image/vnd.microsoft.icon": {
+      "extensions": [
+        "ico"
+      ],
+      "enums": {
+        "Image": [
+          {
+            "name": "VndMicrosoftIcon",
+            "order": 56
+          }
+        ]
+      }
+    },
+    "image/vnd.adobe.photoshop": {
+      "extensions": [
+        "psd"
+      ],
+      "enums": {
+        "Image": [
+          {
+            "name": "VndAdobePhotoshop",
+            "order": 42
+          }
+        ]
+      }
+    },
+    "image/vnd.djvu": {
+      "extensions": [
+        "djvu",
+        "djv"
+      ],
+      "enums": {
+        "Image": [
+          {
+            "name": "VndDjvu",
+            "order": 46
+          }
+        ]
+      }
+    },
+    "image/vnd.dwg": {
+      "extensions": [],
+      "enums": {
+        "Image": [
+          {
+            "name": "VndDwg",
+            "order": 47
+          }
+        ]
+      }
+    },
+    "image/vnd.dxf": {
+      "extensions": [
+        "dxf"
+      ],
+      "enums": {
+        "Image": [
+          {
+            "name": "VndDxf",
+            "order": 48
+          }
+        ]
+      }
+    },
+    "image/vnd.wap.wbmp": {
+      "extensions": [
+        "wbmp"
+      ],
+      "enums": {
+        "Image": [
+          {
+            "name": "VndWapWbmp",
+            "order": 69
+          }
+        ]
+      }
+    },
+    "image/vnd.radiance": {
+      "extensions": [
+        "hdr",
+        "rgbe"
+      ],
+      "enums": {
+        "Image": [
+          {
+            "name": "VndRadiance",
+            "order": 63
+          }
+        ]
+      }
+    },
+    "image/x-icon": {
+      "extensions": [
+        "ico",
+        "cur"
+      ],
+      "enums": {
+        "Image": [
+          {
+            "name": "XIcon",
+            "order": 77
+          }
+        ]
+      }
+    },
+    "image/x-tga": {
+      "extensions": [
+        "tga",
+        "icb",
+        "vda"
+      ],
+      "enums": {
+        "Image": [
+          {
+            "name": "XTga",
+            "order": 88
+          }
+        ]
+      }
+    },
+    "image/x-pcx": {
+      "extensions": [
+        "pcx"
+      ],
+      "enums": {
+        "Image": [
+          {
+            "name": "XPcx",
+            "order": 81
+          }
+        ]
+      }
+    },
+    "image/x-portable-anymap": {
+      "extensions": [
+        "pnm"
+      ],
+      "enums": {
+        "Image": [
+          {
+            "name": "XPortableAnymap",
+            "order": 83
+          }
+        ]
+      }
+    },
+    "image/x-portable-bitmap": {
+      "extensions": [
+        "pbm"
+      ],
+      "enums": {
+        "Image": [
+          {
+            "name": "XPortableBitmap",
+            "order": 84
+          }
+        ]
+      }
+    },
+    "image/x-portable-graymap": {
+      "extensions": [
+        "pgm"
+      ],
+      "enums": {
+        "Image": [
+          {
+            "name": "XPortableGraymap",
+            "order": 85
+          }
+        ]
+      }
+    },
+    "image/x-portable-pixmap": {
+      "extensions": [
+        "ppm"
+      ],
+      "enums": {
+        "Image": [
+          {
+            "name": "XPortablePixmap",
+            "order": 86
+          }
+        ]
+      }
+    },
+    "image/x-rgb": {
+      "extensions": [
+        "rgb"
+      ],
+      "enums": {
+        "Image": [
+          {
+            "name": "XRgb",
+            "order": 87
+          }
+        ]
+      }
+    },
+    "image/x-xbitmap": {
+      "extensions": [
+        "xbm"
+      ],
+      "enums": {
+        "Image": [
+          {
+            "name": "XXbitmap",
+            "order": 89
+          }
+        ]
+      }
+    },
+    "image/x-xpixmap": {
+      "extensions": [
+        "xpm"
+      ],
+      "enums": {
+        "Image": [
+          {
+            "name": "XXpixmap",
+            "order": 90
+          }
+        ]
+      }
+    },
+    "image/x-xwindowdump": {
+      "extensions": [
+        "xwd"
+      ],
+      "enums": {
+        "Image": [
+          {
+            "name": "XXwindowdump",
+            "order": 91
+          }
+        ]
+      }
+    },
+    "image/x-cmu-raster": {
+      "extensions": [
+        "ras"
+      ],
+      "enums": {
+        "Image": [
+          {
+            "name": "XCmuRaster",
+            "order": 74
+          }
+        ]
+      }
+    },
+    "image/x-freehand": {
+      "extensions": [
+        "fh",
+        "fhc",
+        "fh4",
+        "fh5",
+        "fh7"
+      ],
+      "enums": {
+        "Image": [
+          {
+            "name": "XFreehand",
+            "order": 76
+          }
+        ]
+      }
+    },
+    "image/emf": {
+      "extensions": [
+        "emf"
+      ],
+      "enums": {
+        "Image": [
+          {
+            "name": "Emf",
+            "order": 4
+          }
+        ]
+      }
+    },
+    "image/wmf": {
+      "extensions": [
+        "wmf"
+      ],
+      "enums": {
+        "Image": [
+          {
+            "name": "Wmf",
+            "order": 73
+          }
+        ]
+      }
+    },
+    "image/ktx": {
+      "extensions": [
+        "ktx"
+      ],
+      "enums": {
+        "Image": [
+          {
+            "name": "Ktx",
+            "order": 30
+          }
+        ]
+      }
+    },
+    "image/ktx2": {
+      "extensions": [
+        "ktx2"
+      ],
+      "enums": {
+        "Image": [
+          {
+            "name": "Ktx2",
+            "order": 31
+          }
+        ]
+      }
+    },
+    "video/mpeg": {
+      "extensions": [
+        "mpeg",
+        "mpg",
+        "mpe",
+        "m1v",
+        "m2v"
+      ],
+      "enums": {
+        "Video": [
+          {
+            "name": "Mpeg",
+            "order": 1
+          }
+        ]
+      }
+    },
+    "video/mp4": {
+      "extensions": [
+        "mp4",
+        "m4v",
+        "mp4v"
+      ],
+      "enums": {
+        "Video": [
+          {
+            "name": "Mp4",
+            "order": 0
+          }
+        ]
+      }
+    },
+    "video/mp2t": {
+      "extensions": [
+        "mts",
+        "m2ts"
+      ],
+      "enums": {
+        "Video": [
+          {
+            "name": "Mp2t",
+            "order": 34
+          }
+        ]
+      }
+    },
+    "video/webm": {
+      "extensions": [
+        "webm"
+      ],
+      "enums": {
+        "Video": [
+          {
+            "name": "Webm",
+            "order": 3
+          }
+        ]
+      }
+    },
+    "video/ogg": {
+      "extensions": [
+        "ogv"
+      ],
+      "enums": {
+        "Video": [
+          {
+            "name": "Ogg",
+            "order": 2
+          }
+        ]
+      }
+    },
+    "video/quicktime": {
+      "extensions": [
+        "mov",
+        "qt"
+      ],
+      "enums": {
+        "Video": [
+          {
+            "name": "Quicktime",
+            "order": 4
+          }
+        ]
+      }
+    },
+    "video/x-msvideo": {
+      "extensions": [
+        "avi"
+      ],
+      "enums": {
+        "Video": [
+          {
+            "name": "XMsvideo",
+            "order": 6
+          }
+        ]
+      }
+    },
+    "video/x-matroska": {
+      "extensions": [
+        "mkv",
+        "mk3d",
+        "mks"
+      ],
+      "enums": {
+        "Video": [
+          {
+            "name": "XMatroska",
+            "order": 7
+          }
+        ]
+      }
+    },
+    "video/x-ms-wmv": {
+      "extensions": [
+        "wmv"
+      ],
+      "enums": {
+        "Video": [
+          {
+            "name": "Wmv",
+            "order": 9
+          }
+        ]
+      }
+    },
+    "video/x-ms-asf": {
+      "extensions": [
+        "asf",
+        "asx"
+      ],
+      "enums": {
+        "Video": [
+          {
+            "name": "Asf",
+            "order": 10
+          },
+          {
+            "name": "MsAsf",
+            "order": 40,
+            "aliasOf": "Asf"
+          }
+        ]
+      }
+    },
+    "video/x-ms-wm": {
+      "extensions": [
+        "wm"
+      ],
+      "enums": {
+        "Video": [
+          {
+            "name": "MsWm",
+            "order": 41
+          }
+        ]
+      }
+    },
+    "video/x-ms-wmx": {
+      "extensions": [
+        "wmx"
+      ],
+      "enums": {
+        "Video": [
+          {
+            "name": "MsWmx",
+            "order": 42
+          }
+        ]
+      }
+    },
+    "video/x-ms-wvx": {
+      "extensions": [
+        "wvx"
+      ],
+      "enums": {
+        "Video": [
+          {
+            "name": "MsWvx",
+            "order": 43
+          }
+        ]
+      }
+    },
+    "video/x-flv": {
+      "extensions": [
+        "flv"
+      ],
+      "enums": {
+        "Video": [
+          {
+            "name": "XFlv",
+            "order": 5
+          }
+        ]
+      }
+    },
+    "video/x-f4v": {
+      "extensions": [
+        "f4v"
+      ],
+      "enums": {
+        "Video": [
+          {
+            "name": "XF4v",
+            "order": 104
+          }
+        ]
+      }
+    },
+    "video/3gpp": {
+      "extensions": [
+        "3gp",
+        "3gpp"
+      ],
+      "enums": {
+        "Video": [
+          {
+            "name": "ThreeGpp",
+            "order": 11
+          }
+        ]
+      }
+    },
+    "video/3gpp2": {
+      "extensions": [
+        "3g2",
+        "3gpp2"
+      ],
+      "enums": {
+        "Video": [
+          {
+            "name": "ThreeGpp2",
+            "order": 12
+          }
+        ]
+      }
+    },
+    "video/h264": {
+      "extensions": [
+        "h264",
+        "264"
+      ],
+      "enums": {
+        "Video": [
+          {
+            "name": "H264",
+            "order": 13
+          }
+        ]
+      }
+    },
+    "video/h265": {
+      "extensions": [
+        "h265",
+        "265",
+        "hevc"
+      ],
+      "enums": {
+        "Video": [
+          {
+            "name": "H265",
+            "order": 16
+          }
+        ]
+      }
+    },
+    "video/h266": {
+      "extensions": [
+        "h266",
+        "vvc"
+      ],
+      "enums": {
+        "Video": [
+          {
+            "name": "H266",
+            "order": 18
+          }
+        ]
+      }
+    },
+    "video/av1": {
+      "extensions": [
+        "av1"
+      ],
+      "enums": {
+        "Video": [
+          {
+            "name": "Av1",
+            "order": 20
+          }
+        ]
+      }
+    },
+    "video/vp8": {
+      "extensions": [
+        "vp8"
+      ],
+      "enums": {
+        "Video": [
+          {
+            "name": "Vp8",
+            "order": 21
+          }
+        ]
+      }
+    },
+    "video/vp9": {
+      "extensions": [
+        "vp9"
+      ],
+      "enums": {
+        "Video": [
+          {
+            "name": "Vp9",
+            "order": 22
+          }
+        ]
+      }
+    },
+    "video/jpeg": {
+      "extensions": [
+        "jpgv"
+      ],
+      "enums": {
+        "Video": [
+          {
+            "name": "Jpeg",
+            "order": 27
+          }
+        ]
+      }
+    },
+    "video/mj2": {
+      "extensions": [
+        "mj2",
+        "mjp2"
+      ],
+      "enums": {
+        "Video": [
+          {
+            "name": "Mj2",
+            "order": 31
+          }
+        ]
+      }
+    },
+    "video/vnd.ms-playready.media.pyv": {
+      "extensions": [
+        "pyv"
+      ],
+      "enums": {
+        "Video": [
+          {
+            "name": "VndMsPlayready",
+            "order": 44
+          }
+        ]
+      }
+    },
+    "video/vnd.dece.hd": {
+      "extensions": [
+        "uvh",
+        "uvvh"
+      ],
+      "enums": {
+        "Video": [
+          {
+            "name": "VndDeceHd",
+            "order": 50
+          }
+        ]
+      }
+    },
+    "video/vnd.dece.mobile": {
+      "extensions": [
+        "uvm",
+        "uvvm"
+      ],
+      "enums": {
+        "Video": [
+          {
+            "name": "VndDeceMobile",
+            "order": 51
+          }
+        ]
+      }
+    },
+    "video/vnd.dece.pd": {
+      "extensions": [
+        "uvp",
+        "uvvp"
+      ],
+      "enums": {
+        "Video": [
+          {
+            "name": "VndDecePd",
+            "order": 53
+          }
+        ]
+      }
+    },
+    "video/vnd.dece.sd": {
+      "extensions": [
+        "uvs",
+        "uvvs"
+      ],
+      "enums": {
+        "Video": [
+          {
+            "name": "VndDeceSd",
+            "order": 54
+          }
+        ]
+      }
+    },
+    "video/vnd.dece.video": {
+      "extensions": [
+        "uvv",
+        "uvvv"
+      ],
+      "enums": {
+        "Video": [
+          {
+            "name": "VndDeceVideo",
+            "order": 55
+          }
+        ]
+      }
+    },
+    "video/vnd.dvb.file": {
+      "extensions": [
+        "dvb"
+      ],
+      "enums": {
+        "Video": [
+          {
+            "name": "VndDvbFile",
+            "order": 47
+          }
+        ]
+      }
+    },
+    "video/vnd.fvt": {
+      "extensions": [
+        "fvt"
+      ],
+      "enums": {
+        "Video": [
+          {
+            "name": "VndFvt",
+            "order": 65
+          }
+        ]
+      }
+    },
+    "video/vnd.mpegurl": {
+      "extensions": [
+        "mxu",
+        "m4u"
+      ],
+      "enums": {
+        "Video": [
+          {
+            "name": "VndMpegurl",
+            "order": 69
+          }
+        ]
+      }
+    },
+    "video/vnd.radgamettools.bink": {
+      "extensions": [
+        "bik",
+        "bk2"
+      ],
+      "enums": {
+        "Video": [
+          {
+            "name": "VndRadgamettoolsBink",
+            "order": 74
+          }
+        ]
+      }
+    },
+    "video/vnd.radgamettools.smacker": {
+      "extensions": [
+        "smk"
+      ],
+      "enums": {
+        "Video": [
+          {
+            "name": "VndRadgamettoolsSmacker",
+            "order": 75
+          }
+        ]
+      }
+    },
+    "video/vnd.vivo": {
+      "extensions": [
+        "viv"
+      ],
+      "enums": {
+        "Video": [
+          {
+            "name": "VndVivo",
+            "order": 81
+          }
+        ]
+      }
+    },
+    "audio/mpeg": {
+      "extensions": [
+        "mp3",
+        "mp2",
+        "mp1",
+        "mpga"
+      ],
+      "enums": {
+        "Audio": [
+          {
+            "name": "Mp3",
+            "order": 18
+          }
+        ]
+      }
+    },
+    "audio/aac": {
+      "extensions": [
+        "aac",
+        "adts"
+      ],
+      "enums": {
+        "Audio": [
+          {
+            "name": "Aac",
+            "order": 0
+          }
+        ]
+      }
+    },
+    "audio/mp4": {
+      "extensions": [
+        "m4a",
+        "mp4a"
+      ],
+      "enums": {
+        "Audio": [
+          {
+            "name": "M4a",
+            "order": 14
+          }
+        ]
+      }
+    },
+    "audio/ogg": {
+      "extensions": [
+        "oga",
+        "ogg",
+        "spx"
+      ],
+      "enums": {
+        "Audio": [
+          {
+            "name": "Ogg",
+            "order": 20
+          }
+        ]
+      }
+    },
+    "audio/opus": {
+      "extensions": [
+        "opus"
+      ],
+      "enums": {
+        "Audio": [
+          {
+            "name": "Opus",
+            "order": 21
+          }
+        ]
+      }
+    },
+    "audio/vorbis": {
+      "extensions": [],
+      "enums": {
+        "Audio": [
+          {
+            "name": "Vorbis",
+            "order": 44
+          }
+        ]
+      }
+    },
+    "audio/wav": {
+      "extensions": [
+        "wav"
+      ],
+      "enums": {
+        "Audio": [
+          {
+            "name": "Wav",
+            "order": 22
+          }
+        ]
+      }
+    },
+    "audio/webm": {
+      "extensions": [
+        "weba"
+      ],
+      "enums": {
+        "Audio": [
+          {
+            "name": "Weba",
+            "order": 24
+          }
+        ]
+      }
+    },
+    "audio/flac": {
+      "extensions": [
+        "flac"
+      ],
+      "enums": {
+        "Audio": [
+          {
+            "name": "Flac",
+            "order": 12
+          }
+        ]
+      }
+    },
+    "audio/aiff": {
+      "extensions": [
+        "aif",
+        "aiff",
+        "aifc"
+      ],
+      "enums": {
+        "Audio": [
+          {
+            "name": "Aiff",
+            "order": 2
+          }
+        ]
+      }
+    },
+    "audio/ac3": {
+      "extensions": [
+        "ac3"
+      ],
+      "enums": {
+        "Audio": [
+          {
+            "name": "Ac3",
+            "order": 1
+          }
+        ]
+      }
+    },
+    "audio/eac3": {
+      "extensions": [
+        "eac3",
+        "ec3"
+      ],
+      "enums": {
+        "Audio": [
+          {
+            "name": "Eac3",
+            "order": 11
+          }
+        ]
+      }
+    },
+    "audio/vnd.dts": {
+      "extensions": [
+        "dts"
+      ],
+      "enums": {
+        "Audio": [
+          {
+            "name": "Dts",
+            "order": 9
+          }
+        ]
+      }
+    },
+    "audio/vnd.dts.hd": {
+      "extensions": [
+        "dtshd"
+      ],
+      "enums": {
+        "Audio": [
+          {
+            "name": "DtsHd",
+            "order": 10
+          }
+        ]
+      }
+    },
+    "audio/midi": {
+      "extensions": [
+        "mid",
+        "midi",
+        "kar",
+        "rmi"
+      ],
+      "enums": {
+        "Audio": [
+          {
+            "name": "Midi",
+            "order": 16
+          }
+        ]
+      }
+    },
+    "audio/basic": {
+      "extensions": [
+        "au",
+        "snd"
+      ],
+      "enums": {
+        "Audio": [
+          {
+            "name": "Au",
+            "order": 8
+          }
+        ]
+      }
+    },
+    "audio/amr": {
+      "extensions": [
+        "amr"
+      ],
+      "enums": {
+        "Audio": [
+          {
+            "name": "Amr",
+            "order": 4
+          }
+        ]
+      }
+    },
+    "audio/amr-wb": {
+      "extensions": [
+        "awb"
+      ],
+      "enums": {
+        "Audio": [
+          {
+            "name": "AmrWb",
+            "order": 5
+          }
+        ]
+      }
+    },
+    "audio/3gpp": {
+      "extensions": [],
+      "enums": {
+        "Audio": [
+          {
+            "name": "ThreeGpp",
+            "order": 45
+          }
+        ]
+      }
+    },
+    "audio/3gpp2": {
+      "extensions": [],
+      "enums": {
+        "Audio": [
+          {
+            "name": "ThreeGpp2",
+            "order": 46
+          }
+        ]
+      }
+    },
+    "audio/x-xm": {
+      "extensions": [
+        "xm"
+      ],
+      "enums": {
+        "Audio": [
+          {
+            "name": "XXm",
+            "order": 41
+          }
+        ]
+      }
+    },
+    "audio/x-mod": {
+      "extensions": [
+        "mod"
+      ],
+      "enums": {
+        "Audio": [
+          {
+            "name": "XMod",
+            "order": 38
+          }
+        ]
+      }
+    },
+    "audio/x-s3m": {
+      "extensions": [
+        "s3m"
+      ],
+      "enums": {
+        "Audio": [
+          {
+            "name": "XS3m",
+            "order": 39
+          }
+        ]
+      }
+    },
+    "audio/x-it": {
+      "extensions": [
+        "it"
+      ],
+      "enums": {
+        "Audio": [
+          {
+            "name": "XIt",
+            "order": 40
+          }
+        ]
+      }
+    },
+    "audio/x-ms-wma": {
+      "extensions": [
+        "wma"
+      ],
+      "enums": {
+        "Audio": [
+          {
+            "name": "Wma",
+            "order": 25
+          }
+        ]
+      }
+    },
+    "audio/vnd.rn-realaudio": {
+      "extensions": [
+        "ra",
+        "ram"
+      ],
+      "enums": {
+        "Audio": [
+          {
+            "name": "VndRn",
+            "order": 82
+          }
+        ]
+      }
+    },
+    "audio/x-matroska": {
+      "extensions": [
+        "mka"
+      ],
+      "enums": {
+        "Audio": [
+          {
+            "name": "Matroska",
+            "order": 116
+          }
+        ]
+      }
+    },
+    "audio/x-ape": {
+      "extensions": [
+        "ape"
+      ],
+      "enums": {
+        "Audio": [
+          {
+            "name": "XApe",
+            "order": 7
+          },
+          {
+            "name": "XMonkeysAudio",
+            "order": 34,
+            "aliasOf": "XApe"
+          }
+        ]
+      }
+    },
+    "audio/x-wavpack": {
+      "extensions": [
+        "wv",
+        "wvp"
+      ],
+      "enums": {
+        "Audio": [
+          {
+            "name": "XWavpack",
+            "order": 33
+          }
+        ]
+      }
+    },
+    "audio/x-tta": {
+      "extensions": [
+        "tta"
+      ],
+      "enums": {
+        "Audio": [
+          {
+            "name": "XTta",
+            "order": 32
+          },
+          {
+            "name": "Tta",
+            "order": 130,
+            "aliasOf": "XTta"
+          }
+        ]
+      }
+    },
+    "audio/x-musepack": {
+      "extensions": [
+        "mpc",
+        "mp+"
+      ],
+      "enums": {
+        "Audio": [
+          {
+            "name": "Musepack",
+            "order": 124
+          }
+        ]
+      }
+    },
+    "audio/x-caf": {
+      "extensions": [
+        "caf"
+      ]
+    },
+    "audio/x-gsm": {
+      "extensions": [
+        "gsm"
+      ]
+    },
+    "audio/x-mpegurl": {
+      "extensions": [
+        "m3u",
+        "m3u8"
+      ],
+      "enums": {
+        "Audio": [
+          {
+            "name": "MpegUrl",
+            "order": 79
+          }
+        ]
+      }
+    },
+    "audio/x-scpls": {
+      "extensions": [
+        "pls"
+      ],
+      "enums": {
+        "Audio": [
+          {
+            "name": "Scpls",
+            "order": 80
+          }
+        ]
+      }
+    },
+    "audio/x-dsf": {
+      "extensions": [
+        "dsf"
+      ],
+      "enums": {
+        "Audio": [
+          {
+            "name": "XDsf",
+            "order": 29
+          }
+        ]
+      }
+    },
+    "audio/x-dff": {
+      "extensions": [
+        "dff"
+      ],
+      "enums": {
+        "Audio": [
+          {
+            "name": "XDff",
+            "order": 31
+          }
+        ]
+      }
+    },
+    "application/json": {
+      "extensions": [
+        "json",
+        "map"
+      ],
+      "enums": {
+        "Application": [
+          {
+            "name": "Json",
+            "order": 0
+          }
+        ]
+      }
+    },
+    "application/ld+json": {
+      "extensions": [
+        "jsonld"
+      ],
+      "enums": {
+        "Application": [
+          {
+            "name": "JsonLd",
+            "order": 1
+          }
+        ]
+      }
+    },
+    "application/json-patch+json": {
+      "extensions": [
+        "json-patch"
+      ],
+      "enums": {
+        "Application": [
+          {
+            "name": "JsonPatch",
+            "order": 2
+          }
+        ]
+      }
+    },
+    "application/json-seq": {
+      "extensions": [
+        "json-seq"
+      ],
+      "enums": {
+        "Application": [
+          {
+            "name": "JsonSeq",
+            "order": 3
+          }
+        ]
+      }
+    },
+    "application/jwk+json": {
+      "extensions": [
+        "jwk"
+      ],
+      "enums": {
+        "Application": [
+          {
+            "name": "Jwk",
+            "order": 135
+          }
+        ]
+      }
+    },
+    "application/jwk-set+json": {
+      "extensions": [
+        "jwks"
+      ],
+      "enums": {
+        "Application": [
+          {
+            "name": "JwkSet",
+            "order": 136
+          }
+        ]
+      }
+    },
+    "application/jwt": {
+      "extensions": [
+        "jwt"
+      ],
+      "enums": {
+        "Application": [
+          {
+            "name": "Jwt",
+            "order": 4
+          }
+        ]
+      }
+    },
+    "application/schema+json": {
+      "extensions": [],
+      "enums": {
+        "Application": [
+          {
+            "name": "JsonSchema",
+            "order": 203
+          }
+        ]
+      }
+    },
+    "application/geo+json": {
+      "extensions": [
+        "geojson"
+      ],
+      "enums": {
+        "Application": [
+          {
+            "name": "Geo",
+            "order": 106
+          }
+        ]
+      }
+    },
+    "application/hal+json": {
+      "extensions": [
+        "hal"
+      ],
+      "enums": {
+        "Application": [
+          {
+            "name": "Hal",
+            "order": 146
+          }
+        ]
+      }
+    },
+    "application/graphql+json": {
+      "extensions": [],
+      "enums": {
+        "Application": [
+          {
+            "name": "GraphQL",
+            "order": 144
+          }
+        ]
+      }
+    },
+    "application/vnd.api+json": {
+      "extensions": [],
+      "enums": {
+        "Application": [
+          {
+            "name": "Jsonapi",
+            "order": 148
+          }
+        ]
+      }
+    },
+    "application/problem+json": {
+      "extensions": [],
+      "enums": {
+        "Application": [
+          {
+            "name": "Problem",
+            "order": 149
+          }
+        ]
+      }
+    },
+    "application/merge-patch+json": {
+      "extensions": [],
+      "enums": {
+        "Application": [
+          {
+            "name": "Merge",
+            "order": 151
+          }
+        ]
+      }
+    },
+    "application/activity+json": {
+      "extensions": [],
+      "enums": {
+        "Application": [
+          {
+            "name": "Activity",
+            "order": 152
+          }
+        ]
+      }
+    },
+    "application/scim+json": {
+      "extensions": [],
+      "enums": {
+        "Application": [
+          {
+            "name": "Scim",
+            "order": 153
+          }
+        ]
+      }
+    },
+    "application/ecmascript": {
+      "extensions": [],
+      "enums": {
+        "Application": [
+          {
+            "name": "EcmaScript",
+            "order": 6
+          }
+        ]
+      }
+    },
+    "application/xml": {
+      "extensions": [
+        "xml",
+        "xsl",
+        "xsd",
+        "rng"
+      ],
+      "enums": {
+        "Application": [
+          {
+            "name": "Xml",
+            "order": 9
+          }
+        ]
+      }
+    },
+    "application/xml-dtd": {
+      "extensions": [
+        "dtd"
+      ],
+      "enums": {
+        "Application": [
+          {
+            "name": "XmlDtd",
+            "order": 10
+          }
+        ]
+      }
+    },
+    "application/xhtml+xml": {
+      "extensions": [
+        "xhtml",
+        "xht"
+      ],
+      "enums": {
+        "Application": [
+          {
+            "name": "Xhtml",
+            "order": 12
+          }
+        ]
+      }
+    },
+    "application/xslt+xml": {
+      "extensions": [
+        "xslt"
+      ],
+      "enums": {
+        "Application": [
+          {
+            "name": "XsltXml",
+            "order": 70
+          }
+        ]
+      }
+    },
+    "application/mathml+xml": {
+      "extensions": [
+        "mathml",
+        "mml"
+      ],
+      "enums": {
+        "Application": [
+          {
+            "name": "MathMl",
+            "order": 71
+          }
+        ]
+      }
+    },
+    "application/rss+xml": {
+      "extensions": [
+        "rss"
+      ],
+      "enums": {
+        "Application": [
+          {
+            "name": "RssXml",
+            "order": 67
+          }
+        ]
+      }
+    },
+    "application/atom+xml": {
+      "extensions": [
+        "atom"
+      ],
+      "enums": {
+        "Application": [
+          {
+            "name": "AtomXml",
+            "order": 66
+          }
+        ]
+      }
+    },
+    "application/soap+xml": {
+      "extensions": [
+        "soap"
+      ],
+      "enums": {
+        "Application": [
+          {
+            "name": "SoapXml",
+            "order": 68
+          }
+        ]
+      }
+    },
+    "application/wsdl+xml": {
+      "extensions": [
+        "wsdl"
+      ],
+      "enums": {
+        "Application": [
+          {
+            "name": "WsdlXml",
+            "order": 69
+          }
+        ]
+      }
+    },
+    "application/gpx+xml": {
+      "extensions": [
+        "gpx"
+      ],
+      "enums": {
+        "Application": [
+          {
+            "name": "Gpx",
+            "order": 107
+          }
+        ]
+      }
+    },
+    "application/gml+xml": {
+      "extensions": [
+        "gml"
+      ],
+      "enums": {
+        "Application": [
+          {
+            "name": "Gml",
+            "order": 110
+          }
+        ]
+      }
+    },
+    "application/smil+xml": {
+      "extensions": [
+        "smi",
+        "smil"
+      ],
+      "enums": {
+        "Application": [
+          {
+            "name": "Smil",
+            "order": 104
+          }
+        ]
+      }
+    },
+    "application/xspf+xml": {
+      "extensions": [
+        "xspf"
+      ],
+      "enums": {
+        "Application": [
+          {
+            "name": "Xspf",
+            "order": 194
+          }
+        ]
+      }
+    },
+    "application/dash+xml": {
+      "extensions": [
+        "mpd"
+      ],
+      "enums": {
+        "Application": [
+          {
+            "name": "Dash",
+            "order": 103
+          }
+        ]
+      }
+    },
+    "application/problem+xml": {
+      "extensions": [],
+      "enums": {
+        "Application": [
+          {
+            "name": "ProblemXml",
+            "order": 150
+          }
+        ]
+      }
+    },
+    "application/pdf": {
+      "extensions": [
+        "pdf"
+      ],
+      "enums": {
+        "Application": [
+          {
+            "name": "Pdf",
+            "order": 8
+          }
+        ]
+      }
+    },
+    "application/octet-stream": {
+      "extensions": [
+        "bin",
+        "dms",
+        "lrf",
+        "mar",
+        "dist",
+        "distz",
+        "bpk",
+        "dump",
+        "elc",
+        "deploy",
+        "com"
+      ],
+      "enums": {
+        "Application": [
+          {
+            "name": "OctetStream",
+            "order": 7
+          }
+        ]
+      }
+    },
+    "application/zip": {
+      "extensions": [
+        "zip"
+      ],
+      "enums": {
+        "Application": [
+          {
+            "name": "Zip",
+            "order": 13
+          }
+        ]
+      }
+    },
+    "application/gzip": {
+      "extensions": [
+        "gz",
+        "gzip"
+      ],
+      "enums": {
+        "Application": [
+          {
+            "name": "Gzip",
+            "order": 14
+          }
+        ]
+      }
+    },
+    "application/x-bzip": {
+      "extensions": [
+        "bz"
+      ],
+      "enums": {
+        "Application": [
+          {
+            "name": "Bzip",
+            "order": 16
+          }
+        ]
+      }
+    },
+    "application/x-bzip2": {
+      "extensions": [
+        "bz2",
+        "boz"
+      ],
+      "enums": {
+        "Application": [
+          {
+            "name": "Bzip2",
+            "order": 17
+          }
+        ]
+      }
+    },
+    "application/x-tar": {
+      "extensions": [
+        "tar"
+      ],
+      "enums": {
+        "Application": [
+          {
+            "name": "Tar",
+            "order": 18
+          }
+        ]
+      }
+    },
+    "application/vnd.rar": {
+      "extensions": [
+        "rar"
+      ],
+      "enums": {
+        "Application": [
+          {
+            "name": "Rar",
+            "order": 19
+          }
+        ]
+      }
+    },
+    "application/x-7z-compressed": {
+      "extensions": [
+        "7z"
+      ],
+      "enums": {
+        "Application": [
+          {
+            "name": "X7zCompressed",
+            "order": 20
+          }
+        ]
+      }
+    },
+    "application/x-xz": {
+      "extensions": [
+        "xz"
+      ],
+      "enums": {
+        "Application": [
+          {
+            "name": "Xz",
+            "order": 172
+          }
+        ]
+      }
+    },
+    "application/zstd": {
+      "extensions": [
+        "zst",
+        "zstd"
+      ],
+      "enums": {
+        "Application": [
+          {
+            "name": "Zstd",
+            "order": 22
+          }
+        ]
+      }
+    },
+    "application/x-lz4": {
+      "extensions": [
+        "lz4"
+      ],
+      "enums": {
+        "Application": [
+          {
+            "name": "Lz4",
+            "order": 173
+          }
+        ]
+      }
+    },
+    "application/x-lzip": {
+      "extensions": [
+        "lz"
+      ],
+      "enums": {
+        "Application": [
+          {
+            "name": "XLzip",
+            "order": 160
+          }
+        ]
+      }
+    },
+    "application/x-lzma": {
+      "extensions": [
+        "lzma"
+      ],
+      "enums": {
+        "Application": [
+          {
+            "name": "XLzma",
+            "order": 161
+          }
+        ]
+      }
+    },
+    "application/x-lzop": {
+      "extensions": [
+        "lzo"
+      ],
+      "enums": {
+        "Application": [
+          {
+            "name": "XLzop",
+            "order": 162
+          }
+        ]
+      }
+    },
+    "application/x-compress": {
+      "extensions": [
+        "z"
+      ],
+      "enums": {
+        "Application": [
+          {
+            "name": "XCompress",
+            "order": 164
+          }
+        ]
+      }
+    },
+    "application/x-cpio": {
+      "extensions": [
+        "cpio"
+      ],
+      "enums": {
+        "Application": [
+          {
+            "name": "XCpio",
+            "order": 165
+          }
+        ]
+      }
+    },
+    "application/x-shar": {
+      "extensions": [
+        "shar"
+      ],
+      "enums": {
+        "Application": [
+          {
+            "name": "XShar",
+            "order": 166
+          }
+        ]
+      }
+    },
+    "application/x-stuffit": {
+      "extensions": [
+        "sit"
+      ],
+      "enums": {
+        "Application": [
+          {
+            "name": "XStuffit",
+            "order": 167
+          }
+        ]
+      }
+    },
+    "application/x-stuffitx": {
+      "extensions": [
+        "sitx"
+      ],
+      "enums": {
+        "Application": [
+          {
+            "name": "XStuffitx",
+            "order": 168
+          }
+        ]
+      }
+    },
+    "application/x-gtar": {
+      "extensions": [
+        "gtar"
+      ],
+      "enums": {
+        "Application": [
+          {
+            "name": "XGtar",
+            "order": 169
+          }
+        ]
+      }
+    },
+    "application/x-ustar": {
+      "extensions": [
+        "ustar"
+      ],
+      "enums": {
+        "Application": [
+          {
+            "name": "XUstar",
+            "order": 170
+          }
+        ]
+      }
+    },
+    "application/x-arj": {
+      "extensions": [
+        "arj"
+      ],
+      "enums": {
+        "Application": [
+          {
+            "name": "XArj",
+            "order": 157
+          }
+        ]
+      }
+    },
+    "application/x-ace-compressed": {
+      "extensions": [
+        "ace"
+      ],
+      "enums": {
+        "Application": [
+          {
+            "name": "XAce",
+            "order": 158
+          }
+        ]
+      }
+    },
+    "application/x-lzh-compressed": {
+      "extensions": [
+        "lzh",
+        "lha"
+      ],
+      "enums": {
+        "Application": [
+          {
+            "name": "XLzh",
+            "order": 159
+          }
+        ]
+      }
+    },
+    "application/vnd.ms-cab-compressed": {
+      "extensions": [
+        "cab"
+      ],
+      "enums": {
+        "Application": [
+          {
+            "name": "XCab",
+            "order": 171
+          }
+        ]
+      }
+    },
+    "application/x-iso9660-image": {
+      "extensions": [
+        "iso"
+      ]
+    },
+    "application/x-apple-diskimage": {
+      "extensions": [
+        "dmg"
+      ],
+      "enums": {
+        "Application": [
+          {
+            "name": "Dmg",
+            "order": 179
+          }
+        ]
+      }
+    },
+    "application/vnd.debian.binary-package": {
+      "extensions": [
+        "deb",
+        "udeb"
+      ],
+      "enums": {
+        "Application": [
+          {
+            "name": "Deb",
+            "order": 175
+          }
+        ]
+      }
+    },
+    "application/x-rpm": {
+      "extensions": [
+        "rpm"
+      ],
+      "enums": {
+        "Application": [
+          {
+            "name": "Rpm",
+            "order": 176
+          }
+        ]
+      }
+    },
+    "application/x-redhat-package-manager": {
+      "extensions": [],
+      "enums": {
+        "Application": [
+          {
+            "name": "XRedhatPackageManager",
+            "order": 177
+          }
+        ]
+      }
+    },
+    "application/vnd.android.package-archive": {
+      "extensions": [
+        "apk"
+      ],
+      "enums": {
+        "Application": [
+          {
+            "name": "Apk",
+            "order": 178
+          }
+        ]
+      }
+    },
+    "application/x-msi": {
+      "extensions": [
+        "msi"
+      ],
+      "enums": {
+        "Application": [
+          {
+            "name": "Msi",
+            "order": 180
+          }
+        ]
+      }
+    },
+    "application/x-xar": {
+      "extensions": [
+        "xar",
+        "pkg"
+      ],
+      "enums": {
+        "Application": [
+          {
+            "name": "Pkg",
+            "order": 181
+          }
+        ]
+      }
+    },
+    "application/rtf": {
+      "extensions": [
+        "rtf"
+      ],
+      "enums": {
+        "Application": [
+          {
+            "name": "Rtf",
+            "order": 23
+          }
+        ]
+      }
+    },
+    "application/postscript": {
+      "extensions": [
+        "ai",
+        "eps",
+        "ps"
+      ],
+      "enums": {
+        "Application": [
+          {
+            "name": "Postscript",
+            "order": 24
+          }
+        ]
+      }
+    },
+    "application/msword": {
+      "extensions": [
+        "doc"
+      ],
+      "enums": {
+        "Application": [
+          {
+            "name": "Msword",
+            "order": 27
+          }
+        ]
+      }
+    },
+    "application/vnd.ms-excel": {
+      "extensions": [
+        "xls",
+        "xlm",
+        "xla",
+        "xlc",
+        "xlt",
+        "xlw"
+      ],
+      "enums": {
+        "Application": [
+          {
+            "name": "MsExcel",
+            "order": 30
+          }
+        ]
+      }
+    },
+    "application/vnd.ms-powerpoint": {
+      "extensions": [
+        "ppt",
+        "pps",
+        "pot"
+      ],
+      "enums": {
+        "Application": [
+          {
+            "name": "MsPowerpoint",
+            "order": 36
+          }
+        ]
+      }
+    },
+    "application/vnd.ms-access": {
+      "extensions": [
+        "mdb",
+        "accdb"
+      ],
+      "enums": {
+        "Application": [
+          {
+            "name": "MsAccess",
+            "order": 40
+          }
+        ]
+      }
+    },
+    "application/vnd.ms-project": {
+      "extensions": [
+        "mpp",
+        "mpt"
+      ],
+      "enums": {
+        "Application": [
+          {
+            "name": "MsProject",
+            "order": 41
+          }
+        ]
+      }
+    },
+    "application/vnd.visio": {
+      "extensions": [
+        "vsd",
+        "vst",
+        "vss",
+        "vsw"
+      ],
+      "enums": {
+        "Application": [
+          {
+            "name": "MsVisio",
+            "order": 42
+          }
+        ]
+      }
+    },
+    "application/vnd.ms-publisher": {
+      "extensions": [
+        "pub"
+      ],
+      "enums": {
+        "Application": [
+          {
+            "name": "MsPublisher",
+            "order": 43
+          }
+        ]
+      }
+    },
+    "application/vnd.ms-outlook": {
+      "extensions": [
+        "msg"
+      ],
+      "enums": {
+        "Application": [
+          {
+            "name": "MsOutlook",
+            "order": 44
+          }
+        ]
+      }
+    },
+    "application/vnd.openxmlformats-officedocument.wordprocessingml.document": {
+      "extensions": [
+        "docx"
+      ],
+      "enums": {
+        "Application": [
+          {
+            "name": "MswordX",
+            "order": 28
+          }
+        ]
+      }
+    },
+    "application/vnd.openxmlformats-officedocument.wordprocessingml.template": {
+      "extensions": [
+        "dotx"
+      ],
+      "enums": {
+        "Application": [
+          {
+            "name": "MswordTemplate",
+            "order": 29
+          }
+        ]
+      }
+    },
+    "application/vnd.ms-word.document.macroenabled.12": {
+      "extensions": [
+        "docm"
+      ]
+    },
+    "application/vnd.ms-word.template.macroenabled.12": {
+      "extensions": [
+        "dotm"
+      ]
+    },
+    "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet": {
+      "extensions": [
+        "xlsx"
+      ],
+      "enums": {
+        "Application": [
+          {
+            "name": "MsExcelX",
+            "order": 31
+          }
+        ]
+      }
+    },
+    "application/vnd.openxmlformats-officedocument.spreadsheetml.template": {
+      "extensions": [
+        "xltx"
+      ],
+      "enums": {
+        "Application": [
+          {
+            "name": "MsExcelTemplate",
+            "order": 32
+          }
+        ]
+      }
+    },
+    "application/vnd.ms-excel.addin.macroenabled.12": {
+      "extensions": [
+        "xlam"
+      ],
+      "enums": {
+        "Application": [
+          {
+            "name": "MsExcelAddin",
+            "order": 33
+          }
+        ]
+      }
+    },
+    "application/vnd.ms-excel.sheet.macroenabled.12": {
+      "extensions": [
+        "xlsm"
+      ],
+      "enums": {
+        "Application": [
+          {
+            "name": "MsExcelSheetMacro",
+            "order": 34
+          }
+        ]
+      }
+    },
+    "application/vnd.ms-excel.template.macroenabled.12": {
+      "extensions": [
+        "xltm"
+      ]
+    },
+    "application/vnd.ms-excel.sheet.binary.macroenabled.12": {
+      "extensions": [
+        "xlsb"
+      ],
+      "enums": {
+        "Application": [
+          {
+            "name": "MsExcelSheetBinary",
+            "order": 35
+          }
+        ]
+      }
+    },
+    "application/vnd.openxmlformats-officedocument.presentationml.presentation": {
+      "extensions": [
+        "pptx"
+      ],
+      "enums": {
+        "Application": [
+          {
+            "name": "MsPowerpointX",
+            "order": 37
+          }
+        ]
+      }
+    },
+    "application/vnd.openxmlformats-officedocument.presentationml.template": {
+      "extensions": [
+        "potx"
+      ],
+      "enums": {
+        "Application": [
+          {
+            "name": "MsPowerpointTemplate",
+            "order": 38
+          }
+        ]
+      }
+    },
+    "application/vnd.openxmlformats-officedocument.presentationml.slideshow": {
+      "extensions": [
+        "ppsx"
+      ],
+      "enums": {
+        "Application": [
+          {
+            "name": "MsPowerpointSlideshow",
+            "order": 39
+          }
+        ]
+      }
+    },
+    "application/vnd.ms-powerpoint.presentation.macroenabled.12": {
+      "extensions": [
+        "pptm"
+      ]
+    },
+    "application/vnd.ms-powerpoint.template.macroenabled.12": {
+      "extensions": [
+        "potm"
+      ]
+    },
+    "application/vnd.ms-powerpoint.slideshow.macroenabled.12": {
+      "extensions": [
+        "ppsm"
+      ]
+    },
+    "application/vnd.ms-powerpoint.addin.macroenabled.12": {
+      "extensions": [
+        "ppam"
+      ]
+    },
+    "application/vnd.oasis.opendocument.text": {
+      "extensions": [
+        "odt"
+      ],
+      "enums": {
+        "Application": [
+          {
+            "name": "OdtText",
+            "order": 47
+          }
+        ]
+      }
+    },
+    "application/vnd.oasis.opendocument.text-template": {
+      "extensions": [
+        "ott"
+      ],
+      "enums": {
+        "Application": [
+          {
+            "name": "OdtTextTemplate",
+            "order": 48
+          }
+        ]
+      }
+    },
+    "application/vnd.oasis.opendocument.spreadsheet": {
+      "extensions": [
+        "ods"
+      ],
+      "enums": {
+        "Application": [
+          {
+            "name": "OdsSpreadsheet",
+            "order": 49
+          }
+        ]
+      }
+    },
+    "application/vnd.oasis.opendocument.spreadsheet-template": {
+      "extensions": [
+        "ots"
+      ],
+      "enums": {
+        "Application": [
+          {
+            "name": "OdsSpreadsheetTemplate",
+            "order": 50
+          }
+        ]
+      }
+    },
+    "application/vnd.oasis.opendocument.presentation": {
+      "extensions": [
+        "odp"
+      ],
+      "enums": {
+        "Application": [
+          {
+            "name": "OdpPresentation",
+            "order": 51
+          }
+        ]
+      }
+    },
+    "application/vnd.oasis.opendocument.presentation-template": {
+      "extensions": [
+        "otp"
+      ],
+      "enums": {
+        "Application": [
+          {
+            "name": "OdpPresentationTemplate",
+            "order": 52
+          }
+        ]
+      }
+    },
+    "application/vnd.oasis.opendocument.graphics": {
+      "extensions": [
+        "odg"
+      ],
+      "enums": {
+        "Application": [
+          {
+            "name": "OdgGraphics",
+            "order": 53
+          }
+        ]
+      }
+    },
+    "application/vnd.oasis.opendocument.graphics-template": {
+      "extensions": [
+        "otg"
+      ],
+      "enums": {
+        "Application": [
+          {
+            "name": "OdgGraphicsTemplate",
+            "order": 54
+          }
+        ]
+      }
+    },
+    "application/vnd.oasis.opendocument.chart": {
+      "extensions": [
+        "odc"
+      ],
+      "enums": {
+        "Application": [
+          {
+            "name": "OdcChart",
+            "order": 55
+          }
+        ]
+      }
+    },
+    "application/vnd.oasis.opendocument.formula": {
+      "extensions": [
+        "odf"
+      ],
+      "enums": {
+        "Application": [
+          {
+            "name": "OdfFormula",
+            "order": 56
+          }
+        ]
+      }
+    },
+    "application/vnd.oasis.opendocument.database": {
+      "extensions": [
+        "odb"
+      ],
+      "enums": {
+        "Application": [
+          {
+            "name": "OdbDatabase",
+            "order": 57
+          }
+        ]
+      }
+    },
+    "application/vnd.oasis.opendocument.image": {
+      "extensions": [
+        "odi"
+      ],
+      "enums": {
+        "Application": [
+          {
+            "name": "OdiImage",
+            "order": 58
+          }
+        ]
+      }
+    },
+    "application/vnd.apple.keynote": {
+      "extensions": [
+        "key"
+      ],
+      "enums": {
+        "Application": [
+          {
+            "name": "IworkKeynote",
+            "order": 59
+          }
+        ]
+      }
+    },
+    "application/vnd.apple.numbers": {
+      "extensions": [
+        "numbers"
+      ],
+      "enums": {
+        "Application": [
+          {
+            "name": "IworkNumbers",
+            "order": 60
+          }
+        ]
+      }
+    },
+    "application/vnd.apple.pages": {
+      "extensions": [
+        "pages"
+      ],
+      "enums": {
+        "Application": [
+          {
+            "name": "IworkPages",
+            "order": 61
+          }
+        ]
+      }
+    },
+    "application/epub+zip": {
+      "extensions": [
+        "epub"
+      ],
+      "enums": {
+        "Application": [
+          {
+            "name": "Epub",
+            "order": 62
+          }
+        ]
+      }
+    },
+    "application/x-mobipocket-ebook": {
+      "extensions": [
+        "mobi",
+        "prc"
+      ],
+      "enums": {
+        "Application": [
+          {
+            "name": "Mobi",
+            "order": 63
+          }
+        ]
+      }
+    },
+    "application/vnd.amazon.ebook": {
+      "extensions": [
+        "azw",
+        "azw3"
+      ],
+      "enums": {
+        "Application": [
+          {
+            "name": "AmazonEbook",
+            "order": 64
+          }
+        ]
+      }
+    },
+    "application/x-fictionbook+xml": {
+      "extensions": [
+        "fb2"
+      ],
+      "enums": {
+        "Application": [
+          {
+            "name": "Fictionbook",
+            "order": 65
+          }
+        ]
+      }
+    },
+    "font/otf": {
+      "extensions": [
+        "otf"
+      ],
+      "enums": {
+        "Font": [
+          {
+            "name": "Otf",
+            "order": 1
+          }
+        ]
+      }
+    },
+    "font/ttf": {
+      "extensions": [
+        "ttf"
+      ],
+      "enums": {
+        "Font": [
+          {
+            "name": "Ttf",
+            "order": 3
+          }
+        ]
+      }
+    },
+    "font/woff": {
+      "extensions": [
+        "woff"
+      ],
+      "enums": {
+        "Font": [
+          {
+            "name": "Woff",
+            "order": 4
+          }
+        ]
+      }
+    },
+    "font/woff2": {
+      "extensions": [
+        "woff2"
+      ],
+      "enums": {
+        "Font": [
+          {
+            "name": "Woff2",
+            "order": 5
+          }
+        ]
+      }
+    },
+    "font/collection": {
+      "extensions": [
+        "ttc"
+      ],
+      "enums": {
+        "Font": [
+          {
+            "name": "Collection",
+            "order": 0
+          }
+        ]
+      }
+    },
+    "font/sfnt": {
+      "extensions": [],
+      "enums": {
+        "Font": [
+          {
+            "name": "Sfnt",
+            "order": 2
+          }
+        ]
+      }
+    },
+    "application/vnd.ms-fontobject": {
+      "extensions": [
+        "eot"
+      ],
+      "enums": {
+        "Application": [
+          {
+            "name": "MsFontObject",
+            "order": 45
+          }
+        ],
+        "Font": [
+          {
+            "name": "Eot",
+            "order": 14
+          }
+        ]
+      }
+    },
+    "application/x-font-bdf": {
+      "extensions": [
+        "bdf"
+      ],
+      "enums": {
+        "Font": [
+          {
+            "name": "Bdf",
+            "order": 15
+          }
+        ]
+      }
+    },
+    "application/x-font-pcf": {
+      "extensions": [
+        "pcf"
+      ],
+      "enums": {
+        "Font": [
+          {
+            "name": "Pcf",
+            "order": 18
+          }
+        ]
+      }
+    },
+    "application/x-font-type1": {
+      "extensions": [
+        "pfa",
+        "pfb",
+        "pfm",
+        "afm"
+      ],
+      "enums": {
+        "Font": [
+          {
+            "name": "Type1",
+            "order": 21
+          }
+        ]
+      }
+    },
+    "application/java-archive": {
+      "extensions": [
+        "jar",
+        "war",
+        "ear"
+      ],
+      "enums": {
+        "Application": [
+          {
+            "name": "JavaArchive",
+            "order": 83
+          }
+        ]
+      }
+    },
+    "application/java-serialized-object": {
+      "extensions": [
+        "ser"
+      ],
+      "enums": {
+        "Application": [
+          {
+            "name": "JavaSerializedObject",
+            "order": 84
+          }
+        ]
+      }
+    },
+    "application/java-vm": {
+      "extensions": [
+        "class"
+      ],
+      "enums": {
+        "Application": [
+          {
+            "name": "JavaVm",
+            "order": 85
+          }
+        ]
+      }
+    },
+    "application/wasm": {
+      "extensions": [
+        "wasm"
+      ],
+      "enums": {
+        "Application": [
+          {
+            "name": "Wasm",
+            "order": 86
+          }
+        ]
+      }
+    },
+    "application/x-executable": {
+      "extensions": [],
+      "enums": {
+        "Application": [
+          {
+            "name": "XExecutable",
+            "order": 88
+          }
+        ]
+      }
+    },
+    "application/x-sharedlib": {
+      "extensions": [
+        "so"
+      ],
+      "enums": {
+        "Application": [
+          {
+            "name": "XSharedlib",
+            "order": 87
+          }
+        ]
+      }
+    },
+    "application/x-msdos-program": {
+      "extensions": [],
+      "enums": {
+        "Application": [
+          {
+            "name": "XMsdos",
+            "order": 90
+          }
+        ]
+      }
+    },
+    "application/vnd.microsoft.portable-executable": {
+      "extensions": [
+        "exe",
+        "dll"
+      ],
+      "enums": {
+        "Application": [
+          {
+            "name": "XPeExecutable",
+            "order": 92
+          }
+        ]
+      }
+    },
+    "application/x-mach-binary": {
+      "extensions": [
+        "dylib"
+      ],
+      "enums": {
+        "Application": [
+          {
+            "name": "XMachoBinary",
+            "order": 93
+          }
+        ]
+      }
+    },
+    "application/x-elf": {
+      "extensions": [
+        "elf"
+      ],
+      "enums": {
+        "Application": [
+          {
+            "name": "XElf",
+            "order": 94
+          }
+        ]
+      }
+    },
+    "application/ogg": {
+      "extensions": [
+        "ogx"
+      ],
+      "enums": {
+        "Application": [
+          {
+            "name": "Ogg",
+            "order": 101
+          }
+        ]
+      }
+    },
+    "application/mp4": {
+      "extensions": [
+        "mp4s",
+        "m4p"
+      ],
+      "enums": {
+        "Application": [
+          {
+            "name": "Mp4",
+            "order": 102
+          }
+        ]
+      }
+    },
+    "application/mxf": {
+      "extensions": [
+        "mxf"
+      ],
+      "enums": {
+        "Application": [
+          {
+            "name": "Mxf",
+            "order": 105
+          }
+        ]
+      }
+    },
+    "application/vnd.google-earth.kml+xml": {
+      "extensions": [
+        "kml"
+      ],
+      "enums": {
+        "Application": [
+          {
+            "name": "Kml",
+            "order": 108
+          }
+        ]
+      }
+    },
+    "application/vnd.google-earth.kmz": {
+      "extensions": [
+        "kmz"
+      ],
+      "enums": {
+        "Application": [
+          {
+            "name": "Kmz",
+            "order": 109
+          }
+        ]
+      }
+    },
+    "application/sla": {
+      "extensions": [],
+      "enums": {
+        "Application": [
+          {
+            "name": "Stl",
+            "order": 116
+          }
+        ]
+      }
+    },
+    "application/vnd.ms-pki.stl": {
+      "extensions": [],
+      "enums": {
+        "Application": [
+          {
+            "name": "VndMsPkiStl",
+            "order": 195
+          }
+        ]
+      }
+    },
+    "application/step": {
+      "extensions": [],
+      "enums": {
+        "Application": [
+          {
+            "name": "Step",
+            "order": 113
+          }
+        ]
+      }
+    },
+    "application/iges": {
+      "extensions": [],
+      "enums": {
+        "Application": [
+          {
+            "name": "Iges",
+            "order": 114
+          }
+        ]
+      }
+    },
+    "application/vnd.autocad.dwg": {
+      "extensions": [
+        "dwg"
+      ],
+      "enums": {
+        "Application": [
+          {
+            "name": "VndAutocadDwg",
+            "order": 115
+          }
+        ]
+      }
+    },
+    "application/pkcs7-mime": {
+      "extensions": [
+        "p7m",
+        "p7c"
+      ],
+      "enums": {
+        "Application": [
+          {
+            "name": "Pkcs7Mime",
+            "order": 119
+          }
+        ]
+      }
+    },
+    "application/pkcs7-signature": {
+      "extensions": [
+        "p7s"
+      ],
+      "enums": {
+        "Application": [
+          {
+            "name": "Pkcs7Signature",
+            "order": 120
+          }
+        ]
+      }
+    },
+    "application/pkcs8": {
+      "extensions": [
+        "p8"
+      ],
+      "enums": {
+        "Application": [
+          {
+            "name": "Pkcs8",
+            "order": 121
+          }
+        ]
+      }
+    },
+    "application/pkcs10": {
+      "extensions": [
+        "p10",
+        "csr"
+      ],
+      "enums": {
+        "Application": [
+          {
+            "name": "Pkcs10",
+            "order": 122
+          }
+        ]
+      }
+    },
+    "application/x-pkcs12": {
+      "extensions": [
+        "p12",
+        "pfx"
+      ],
+      "enums": {
+        "Application": [
+          {
+            "name": "Pkcs12",
+            "order": 123
+          },
+          {
+            "name": "XPkcs12",
+            "order": 130,
+            "aliasOf": "Pkcs12"
+          }
+        ]
+      }
+    },
+    "application/pkix-cert": {
+      "extensions": [
+        "cer"
+      ],
+      "enums": {
+        "Application": [
+          {
+            "name": "Pkix",
+            "order": 124
+          }
+        ]
+      }
+    },
+    "application/pkix-crl": {
+      "extensions": [
+        "crl"
+      ],
+      "enums": {
+        "Application": [
+          {
+            "name": "PkixCrl",
+            "order": 125
+          }
+        ]
+      }
+    },
+    "application/pkixcmp": {
+      "extensions": [
+        "pki"
+      ],
+      "enums": {
+        "Application": [
+          {
+            "name": "Pkixcmp",
+            "order": 126
+          }
+        ]
+      }
+    },
+    "application/x-pem-file": {
+      "extensions": [
+        "pem"
+      ],
+      "enums": {
+        "Application": [
+          {
+            "name": "XPemFile",
+            "order": 127
+          }
+        ]
+      }
+    },
+    "application/x-pkcs7-certificates": {
+      "extensions": [
+        "p7b",
+        "spc"
+      ],
+      "enums": {
+        "Application": [
+          {
+            "name": "XPkcs7Certificates",
+            "order": 128
+          }
+        ]
+      }
+    },
+    "application/pgp-encrypted": {
+      "extensions": [
+        "pgp"
+      ],
+      "enums": {
+        "Application": [
+          {
+            "name": "Pgp",
+            "order": 132
+          }
+        ]
+      }
+    },
+    "application/pgp-keys": {
+      "extensions": [
+        "asc"
+      ],
+      "enums": {
+        "Application": [
+          {
+            "name": "PgpKeys",
+            "order": 133
+          }
+        ]
+      }
+    },
+    "application/pgp-signature": {
+      "extensions": [
+        "sig"
+      ],
+      "enums": {
+        "Application": [
+          {
+            "name": "PgpSignature",
+            "order": 134
+          }
+        ]
+      }
+    },
+    "application/x-x509-ca-cert": {
+      "extensions": [
+        "crt",
+        "der"
+      ]
+    },
+    "application/sql": {
+      "extensions": [
+        "sql"
+      ],
+      "enums": {
+        "Application": [
+          {
+            "name": "Sql",
+            "order": 154
+          }
+        ]
+      }
+    },
+    "application/vnd.sqlite3": {
+      "extensions": [
+        "sqlite",
+        "sqlite3",
+        "db"
+      ],
+      "enums": {
+        "Application": [
+          {
+            "name": "Sqlite3",
+            "order": 155
+          }
+        ]
+      }
+    },
+    "application/cbor": {
+      "extensions": [
+        "cbor"
+      ],
+      "enums": {
+        "Application": [
+          {
+            "name": "Cbor",
+            "order": 76
+          }
+        ]
+      }
+    },
+    "application/cbor-seq": {
+      "extensions": [
+        "cbor-seq"
+      ],
+      "enums": {
+        "Application": [
+          {
+            "name": "CborSeq",
+            "order": 77
+          }
+        ]
+      }
+    },
+    "application/msgpack": {
+      "extensions": [
+        "msgpack"
+      ],
+      "enums": {
+        "Application": [
+          {
+            "name": "Msgpack",
+            "order": 78
+          }
+        ]
+      }
+    },
+    "application/yaml": {
+      "extensions": [
+        "yaml",
+        "yml"
+      ]
+    },
+    "application/toml": {
+      "extensions": [
+        "toml"
+      ],
+      "enums": {
+        "Application": [
+          {
+            "name": "Toml",
+            "order": 73
+          }
+        ]
+      }
+    },
+    "application/x-sh": {
+      "extensions": [
+        "sh"
+      ]
+    },
+    "application/x-csh": {
+      "extensions": [
+        "csh"
+      ]
+    },
+    "application/x-httpd-php": {
+      "extensions": [
+        "php",
+        "php3",
+        "php4",
+        "php5",
+        "phtml"
+      ]
+    },
+    "application/x-latex": {
+      "extensions": [
+        "latex"
+      ],
+      "enums": {
+        "Application": [
+          {
+            "name": "Latex",
+            "order": 25
+          }
+        ]
+      }
+    },
+    "application/x-tex": {
+      "extensions": [
+        "tex"
+      ],
+      "enums": {
+        "Application": [
+          {
+            "name": "Tex",
+            "order": 26
+          }
+        ]
+      }
+    },
+    "application/x-bittorrent": {
+      "extensions": [
+        "torrent"
+      ],
+      "enums": {
+        "Application": [
+          {
+            "name": "XBittorrent",
+            "order": 192
+          }
+        ]
+      }
+    },
+    "application/x-nzb": {
+      "extensions": [
+        "nzb"
+      ],
+      "enums": {
+        "Application": [
+          {
+            "name": "XNzb",
+            "order": 193
+          }
+        ]
+      }
+    },
+    "application/vnd.tcpdump.pcap": {
+      "extensions": [
+        "pcap",
+        "cap",
+        "dmp"
+      ],
+      "enums": {
+        "Application": [
+          {
+            "name": "VndTcpdump",
+            "order": 199
+          }
+        ]
+      }
+    },
+    "application/x-shockwave-flash": {
+      "extensions": [
+        "swf"
+      ],
+      "enums": {
+        "Application": [
+          {
+            "name": "Flash",
+            "order": 188
+          }
+        ]
+      }
+    },
+    "application/vnd.adobe.fxp": {
+      "extensions": [
+        "fxp",
+        "fxpl"
+      ],
+      "enums": {
+        "Application": [
+          {
+            "name": "Fxp",
+            "order": 189
+          }
+        ]
+      }
+    },
+    "application/x-indesign": {
+      "extensions": [
+        "indd"
+      ],
+      "enums": {
+        "Application": [
+          {
+            "name": "XIndesign",
+            "order": 190
+          }
+        ]
+      }
+    },
+    "application/vnd.ms-xpsdocument": {
+      "extensions": [
+        "xps"
+      ],
+      "enums": {
+        "Application": [
+          {
+            "name": "MsXpsdocument",
+            "order": 46
+          }
+        ]
+      }
+    },
+    "application/edi-x12": {
+      "extensions": [
+        "x12"
+      ],
+      "enums": {
+        "Application": [
+          {
+            "name": "EdiX12",
+            "order": 74
+          }
+        ]
+      }
+    },
+    "application/edifact": {
+      "extensions": [
+        "edi"
+      ],
+      "enums": {
+        "Application": [
+          {
+            "name": "Edifact",
+            "order": 75
+          }
+        ]
+      }
+    },
+    "text/plain": {
+      "extensions": [
+        "txt",
+        "text",
+        "def",
+        "list",
+        "log",
+        "in"
+      ],
+      "enums": {
+        "Text": [
+          {
+            "name": "Plain",
+            "order": 0
+          }
+        ]
+      }
+    },
+    "text/html": {
+      "extensions": [
+        "html",
+        "htm",
+        "shtml"
+      ],
+      "enums": {
+        "Text": [
+          {
+            "name": "Html",
+            "order": 1
+          }
+        ]
+      }
+    },
+    "text/css": {
+      "extensions": [
+        "css"
+      ],
+      "enums": {
+        "Text": [
+          {
+            "name": "Css",
+            "order": 2
+          }
+        ]
+      }
+    },
+    "text/csv": {
+      "extensions": [
+        "csv"
+      ],
+      "enums": {
+        "Text": [
+          {
+            "name": "Csv",
+            "order": 3
+          }
+        ]
+      }
+    },
+    "text/tab-separated-values": {
+      "extensions": [
+        "tsv"
+      ],
+      "enums": {
+        "Text": [
+          {
+            "name": "Tsv",
+            "order": 4
+          }
+        ]
+      }
+    },
+    "text/javascript": {
+      "extensions": [
+        "js",
+        "mjs",
+        "es"
+      ],
+      "enums": {
+        "Text": [
+          {
+            "name": "Javascript",
+            "order": 5
+          }
+        ]
+      }
+    },
+    "text/markdown": {
+      "extensions": [
+        "md",
+        "markdown",
+        "mdown",
+        "mkd"
+      ],
+      "enums": {
+        "Text": [
+          {
+            "name": "Markdown",
+            "order": 8
+          }
+        ]
+      }
+    },
+    "text/x-asciidoc": {
+      "extensions": [
+        "adoc",
+        "asciidoc"
+      ]
+    },
+    "text/x-rst": {
+      "extensions": [
+        "rst"
+      ],
+      "enums": {
+        "Text": [
+          {
+            "name": "Rst",
+            "order": 11
+          }
+        ]
+      }
+    },
+    "text/x-org": {
+      "extensions": [
+        "org"
+      ],
+      "enums": {
+        "Text": [
+          {
+            "name": "Org",
+            "order": 12
+          }
+        ]
+      }
+    },
+    "text/x-textile": {
+      "extensions": [
+        "textile"
+      ],
+      "enums": {
+        "Text": [
+          {
+            "name": "Textile",
+            "order": 13
+          }
+        ]
+      }
+    },
+    "text/troff": {
+      "extensions": [
+        "tr",
+        "roff",
+        "man",
+        "me",
+        "ms"
+      ],
+      "enums": {
+        "Text": [
+          {
+            "name": "Troff",
+            "order": 14
+          }
+        ]
+      }
+    },
+    "text/richtext": {
+      "extensions": [
+        "rtx"
+      ],
+      "enums": {
+        "Text": [
+          {
+            "name": "Rtx",
+            "order": 15
+          }
+        ]
+      }
+    },
+    "text/sgml": {
+      "extensions": [
+        "sgml",
+        "sgm"
+      ],
+      "enums": {
+        "Text": [
+          {
+            "name": "Sgml",
+            "order": 16
+          }
+        ]
+      }
+    },
+    "text/x-python": {
+      "extensions": [
+        "py",
+        "pyw",
+        "pyx",
+        "pxd",
+        "pxi"
+      ],
+      "enums": {
+        "Text": [
+          {
+            "name": "Python",
+            "order": 18
+          }
+        ]
+      }
+    },
+    "text/x-ruby": {
+      "extensions": [
+        "rb",
+        "rbw",
+        "rake",
+        "gemspec"
+      ],
+      "enums": {
+        "Text": [
+          {
+            "name": "Ruby",
+            "order": 19
+          }
+        ]
+      }
+    },
+    "text/x-perl": {
+      "extensions": [
+        "pl",
+        "pm",
+        "pod",
+        "t"
+      ],
+      "enums": {
+        "Text": [
+          {
+            "name": "Perl",
+            "order": 20
+          }
+        ]
+      }
+    },
+    "text/x-java-source": {
+      "extensions": [
+        "java"
+      ],
+      "enums": {
+        "Text": [
+          {
+            "name": "JavaSource",
+            "order": 22
+          }
+        ]
+      }
+    },
+    "text/x-c": {
+      "extensions": [
+        "c",
+        "h"
+      ],
+      "enums": {
+        "Text": [
+          {
+            "name": "CSource",
+            "order": 23
+          }
+        ]
+      }
+    },
+    "text/x-c++src": {
+      "extensions": [
+        "cpp",
+        "cxx",
+        "cc",
+        "c++"
+      ],
+      "enums": {
+        "Text": [
+          {
+            "name": "CppSource",
+            "order": 24
+          }
+        ]
+      }
+    },
+    "text/x-c++hdr": {
+      "extensions": [
+        "hpp",
+        "hxx",
+        "hh",
+        "h++"
+      ],
+      "enums": {
+        "Text": [
+          {
+            "name": "CHeader",
+            "order": 25
+          }
+        ]
+      }
+    },
+    "text/x-csharp": {
+      "extensions": [
+        "cs"
+      ],
+      "enums": {
+        "Text": [
+          {
+            "name": "CSharp",
+            "order": 26
+          }
+        ]
+      }
+    },
+    "text/x-go": {
+      "extensions": [
+        "go"
+      ],
+      "enums": {
+        "Text": [
+          {
+            "name": "Go",
+            "order": 27
+          }
+        ]
+      }
+    },
+    "text/x-rust": {
+      "extensions": [
+        "rs"
+      ],
+      "enums": {
+        "Text": [
+          {
+            "name": "Rust",
+            "order": 28
+          }
+        ]
+      }
+    },
+    "text/x-swift": {
+      "extensions": [
+        "swift"
+      ],
+      "enums": {
+        "Text": [
+          {
+            "name": "Swift",
+            "order": 29
+          }
+        ]
+      }
+    },
+    "text/x-kotlin": {
+      "extensions": [
+        "kt",
+        "kts"
+      ],
+      "enums": {
+        "Text": [
+          {
+            "name": "Kotlin",
+            "order": 30
+          }
+        ]
+      }
+    },
+    "text/x-scala": {
+      "extensions": [
+        "scala",
+        "sc"
+      ],
+      "enums": {
+        "Text": [
+          {
+            "name": "Scala",
+            "order": 31
+          }
+        ]
+      }
+    },
+    "text/x-groovy": {
+      "extensions": [
+        "groovy",
+        "gvy",
+        "gy",
+        "gsh"
+      ],
+      "enums": {
+        "Text": [
+          {
+            "name": "Groovy",
+            "order": 32
+          }
+        ]
+      }
+    },
+    "text/x-clojure": {
+      "extensions": [
+        "clj",
+        "cljs",
+        "cljc",
+        "edn"
+      ],
+      "enums": {
+        "Text": [
+          {
+            "name": "Clojure",
+            "order": 33
+          }
+        ]
+      }
+    },
+    "text/x-lua": {
+      "extensions": [
+        "lua"
+      ],
+      "enums": {
+        "Text": [
+          {
+            "name": "Lua",
+            "order": 34
+          }
+        ]
+      }
+    },
+    "text/x-tcl": {
+      "extensions": [
+        "tcl",
+        "tk"
+      ],
+      "enums": {
+        "Text": [
+          {
+            "name": "Tcl",
+            "order": 35
+          }
+        ]
+      }
+    },
+    "text/x-fortran": {
+      "extensions": [
+        "f",
+        "for",
+        "f77",
+        "f90",
+        "f95"
+      ],
+      "enums": {
+        "Text": [
+          {
+            "name": "Fortran",
+            "order": 36
+          }
+        ]
+      }
+    },
+    "text/x-pascal": {
+      "extensions": [
+        "pas",
+        "p",
+        "pp"
+      ],
+      "enums": {
+        "Text": [
+          {
+            "name": "Pascal",
+            "order": 37
+          }
+        ]
+      }
+    },
+    "text/x-haskell": {
+      "extensions": [
+        "hs",
+        "lhs"
+      ],
+      "enums": {
+        "Text": [
+          {
+            "name": "Haskell",
+            "order": 38
+          }
+        ]
+      }
+    },
+    "text/x-erlang": {
+      "extensions": [
+        "erl",
+        "hrl"
+      ],
+      "enums": {
+        "Text": [
+          {
+            "name": "Erlang",
+            "order": 39
+          }
+        ]
+      }
+    },
+    "text/x-elixir": {
+      "extensions": [
+        "ex",
+        "exs"
+      ],
+      "enums": {
+        "Text": [
+          {
+            "name": "Elixir",
+            "order": 40
+          }
+        ]
+      }
+    },
+    "text/x-ocaml": {
+      "extensions": [
+        "ml",
+        "mli"
+      ],
+      "enums": {
+        "Text": [
+          {
+            "name": "Ocaml",
+            "order": 41
+          }
+        ]
+      }
+    },
+    "text/x-fsharp": {
+      "extensions": [
+        "fs",
+        "fsi",
+        "fsx",
+        "fsscript"
+      ],
+      "enums": {
+        "Text": [
+          {
+            "name": "Fsharp",
+            "order": 42
+          }
+        ]
+      }
+    },
+    "text/x-lisp": {
+      "extensions": [
+        "lisp",
+        "lsp",
+        "cl",
+        "el"
+      ],
+      "enums": {
+        "Text": [
+          {
+            "name": "Lisp",
+            "order": 43
+          }
+        ]
+      }
+    },
+    "text/x-scheme": {
+      "extensions": [
+        "scm",
+        "ss"
+      ],
+      "enums": {
+        "Text": [
+          {
+            "name": "Scheme",
+            "order": 44
+          }
+        ]
+      }
+    },
+    "text/x-racket": {
+      "extensions": [
+        "rkt"
+      ],
+      "enums": {
+        "Text": [
+          {
+            "name": "Racket",
+            "order": 45
+          }
+        ]
+      }
+    },
+    "text/x-prolog": {
+      "extensions": [
+        "pro",
+        "prolog"
+      ],
+      "enums": {
+        "Text": [
+          {
+            "name": "Prolog",
+            "order": 46
+          }
+        ]
+      }
+    },
+    "text/x-asm": {
+      "extensions": [
+        "s",
+        "asm"
+      ],
+      "enums": {
+        "Text": [
+          {
+            "name": "Asm",
+            "order": 48
+          }
+        ]
+      }
+    },
+    "text/x-nasm": {
+      "extensions": [
+        "nasm"
+      ],
+      "enums": {
+        "Text": [
+          {
+            "name": "Nasm",
+            "order": 49
+          }
+        ]
+      }
+    },
+    "text/x-nim": {
+      "extensions": [
+        "nim",
+        "nims"
+      ],
+      "enums": {
+        "Text": [
+          {
+            "name": "Nim",
+            "order": 51
+          }
+        ]
+      }
+    },
+    "text/x-zig": {
+      "extensions": [
+        "zig"
+      ],
+      "enums": {
+        "Text": [
+          {
+            "name": "Zig",
+            "order": 52
+          }
+        ]
+      }
+    },
+    "text/x-julia": {
+      "extensions": [
+        "jl"
+      ],
+      "enums": {
+        "Text": [
+          {
+            "name": "Julia",
+            "order": 53
+          }
+        ]
+      }
+    },
+    "text/x-r": {
+      "extensions": [
+        "r"
+      ],
+      "enums": {
+        "Text": [
+          {
+            "name": "R",
+            "order": 54
+          }
+        ]
+      }
+    },
+    "text/x-matlab": {
+      "extensions": [
+        "m",
+        "mat"
+      ],
+      "enums": {
+        "Text": [
+          {
+            "name": "Matlab",
+            "order": 55
+          }
+        ]
+      }
+    },
+    "text/x-objectivec": {
+      "extensions": [
+        "mm"
+      ],
+      "enums": {
+        "Text": [
+          {
+            "name": "ObjectiveC",
+            "order": 56
+          }
+        ]
+      }
+    },
+    "text/x-dart": {
+      "extensions": [
+        "dart"
+      ],
+      "enums": {
+        "Text": [
+          {
+            "name": "Dart",
+            "order": 57
+          }
+        ]
+      }
+    },
+    "text/x-typescript": {
+      "extensions": [
+        "ts"
+      ]
+    },
+    "text/x-tsx": {
+      "extensions": [
+        "tsx"
+      ]
+    },
+    "text/x-jsx": {
+      "extensions": [
+        "jsx"
+      ]
+    },
+    "text/x-coffeescript": {
+      "extensions": [
+        "coffee",
+        "litcoffee"
+      ],
+      "enums": {
+        "Text": [
+          {
+            "name": "XCoffeeScript",
+            "order": 62
+          }
+        ]
+      }
+    },
+    "text/x-bash": {
+      "extensions": [
+        "bash"
+      ],
+      "enums": {
+        "Text": [
+          {
+            "name": "XBash",
+            "order": 64
+          }
+        ]
+      }
+    },
+    "text/x-zsh": {
+      "extensions": [
+        "zsh"
+      ],
+      "enums": {
+        "Text": [
+          {
+            "name": "XZsh",
+            "order": 65
+          }
+        ]
+      }
+    },
+    "text/x-fish": {
+      "extensions": [
+        "fish"
+      ],
+      "enums": {
+        "Text": [
+          {
+            "name": "XFish",
+            "order": 66
+          }
+        ]
+      }
+    },
+    "text/x-powershell": {
+      "extensions": [
+        "ps1",
+        "psm1",
+        "psd1"
+      ],
+      "enums": {
+        "Text": [
+          {
+            "name": "XPowershell",
+            "order": 67
+          }
+        ]
+      }
+    },
+    "text/x-bat": {
+      "extensions": [
+        "bat",
+        "cmd"
+      ],
+      "enums": {
+        "Text": [
+          {
+            "name": "XBat",
+            "order": 69
+          }
+        ]
+      }
+    },
+    "text/x-makefile": {
+      "extensions": [
+        "mak",
+        "mk",
+        "makefile"
+      ],
+      "enums": {
+        "Text": [
+          {
+            "name": "XMakefile",
+            "order": 70
+          }
+        ]
+      }
+    },
+    "text/x-cmake": {
+      "extensions": [
+        "cmake"
+      ],
+      "enums": {
+        "Text": [
+          {
+            "name": "XCmake",
+            "order": 71
+          }
+        ]
+      }
+    },
+    "text/x-dockerfile": {
+      "extensions": [
+        "dockerfile"
+      ],
+      "enums": {
+        "Text": [
+          {
+            "name": "XDockerfile",
+            "order": 75
+          }
+        ]
+      }
+    },
+    "text/x-properties": {
+      "extensions": [
+        "properties"
+      ],
+      "enums": {
+        "Text": [
+          {
+            "name": "XProperties",
+            "order": 79
+          }
+        ]
+      }
+    },
+    "text/x-ini": {
+      "extensions": [
+        "ini",
+        "cfg"
+      ],
+      "enums": {
+        "Text": [
+          {
+            "name": "XIni",
+            "order": 80
+          }
+        ]
+      }
+    },
+    "text/x-dotenv": {
+      "extensions": [
+        "env"
+      ],
+      "enums": {
+        "Text": [
+          {
+            "name": "XDotenv",
+            "order": 81
+          }
+        ]
+      }
+    },
+    "text/x-nginx-conf": {
+      "extensions": [
+        "conf"
+      ],
+      "enums": {
+        "Text": [
+          {
+            "name": "XNginx",
+            "order": 82
+          }
+        ]
+      }
+    },
+    "text/x-apache-conf": {
+      "extensions": [
+        "htaccess"
+      ],
+      "enums": {
+        "Text": [
+          {
+            "name": "XApache",
+            "order": 83
+          }
+        ]
+      }
+    },
+    "text/x-systemd-unit": {
+      "extensions": [
+        "service",
+        "socket",
+        "device",
+        "mount",
+        "automount",
+        "swap",
+        "target",
+        "path",
+        "timer",
+        "slice",
+        "scope"
+      ],
+      "enums": {
+        "Text": [
+          {
+            "name": "XSystemd",
+            "order": 84
+          }
+        ]
+      }
+    },
+    "text/x-editorconfig": {
+      "extensions": [
+        "editorconfig"
+      ],
+      "enums": {
+        "Text": [
+          {
+            "name": "XEditorconfig",
+            "order": 85
+          }
+        ]
+      }
+    },
+    "text/x-gitignore": {
+      "extensions": [
+        "gitignore"
+      ],
+      "enums": {
+        "Text": [
+          {
+            "name": "XGitignore",
+            "order": 86
+          }
+        ]
+      }
+    },
+    "text/x-gitattributes": {
+      "extensions": [
+        "gitattributes"
+      ],
+      "enums": {
+        "Text": [
+          {
+            "name": "XGitattributes",
+            "order": 87
+          }
+        ]
+      }
+    },
+    "text/x-graphql": {
+      "extensions": [
+        "graphql",
+        "gql"
+      ],
+      "enums": {
+        "Text": [
+          {
+            "name": "XGraphql",
+            "order": 91
+          }
+        ]
+      }
+    },
+    "text/x-twig": {
+      "extensions": [
+        "twig"
+      ],
+      "enums": {
+        "Text": [
+          {
+            "name": "XTwig",
+            "order": 94
+          }
+        ]
+      }
+    },
+    "text/x-blade": {
+      "extensions": [
+        "blade.php"
+      ],
+      "enums": {
+        "Text": [
+          {
+            "name": "XBlade",
+            "order": 95
+          }
+        ]
+      }
+    },
+    "text/x-jinja": {
+      "extensions": [
+        "j2",
+        "jinja",
+        "jinja2"
+      ],
+      "enums": {
+        "Text": [
+          {
+            "name": "XJinja",
+            "order": 96
+          }
+        ]
+      }
+    },
+    "text/x-mustache": {
+      "extensions": [
+        "mustache"
+      ],
+      "enums": {
+        "Text": [
+          {
+            "name": "XMustache",
+            "order": 97
+          }
+        ]
+      }
+    },
+    "text/x-handlebars-template": {
+      "extensions": [
+        "hbs",
+        "handlebars"
+      ],
+      "enums": {
+        "Text": [
+          {
+            "name": "XHandlebars",
+            "order": 98
+          }
+        ]
+      }
+    },
+    "text/x-ejs": {
+      "extensions": [
+        "ejs"
+      ],
+      "enums": {
+        "Text": [
+          {
+            "name": "XEjs",
+            "order": 99
+          }
+        ]
+      }
+    },
+    "text/x-pug": {
+      "extensions": [
+        "pug",
+        "jade"
+      ],
+      "enums": {
+        "Text": [
+          {
+            "name": "XPug",
+            "order": 100
+          }
+        ]
+      }
+    },
+    "text/x-haml": {
+      "extensions": [
+        "haml"
+      ],
+      "enums": {
+        "Text": [
+          {
+            "name": "XHaml",
+            "order": 102
+          }
+        ]
+      }
+    },
+    "text/vcard": {
+      "extensions": [
+        "vcf",
+        "vcard"
+      ],
+      "enums": {
+        "Text": [
+          {
+            "name": "VCard",
+            "order": 105
+          }
+        ]
+      }
+    },
+    "text/calendar": {
+      "extensions": [
+        "ics",
+        "ifb"
+      ],
+      "enums": {
+        "Text": [
+          {
+            "name": "Calendar",
+            "order": 124
+          }
+        ]
+      }
+    },
+    "text/x-vcalendar": {
+      "extensions": [
+        "vcs"
+      ],
+      "enums": {
+        "Text": [
+          {
+            "name": "XVcalendar",
+            "order": 125
+          }
+        ]
+      }
+    },
+    "text/vnd.wap.wml": {
+      "extensions": [
+        "wml"
+      ],
+      "enums": {
+        "Text": [
+          {
+            "name": "VndWapWml",
+            "order": 106
+          }
+        ]
+      }
+    },
+    "text/vnd.wap.wmlscript": {
+      "extensions": [
+        "wmls"
+      ],
+      "enums": {
+        "Text": [
+          {
+            "name": "VndWapWmlscript",
+            "order": 107
+          }
+        ]
+      }
+    },
+    "text/vnd.graphviz": {
+      "extensions": [
+        "gv",
+        "dot"
+      ],
+      "enums": {
+        "Text": [
+          {
+            "name": "VndGraphviz",
+            "order": 111
+          }
+        ]
+      }
+    },
+    "text/cache-manifest": {
+      "extensions": [
+        "appcache",
+        "manifest"
+      ],
+      "enums": {
+        "Text": [
+          {
+            "name": "CacheManifest",
+            "order": 126
+          }
+        ]
+      }
+    },
+    "text/event-stream": {
+      "extensions": [],
+      "enums": {
+        "Text": [
+          {
+            "name": "EventStream",
+            "order": 127
+          }
+        ]
+      }
+    },
+    "text/n3": {
+      "extensions": [
+        "n3"
+      ],
+      "enums": {
+        "Text": [
+          {
+            "name": "N3",
+            "order": 128
+          }
+        ]
+      }
+    },
+    "text/turtle": {
+      "extensions": [
+        "ttl"
+      ],
+      "enums": {
+        "Text": [
+          {
+            "name": "Turtle",
+            "order": 129
+          }
+        ]
+      }
+    },
+    "text/vtt": {
+      "extensions": [
+        "vtt"
+      ],
+      "enums": {
+        "Text": [
+          {
+            "name": "Vtt",
+            "order": 135
+          }
+        ]
+      }
+    },
+    "text/uri-list": {
+      "extensions": [
+        "uri",
+        "uris",
+        "urls"
+      ],
+      "enums": {
+        "Text": [
+          {
+            "name": "Urilist",
+            "order": 134
+          }
+        ]
+      }
+    },
+    "text/x-nfo": {
+      "extensions": [
+        "nfo"
+      ],
+      "enums": {
+        "Text": [
+          {
+            "name": "XNfo",
+            "order": 137
+          }
+        ]
+      }
+    },
+    "text/x-sfv": {
+      "extensions": [
+        "sfv"
+      ],
+      "enums": {
+        "Text": [
+          {
+            "name": "XSfv",
+            "order": 138
+          }
+        ]
+      }
+    },
+    "text/x-diff": {
+      "extensions": [
+        "diff",
+        "patch"
+      ],
+      "enums": {
+        "Text": [
+          {
+            "name": "XDiff",
+            "order": 142
+          }
+        ]
+      }
+    },
+    "message/rfc822": {
+      "extensions": [
+        "eml",
+        "mime",
+        "mht",
+        "mhtml"
+      ],
+      "enums": {
+        "Message": [
+          {
+            "name": "Rfc822",
+            "order": 14
+          }
+        ]
+      }
+    },
+    "message/partial": {
+      "extensions": [],
+      "enums": {
+        "Message": [
+          {
+            "name": "Partial",
+            "order": 13
+          }
+        ]
+      }
+    },
+    "message/delivery-status": {
+      "extensions": [],
+      "enums": {
+        "Message": [
+          {
+            "name": "DeliveryStatus",
+            "order": 1
+          }
+        ]
+      }
+    },
+    "message/disposition-notification": {
+      "extensions": [],
+      "enums": {
+        "Message": [
+          {
+            "name": "DispositionNotification",
+            "order": 2
+          }
+        ]
+      }
+    },
+    "message/http": {
+      "extensions": [],
+      "enums": {
+        "Message": [
+          {
+            "name": "Http",
+            "order": 10
+          }
+        ]
+      }
+    },
+    "multipart/alternative": {
+      "extensions": [],
+      "enums": {
+        "Multipart": [
+          {
+            "name": "Alternative",
+            "order": 0
+          }
+        ]
+      }
+    },
+    "multipart/form-data": {
+      "extensions": [],
+      "enums": {
+        "Multipart": [
+          {
+            "name": "FormData",
+            "order": 6
+          }
+        ]
+      }
+    },
+    "multipart/mixed": {
+      "extensions": [],
+      "enums": {
+        "Multipart": [
+          {
+            "name": "Mixed",
+            "order": 8
+          }
+        ]
+      }
+    },
+    "multipart/related": {
+      "extensions": [],
+      "enums": {
+        "Multipart": [
+          {
+            "name": "Related",
+            "order": 11
+          }
+        ]
+      }
+    },
+    "multipart/byteranges": {
+      "extensions": [],
+      "enums": {
+        "Multipart": [
+          {
+            "name": "Byteranges",
+            "order": 2
+          }
+        ]
+      }
+    },
+    "haptics/ivs": {
+      "extensions": [
+        "ivs"
+      ]
+    },
+    "haptics/hjif": {
+      "extensions": [
+        "hjif"
+      ]
+    },
+    "haptics/hmpg": {
+      "extensions": [
+        "hmpg"
+      ]
+    },
+    "model/gltf+json": {
+      "extensions": [
+        "gltf"
+      ],
+      "enums": {
+        "Model": [
+          {
+            "name": "Gltf",
+            "order": 0
+          }
+        ]
+      }
+    },
+    "model/gltf-binary": {
+      "extensions": [
+        "glb"
+      ],
+      "enums": {
+        "Model": [
+          {
+            "name": "GltfBinary",
+            "order": 1
+          }
+        ]
+      }
+    },
+    "model/obj": {
+      "extensions": [
+        "obj"
+      ],
+      "enums": {
+        "Model": [
+          {
+            "name": "Obj",
+            "order": 2
+          }
+        ]
+      }
+    },
+    "model/mtl": {
+      "extensions": [
+        "mtl"
+      ],
+      "enums": {
+        "Model": [
+          {
+            "name": "Mtl",
+            "order": 3
+          }
+        ]
+      }
+    },
+    "model/stl": {
+      "extensions": [
+        "stl"
+      ],
+      "enums": {
+        "Model": [
+          {
+            "name": "Stl",
+            "order": 4
+          }
+        ]
+      }
+    },
+    "model/step": {
+      "extensions": [
+        "step",
+        "stp",
+        "p21"
+      ],
+      "enums": {
+        "Model": [
+          {
+            "name": "Step",
+            "order": 7
+          }
+        ]
+      }
+    },
+    "model/step+xml": {
+      "extensions": [
+        "stpx"
+      ],
+      "enums": {
+        "Model": [
+          {
+            "name": "StepXml",
+            "order": 8
+          }
+        ]
+      }
+    },
+    "model/step+zip": {
+      "extensions": [
+        "stpz"
+      ],
+      "enums": {
+        "Model": [
+          {
+            "name": "StepZip",
+            "order": 9
+          }
+        ]
+      }
+    },
+    "model/iges": {
+      "extensions": [
+        "iges",
+        "igs"
+      ],
+      "enums": {
+        "Model": [
+          {
+            "name": "Iges",
+            "order": 11
+          }
+        ]
+      }
+    },
+    "model/vrml": {
+      "extensions": [
+        "wrl",
+        "vrml"
+      ],
+      "enums": {
+        "Model": [
+          {
+            "name": "Vrml",
+            "order": 12
+          }
+        ]
+      }
+    },
+    "model/x3d+vrml": {
+      "extensions": [
+        "x3dv",
+        "x3dvz"
+      ],
+      "enums": {
+        "Model": [
+          {
+            "name": "X3dVrml",
+            "order": 13
+          }
+        ]
+      }
+    },
+    "model/x3d+xml": {
+      "extensions": [
+        "x3d",
+        "x3dz"
+      ],
+      "enums": {
+        "Model": [
+          {
+            "name": "X3dXml",
+            "order": 14
+          }
+        ]
+      }
+    },
+    "model/x3d+binary": {
+      "extensions": [
+        "x3db",
+        "x3dbz"
+      ],
+      "enums": {
+        "Model": [
+          {
+            "name": "X3dBinary",
+            "order": 15
+          }
+        ]
+      }
+    },
+    "model/x3d+fastinfoset": {
+      "extensions": [],
+      "enums": {
+        "Model": [
+          {
+            "name": "X3dFastinfoset",
+            "order": 16
+          }
+        ]
+      }
+    },
+    "model/x3d-vrml": {
+      "extensions": []
+    },
+    "model/vnd.usdz+zip": {
+      "extensions": [
+        "usdz"
+      ],
+      "enums": {
+        "Model": [
+          {
+            "name": "Usdz",
+            "order": 21
+          }
+        ]
+      }
+    },
+    "model/vnd.dwf": {
+      "extensions": [
+        "dwf"
+      ],
+      "enums": {
+        "Model": [
+          {
+            "name": "Dwf",
+            "order": 22
+          }
+        ]
+      }
+    },
+    "model/vnd.gdl": {
+      "extensions": [
+        "gdl"
+      ],
+      "enums": {
+        "Model": [
+          {
+            "name": "Gdl",
+            "order": 23
+          }
+        ]
+      }
+    },
+    "model/vnd.gtw": {
+      "extensions": [
+        "gtw"
+      ],
+      "enums": {
+        "Model": [
+          {
+            "name": "Gtw",
+            "order": 25
+          }
+        ]
+      }
+    },
+    "model/vnd.mts": {
+      "extensions": [],
+      "enums": {
+        "Model": [
+          {
+            "name": "Mts",
+            "order": 26
+          }
+        ]
+      }
+    },
+    "model/vnd.parasolid.transmit.binary": {
+      "extensions": [
+        "x_b"
+      ],
+      "enums": {
+        "Model": [
+          {
+            "name": "Parasolid",
+            "order": 27
+          }
+        ]
+      }
+    },
+    "model/vnd.parasolid.transmit.text": {
+      "extensions": [
+        "x_t"
+      ],
+      "enums": {
+        "Model": [
+          {
+            "name": "ParasolidText",
+            "order": 28
+          }
+        ]
+      }
+    },
+    "model/vnd.vtu": {
+      "extensions": [
+        "vtu"
+      ],
+      "enums": {
+        "Model": [
+          {
+            "name": "Vtu",
+            "order": 33
+          }
+        ]
+      }
+    },
+    "model/mesh": {
+      "extensions": [
+        "msh",
+        "mesh",
+        "silo"
+      ],
+      "enums": {
+        "Model": [
+          {
+            "name": "Mesh",
+            "order": 34
+          }
+        ]
+      }
+    },
+    "model/prc": {
+      "extensions": [],
+      "enums": {
+        "Model": [
+          {
+            "name": "Prc",
+            "order": 35
+          }
+        ]
+      }
+    },
+    "model/u3d": {
+      "extensions": [
+        "u3d"
+      ],
+      "enums": {
+        "Model": [
+          {
+            "name": "U3d",
+            "order": 36
+          }
+        ]
+      }
+    },
+    "model/3mf": {
+      "extensions": [
+        "3mf"
+      ],
+      "enums": {
+        "Model": [
+          {
+            "name": "ThreeMf",
+            "order": 38
+          }
+        ]
+      }
+    },
+    "model/e57": {
+      "extensions": [
+        "e57"
+      ],
+      "enums": {
+        "Model": [
+          {
+            "name": "E57",
+            "order": 39
+          }
+        ]
+      }
+    },
+    "image/x-ms-bmp": {
+      "extensionAliasOf": "image/bmp",
+      "enums": {
+        "Image": [
+          {
+            "name": "XMsBmp",
+            "order": 80
+          }
+        ]
+      }
+    },
+    "audio/x-wav": {
+      "extensionAliasOf": "audio/wav",
+      "enums": {
+        "Audio": [
+          {
+            "name": "XWav",
+            "order": 23
+          }
+        ]
+      }
+    },
+    "audio/x-flac": {
+      "extensionAliasOf": "audio/flac",
+      "enums": {
+        "Audio": [
+          {
+            "name": "XFlac",
+            "order": 13
+          }
+        ]
+      }
+    },
+    "audio/x-aiff": {
+      "extensionAliasOf": "audio/aiff",
+      "enums": {
+        "Audio": [
+          {
+            "name": "XAiff",
+            "order": 3
+          }
+        ]
+      }
+    },
+    "audio/x-midi": {
+      "extensionAliasOf": "audio/midi",
+      "enums": {
+        "Audio": [
+          {
+            "name": "XMidi",
+            "order": 17
+          }
+        ]
+      }
+    },
+    "audio/x-m4a": {
+      "extensionAliasOf": "audio/mp4",
+      "enums": {
+        "Audio": [
+          {
+            "name": "XM4a",
+            "order": 15
+          }
+        ]
+      }
+    },
+    "audio/x-pn-realaudio": {
+      "extensionAliasOf": "audio/vnd.rn-realaudio",
+      "enums": {
+        "Audio": [
+          {
+            "name": "XPnRealaudio",
+            "order": 83
+          }
+        ]
+      }
+    },
+    "application/javascript": {
+      "extensionAliasOf": "text/javascript",
+      "enums": {
+        "Application": [
+          {
+            "name": "Javascript",
+            "order": 5
+          }
+        ]
+      }
+    },
+    "application/x-gzip": {
+      "extensionAliasOf": "application/gzip",
+      "enums": {
+        "Application": [
+          {
+            "name": "XGzip",
+            "order": 15
+          }
+        ]
+      }
+    },
+    "application/x-sqlite3": {
+      "extensionAliasOf": "application/vnd.sqlite3",
+      "enums": {
+        "Application": [
+          {
+            "name": "XSqlite3",
+            "order": 156
+          }
+        ]
+      }
+    },
+    "application/font-otf": {
+      "extensionAliasOf": "font/otf",
+      "enums": {
+        "Application": [
+          {
+            "name": "FontOtf",
+            "order": 95
+          }
+        ],
+        "Font": [
+          {
+            "name": "ApplicationOtf",
+            "order": 6
+          }
+        ]
+      }
+    },
+    "application/font-ttf": {
+      "extensionAliasOf": "font/ttf",
+      "enums": {
+        "Application": [
+          {
+            "name": "FontTtf",
+            "order": 96
+          }
+        ],
+        "Font": [
+          {
+            "name": "ApplicationTtf",
+            "order": 7
+          }
+        ]
+      }
+    },
+    "application/font-woff": {
+      "extensionAliasOf": "font/woff",
+      "enums": {
+        "Application": [
+          {
+            "name": "FontWoff",
+            "order": 97
+          }
+        ],
+        "Font": [
+          {
+            "name": "ApplicationWoff",
+            "order": 8
+          }
+        ]
+      }
+    },
+    "application/font-woff2": {
+      "extensionAliasOf": "font/woff2",
+      "enums": {
+        "Application": [
+          {
+            "name": "FontWoff2",
+            "order": 98
+          }
+        ],
+        "Font": [
+          {
+            "name": "ApplicationWoff2",
+            "order": 9
+          }
+        ]
+      }
+    },
+    "application/x-font-otf": {
+      "extensionAliasOf": "font/otf",
+      "enums": {
+        "Font": [
+          {
+            "name": "XOtf",
+            "order": 11
+          }
+        ]
+      }
+    },
+    "application/x-font-ttf": {
+      "extensionAliasOf": "font/ttf",
+      "enums": {
+        "Font": [
+          {
+            "name": "XTtf",
+            "order": 12
+          }
+        ]
+      }
+    },
+    "application/x-font-woff": {
+      "extensionAliasOf": "font/woff",
+      "enums": {
+        "Font": [
+          {
+            "name": "XWoff",
+            "order": 13
+          }
+        ]
+      }
+    },
+    "text/xml": {
+      "extensionAliasOf": "application/xml",
+      "enums": {
+        "Text": [
+          {
+            "name": "Xml",
+            "order": 6
+          }
+        ]
+      }
+    },
+    "text/x-shellscript": {
+      "extensionAliasOf": "application/x-sh"
+    },
+    "text/x-sh": {
+      "extensionAliasOf": "application/x-sh",
+      "enums": {
+        "Text": [
+          {
+            "name": "XSh",
+            "order": 63
+          }
+        ]
+      }
+    },
+    "text/x-yaml": {
+      "extensionAliasOf": "application/yaml",
+      "enums": {
+        "Text": [
+          {
+            "name": "XYaml",
+            "order": 77
+          }
+        ]
+      }
+    },
+    "text/x-toml": {
+      "extensionAliasOf": "application/toml",
+      "enums": {
+        "Text": [
+          {
+            "name": "XToml",
+            "order": 78
+          }
+        ]
+      }
+    },
+    "text/x-sql": {
+      "extensionAliasOf": "application/sql",
+      "enums": {
+        "Text": [
+          {
+            "name": "XSql",
+            "order": 90
+          }
+        ]
+      }
+    },
+    "application/gltf+json": {
+      "extensionAliasOf": "model/gltf+json",
+      "enums": {
+        "Application": [
+          {
+            "name": "Gltf",
+            "order": 111
+          }
+        ]
+      }
+    },
+    "application/gltf-binary": {
+      "extensionAliasOf": "model/gltf-binary",
+      "enums": {
+        "Application": [
+          {
+            "name": "GltfBinary",
+            "order": 112
+          }
+        ]
+      }
+    },
+    "application/x-rar": {
+      "extensionAliasOf": "application/vnd.rar"
+    },
+    "application/x-rar-compressed": {
+      "extensionAliasOf": "application/vnd.rar"
+    },
+    "application/x-zip-compressed": {
+      "extensionAliasOf": "application/zip"
+    },
+    "application/x-dosexec": {
+      "extensionAliasOf": "application/vnd.microsoft.portable-executable",
+      "enums": {
+        "Application": [
+          {
+            "name": "XDosexec",
+            "order": 89
+          }
+        ]
+      }
+    },
+    "application/x-msdownload": {
+      "extensionAliasOf": "application/vnd.microsoft.portable-executable",
+      "enums": {
+        "Application": [
+          {
+            "name": "XMsdownload",
+            "order": 91
+          }
+        ]
+      }
+    },
+    "application/x-php": {
+      "extensionAliasOf": "application/x-httpd-php"
+    },
+    "text/x-php": {
+      "extensions": [
+        "php",
+        "inc"
+      ],
+      "enums": {
+        "Text": [
+          {
+            "name": "Php",
+            "order": 17
+          }
+        ]
+      }
+    },
+    "application/x-zstd": {
+      "extensionAliasOf": "application/zstd",
+      "enums": {
+        "Application": [
+          {
+            "name": "XZstd",
+            "order": 21
+          }
+        ]
+      }
+    },
+    "image/x-png": {
+      "extensionAliasOf": "image/png"
+    },
+    "image/pjpeg": {
+      "extensionAliasOf": "image/jpeg",
+      "enums": {
+        "Image": [
+          {
+            "name": "Pjpeg",
+            "order": 34
+          }
+        ]
+      }
+    },
+    "application/xml-external-parsed-entity": {
+      "enums": {
+        "Application": [
+          {
+            "name": "XmlExternal",
+            "order": 11
+          }
+        ]
+      }
+    },
+    "application/x-yaml": {
+      "enums": {
+        "Application": [
+          {
+            "name": "Yaml",
+            "order": 72
+          }
+        ]
+      }
+    },
+    "application/protobuf": {
+      "enums": {
+        "Application": [
+          {
+            "name": "Protobuf",
+            "order": 79
+          }
+        ]
+      }
+    },
+    "application/vnd.apache.thrift.binary": {
+      "enums": {
+        "Application": [
+          {
+            "name": "Thrift",
+            "order": 80
+          }
+        ]
+      }
+    },
+    "application/avro": {
+      "enums": {
+        "Application": [
+          {
+            "name": "Avro",
+            "order": 81
+          }
+        ]
+      }
+    },
+    "application/vnd.apache.parquet": {
+      "enums": {
+        "Application": [
+          {
+            "name": "Parquet",
+            "order": 82
+          }
+        ]
+      }
+    },
+    "application/font-sfnt": {
+      "enums": {
+        "Application": [
+          {
+            "name": "FontSfnt",
+            "order": 99
+          }
+        ],
+        "Font": [
+          {
+            "name": "ApplicationSfnt",
+            "order": 10
+          }
+        ]
+      }
+    },
+    "application/font-tdpfr": {
+      "enums": {
+        "Application": [
+          {
+            "name": "FontCollection",
+            "order": 100
+          }
+        ]
+      }
+    },
+    "application/vnd.hzn-3d-crossword": {
+      "enums": {
+        "Application": [
+          {
+            "name": "X3d",
+            "order": 117
+          }
+        ]
+      }
+    },
+    "application/x-tgif": {
+      "enums": {
+        "Application": [
+          {
+            "name": "Obj",
+            "order": 118
+          }
+        ]
+      }
+    },
+    "application/x-pkcs7-certreqresp": {
+      "enums": {
+        "Application": [
+          {
+            "name": "XPkcs7Certreqresp",
+            "order": 129
+          }
+        ]
+      }
+    },
+    "application/x-ssh-key": {
+      "enums": {
+        "Application": [
+          {
+            "name": "XSshKey",
+            "order": 131
+          }
+        ]
+      }
+    },
+    "application/jws": {
+      "enums": {
+        "Application": [
+          {
+            "name": "Jws",
+            "order": 137
+          }
+        ]
+      }
+    },
+    "application/jwe": {
+      "enums": {
+        "Application": [
+          {
+            "name": "Jwe",
+            "order": 138
+          }
+        ]
+      }
+    },
+    "application/cose": {
+      "enums": {
+        "Application": [
+          {
+            "name": "Cose",
+            "order": 139
+          }
+        ]
+      }
+    },
+    "application/cose-key": {
+      "enums": {
+        "Application": [
+          {
+            "name": "CoseKey",
+            "order": 140
+          }
+        ]
+      }
+    },
+    "application/cose-key-set": {
+      "enums": {
+        "Application": [
+          {
+            "name": "CoseKeySet",
+            "order": 141
+          }
+        ]
+      }
+    },
+    "application/cwt": {
+      "enums": {
+        "Application": [
+          {
+            "name": "Cwt",
+            "order": 142
+          }
+        ]
+      }
+    },
+    "application/x-www-form-urlencoded": {
+      "enums": {
+        "Application": [
+          {
+            "name": "FormUrlencoded",
+            "order": 143
+          }
+        ]
+      }
+    },
+    "application/graphql-response+json": {
+      "enums": {
+        "Application": [
+          {
+            "name": "GraphQLResponse",
+            "order": 145
+          }
+        ]
+      }
+    },
+    "application/hal+xml": {
+      "enums": {
+        "Application": [
+          {
+            "name": "HalXml",
+            "order": 147
+          }
+        ]
+      }
+    },
+    "application/x-snappy-framed": {
+      "enums": {
+        "Application": [
+          {
+            "name": "XSnappy",
+            "order": 163
+          }
+        ]
+      }
+    },
+    "application/x-br": {
+      "enums": {
+        "Application": [
+          {
+            "name": "Br",
+            "order": 174
+          }
+        ]
+      }
+    },
+    "application/vnd.snap": {
+      "enums": {
+        "Application": [
+          {
+            "name": "Snap",
+            "order": 182
+          }
+        ]
+      }
+    },
+    "application/vnd.flatpak": {
+      "enums": {
+        "Application": [
+          {
+            "name": "Flatpak",
+            "order": 183
+          }
+        ]
+      }
+    },
+    "application/vnd.appimage": {
+      "enums": {
+        "Application": [
+          {
+            "name": "AppImage",
+            "order": 184
+          }
+        ]
+      }
+    },
+    "application/vnd.npm.manifest+json": {
+      "enums": {
+        "Application": [
+          {
+            "name": "Npm",
+            "order": 185
+          }
+        ]
+      }
+    },
+    "application/vnd.composer.package+json": {
+      "enums": {
+        "Application": [
+          {
+            "name": "Composer",
+            "order": 186
+          }
+        ]
+      }
+    },
+    "application/vnd.adobe.air-application-installer-package+zip": {
+      "enums": {
+        "Application": [
+          {
+            "name": "AdobeAir",
+            "order": 187
+          }
+        ]
+      }
+    },
+    "application/vnd.adobe.illustrator": {
+      "enums": {
+        "Application": [
+          {
+            "name": "Illustrator",
+            "order": 191
+          }
+        ]
+      }
+    },
+    "application/vnd.ms-pki.seccat": {
+      "enums": {
+        "Application": [
+          {
+            "name": "VndMsPkiSeccat",
+            "order": 196
+          }
+        ]
+      }
+    },
+    "application/vnd.android.obb": {
+      "enums": {
+        "Application": [
+          {
+            "name": "VndAndroidObb",
+            "order": 197
+          }
+        ]
+      }
+    },
+    "application/vnd.symbian.install": {
+      "enums": {
+        "Application": [
+          {
+            "name": "VndSymbianInstall",
+            "order": 198
+          }
+        ]
+      }
+    },
+    "application/x-pcap": {
+      "enums": {
+        "Application": [
+          {
+            "name": "Xpcap",
+            "order": 200
+          }
+        ]
+      }
+    },
+    "application/vnd.oai.openapi+json": {
+      "enums": {
+        "Application": [
+          {
+            "name": "OpenApi",
+            "order": 201
+          }
+        ]
+      }
+    },
+    "application/vnd.oai.openapi": {
+      "enums": {
+        "Application": [
+          {
+            "name": "OpenApiYaml",
+            "order": 202
+          }
+        ]
+      }
+    },
+    "application/schema-instance+json": {
+      "enums": {
+        "Application": [
+          {
+            "name": "JsonSchemaInstance",
+            "order": 204
+          }
+        ]
+      }
+    },
+    "audio/ape": {
+      "enums": {
+        "Audio": [
+          {
+            "name": "Ape",
+            "order": 6
+          }
+        ]
+      }
+    },
+    "audio/mp3": {
+      "enums": {
+        "Audio": [
+          {
+            "name": "Mp3Alt",
+            "order": 19
+          }
+        ]
+      }
+    },
+    "audio/xm": {
+      "enums": {
+        "Audio": [
+          {
+            "name": "Xm",
+            "order": 26
+          }
+        ]
+      }
+    },
+    "audio/x-als": {
+      "enums": {
+        "Audio": [
+          {
+            "name": "XAls",
+            "order": 27
+          }
+        ]
+      }
+    },
+    "audio/dsf": {
+      "enums": {
+        "Audio": [
+          {
+            "name": "Dsf",
+            "order": 28
+          }
+        ]
+      }
+    },
+    "audio/dff": {
+      "enums": {
+        "Audio": [
+          {
+            "name": "Dff",
+            "order": 30
+          }
+        ]
+      }
+    },
+    "audio/x-tak": {
+      "enums": {
+        "Audio": [
+          {
+            "name": "XTak",
+            "order": 35
+          }
+        ]
+      }
+    },
+    "audio/x-ofr": {
+      "enums": {
+        "Audio": [
+          {
+            "name": "XOptimfrog",
+            "order": 36
+          }
+        ]
+      }
+    },
+    "audio/x-shn": {
+      "enums": {
+        "Audio": [
+          {
+            "name": "XShorten",
+            "order": 37
+          }
+        ]
+      }
+    },
+    "audio/silk": {
+      "enums": {
+        "Audio": [
+          {
+            "name": "Silk",
+            "order": 42
+          }
+        ]
+      }
+    },
+    "audio/speex": {
+      "enums": {
+        "Audio": [
+          {
+            "name": "Speex",
+            "order": 43
+          }
+        ]
+      }
+    },
+    "audio/ilbc": {
+      "enums": {
+        "Audio": [
+          {
+            "name": "Ilbc",
+            "order": 47
+          }
+        ]
+      }
+    },
+    "audio/evrc": {
+      "enums": {
+        "Audio": [
+          {
+            "name": "Evrc",
+            "order": 48
+          }
+        ]
+      }
+    },
+    "audio/evrc0": {
+      "enums": {
+        "Audio": [
+          {
+            "name": "Evrc0",
+            "order": 49
+          }
+        ]
+      }
+    },
+    "audio/evrc1": {
+      "enums": {
+        "Audio": [
+          {
+            "name": "Evrc1",
+            "order": 50
+          }
+        ]
+      }
+    },
+    "audio/evrcb": {
+      "enums": {
+        "Audio": [
+          {
+            "name": "EvrcB",
+            "order": 51
+          }
+        ]
+      }
+    },
+    "audio/evrcb0": {
+      "enums": {
+        "Audio": [
+          {
+            "name": "EvrcB0",
+            "order": 52
+          }
+        ]
+      }
+    },
+    "audio/evrcb1": {
+      "enums": {
+        "Audio": [
+          {
+            "name": "EvrcB1",
+            "order": 53
+          }
+        ]
+      }
+    },
+    "audio/evrcnw": {
+      "enums": {
+        "Audio": [
+          {
+            "name": "EvrcNw",
+            "order": 54
+          }
+        ]
+      }
+    },
+    "audio/evrcnw0": {
+      "enums": {
+        "Audio": [
+          {
+            "name": "EvrcNw0",
+            "order": 55
+          }
+        ]
+      }
+    },
+    "audio/evrcnw1": {
+      "enums": {
+        "Audio": [
+          {
+            "name": "EvrcNw1",
+            "order": 56
+          }
+        ]
+      }
+    },
+    "audio/evrcwb": {
+      "enums": {
+        "Audio": [
+          {
+            "name": "EvrcWb",
+            "order": 57
+          }
+        ]
+      }
+    },
+    "audio/evrcwb0": {
+      "enums": {
+        "Audio": [
+          {
+            "name": "EvrcWb0",
+            "order": 58
+          }
+        ]
+      }
+    },
+    "audio/evrcwb1": {
+      "enums": {
+        "Audio": [
+          {
+            "name": "EvrcWb1",
+            "order": 59
+          }
+        ]
+      }
+    },
+    "audio/g711-0": {
+      "enums": {
+        "Audio": [
+          {
+            "name": "G711",
+            "order": 60
+          }
+        ]
+      }
+    },
+    "audio/g7221": {
+      "enums": {
+        "Audio": [
+          {
+            "name": "G7221",
+            "order": 61
+          }
+        ]
+      }
+    },
+    "audio/g722": {
+      "enums": {
+        "Audio": [
+          {
+            "name": "G722",
+            "order": 62
+          }
+        ]
+      }
+    },
+    "audio/g723": {
+      "enums": {
+        "Audio": [
+          {
+            "name": "G723",
+            "order": 63
+          }
+        ]
+      }
+    },
+    "audio/g726-16": {
+      "enums": {
+        "Audio": [
+          {
+            "name": "G726",
+            "order": 64
+          }
+        ]
+      }
+    },
+    "audio/g728": {
+      "enums": {
+        "Audio": [
+          {
+            "name": "G728",
+            "order": 65
+          }
+        ]
+      }
+    },
+    "audio/g729": {
+      "enums": {
+        "Audio": [
+          {
+            "name": "G729",
+            "order": 66
+          }
+        ]
+      }
+    },
+    "audio/g7291": {
+      "enums": {
+        "Audio": [
+          {
+            "name": "G7291",
+            "order": 67
+          }
+        ]
+      }
+    },
+    "audio/gsm": {
+      "enums": {
+        "Audio": [
+          {
+            "name": "Gsm",
+            "order": 68
+          }
+        ]
+      }
+    },
+    "audio/gsm-efr": {
+      "enums": {
+        "Audio": [
+          {
+            "name": "GsmEfr",
+            "order": 69
+          }
+        ]
+      }
+    },
+    "audio/gsm-hr-08": {
+      "enums": {
+        "Audio": [
+          {
+            "name": "GsmHr08",
+            "order": 70
+          }
+        ]
+      }
+    },
+    "audio/pcma": {
+      "enums": {
+        "Audio": [
+          {
+            "name": "Pcma",
+            "order": 71
+          }
+        ]
+      }
+    },
+    "audio/pcma-wb": {
+      "enums": {
+        "Audio": [
+          {
+            "name": "PcmaWb",
+            "order": 72
+          }
+        ]
+      }
+    },
+    "audio/pcmu": {
+      "enums": {
+        "Audio": [
+          {
+            "name": "Pcmu",
+            "order": 73
+          }
+        ]
+      }
+    },
+    "audio/pcmu-wb": {
+      "enums": {
+        "Audio": [
+          {
+            "name": "PcmuWb",
+            "order": 74
+          }
+        ]
+      }
+    },
+    "audio/qcelp": {
+      "enums": {
+        "Audio": [
+          {
+            "name": "Qcelp",
+            "order": 75
+          }
+        ]
+      }
+    },
+    "audio/smv": {
+      "enums": {
+        "Audio": [
+          {
+            "name": "Smv",
+            "order": 76
+          }
+        ]
+      }
+    },
+    "audio/smv0": {
+      "enums": {
+        "Audio": [
+          {
+            "name": "Smv0",
+            "order": 77
+          }
+        ]
+      }
+    },
+    "audio/smv-qcp": {
+      "enums": {
+        "Audio": [
+          {
+            "name": "SmvQcp",
+            "order": 78
+          }
+        ]
+      }
+    },
+    "audio/x-pls": {
+      "enums": {
+        "Audio": [
+          {
+            "name": "Pls",
+            "order": 81
+          }
+        ]
+      }
+    },
+    "audio/x-pn-realaudio-plugin": {
+      "enums": {
+        "Audio": [
+          {
+            "name": "XPnRealaudioPlugin",
+            "order": 84
+          }
+        ]
+      }
+    },
+    "audio/x-realaudio": {
+      "enums": {
+        "Audio": [
+          {
+            "name": "XRealaudio",
+            "order": 85
+          }
+        ]
+      }
+    },
+    "audio/vnd.dece.audio": {
+      "enums": {
+        "Audio": [
+          {
+            "name": "VndDeceAudio",
+            "order": 86
+          }
+        ]
+      }
+    },
+    "audio/vnd.digital-winds": {
+      "enums": {
+        "Audio": [
+          {
+            "name": "VndDigitalWinds",
+            "order": 87
+          }
+        ]
+      }
+    },
+    "audio/vnd.dlna.adts": {
+      "enums": {
+        "Audio": [
+          {
+            "name": "VndDlnaAdts",
+            "order": 88
+          }
+        ]
+      }
+    },
+    "audio/vnd.dra": {
+      "enums": {
+        "Audio": [
+          {
+            "name": "VndDra",
+            "order": 89
+          }
+        ]
+      }
+    },
+    "audio/vnd.dvb.file": {
+      "enums": {
+        "Audio": [
+          {
+            "name": "VndDvbFile",
+            "order": 90
+          }
+        ]
+      }
+    },
+    "audio/vnd.everad.plj": {
+      "enums": {
+        "Audio": [
+          {
+            "name": "VndEverad",
+            "order": 91
+          }
+        ]
+      }
+    },
+    "audio/vnd.hns.audio": {
+      "enums": {
+        "Audio": [
+          {
+            "name": "VndHns",
+            "order": 92
+          }
+        ]
+      }
+    },
+    "audio/vnd.lucent.voice": {
+      "enums": {
+        "Audio": [
+          {
+            "name": "VndLucentVoice",
+            "order": 93
+          }
+        ]
+      }
+    },
+    "audio/vnd.ms-playready.media.pya": {
+      "enums": {
+        "Audio": [
+          {
+            "name": "VndMsPlayready",
+            "order": 94
+          }
+        ]
+      }
+    },
+    "audio/vnd.nokia.mobile-xmf": {
+      "enums": {
+        "Audio": [
+          {
+            "name": "VndNokiaMobile",
+            "order": 95
+          }
+        ]
+      }
+    },
+    "audio/vnd.nortel.vbk": {
+      "enums": {
+        "Audio": [
+          {
+            "name": "VndNortel",
+            "order": 96
+          }
+        ]
+      }
+    },
+    "audio/vnd.nuera.ecelp4800": {
+      "enums": {
+        "Audio": [
+          {
+            "name": "VndNuera",
+            "order": 97
+          }
+        ]
+      }
+    },
+    "audio/vnd.nuera.ecelp7470": {
+      "enums": {
+        "Audio": [
+          {
+            "name": "VndNuera7470",
+            "order": 98
+          }
+        ]
+      }
+    },
+    "audio/vnd.nuera.ecelp9600": {
+      "enums": {
+        "Audio": [
+          {
+            "name": "VndNuera9600",
+            "order": 99
+          }
+        ]
+      }
+    },
+    "audio/vnd.octel.sbc": {
+      "enums": {
+        "Audio": [
+          {
+            "name": "VndOctel",
+            "order": 100
+          }
+        ]
+      }
+    },
+    "audio/vnd.qcelp": {
+      "enums": {
+        "Audio": [
+          {
+            "name": "VndQcelp",
+            "order": 101
+          }
+        ]
+      }
+    },
+    "audio/vnd.rhetorex.32kadpcm": {
+      "enums": {
+        "Audio": [
+          {
+            "name": "VndRhetorix",
+            "order": 102
+          }
+        ]
+      }
+    },
+    "audio/vnd.rip": {
+      "enums": {
+        "Audio": [
+          {
+            "name": "VndRip",
+            "order": 103
+          }
+        ]
+      }
+    },
+    "audio/vnd.sealedmedia.softseal.mpeg": {
+      "enums": {
+        "Audio": [
+          {
+            "name": "VndSealedmedia",
+            "order": 104
+          }
+        ]
+      }
+    },
+    "audio/vnd.vmx.cvsd": {
+      "enums": {
+        "Audio": [
+          {
+            "name": "VndVmx",
+            "order": 105
+          }
+        ]
+      }
+    },
+    "audio/adpcm": {
+      "enums": {
+        "Audio": [
+          {
+            "name": "Adpcm",
+            "order": 106
+          }
+        ]
+      }
+    },
+    "audio/aptx": {
+      "enums": {
+        "Audio": [
+          {
+            "name": "Aptx",
+            "order": 107
+          }
+        ]
+      }
+    },
+    "audio/atrac3": {
+      "enums": {
+        "Audio": [
+          {
+            "name": "Atrac3",
+            "order": 108
+          }
+        ]
+      }
+    },
+    "audio/atrac-advanced-lossless": {
+      "enums": {
+        "Audio": [
+          {
+            "name": "AtracAdvancedLossless",
+            "order": 109
+          }
+        ]
+      }
+    },
+    "audio/atrac-x": {
+      "enums": {
+        "Audio": [
+          {
+            "name": "AtracX",
+            "order": 110
+          }
+        ]
+      }
+    },
+    "audio/l8": {
+      "enums": {
+        "Audio": [
+          {
+            "name": "L8",
+            "order": 111
+          }
+        ]
+      }
+    },
+    "audio/l16": {
+      "enums": {
+        "Audio": [
+          {
+            "name": "L16",
+            "order": 112
+          }
+        ]
+      }
+    },
+    "audio/l20": {
+      "enums": {
+        "Audio": [
+          {
+            "name": "L20",
+            "order": 113
+          }
+        ]
+      }
+    },
+    "audio/l24": {
+      "enums": {
+        "Audio": [
+          {
+            "name": "L24",
+            "order": 114
+          }
+        ]
+      }
+    },
+    "audio/lpc": {
+      "enums": {
+        "Audio": [
+          {
+            "name": "Lpc",
+            "order": 115
+          }
+        ]
+      }
+    },
+    "audio/vnd.cns.anp1": {
+      "enums": {
+        "Audio": [
+          {
+            "name": "MelodyRcp",
+            "order": 117
+          }
+        ]
+      }
+    },
+    "audio/vnd.cns.inf1": {
+      "enums": {
+        "Audio": [
+          {
+            "name": "MelodyInf1",
+            "order": 118
+          }
+        ]
+      }
+    },
+    "audio/mobile-xmf": {
+      "enums": {
+        "Audio": [
+          {
+            "name": "Mobile",
+            "order": 119
+          }
+        ]
+      }
+    },
+    "audio/mp1": {
+      "enums": {
+        "Audio": [
+          {
+            "name": "Mp1",
+            "order": 120
+          }
+        ]
+      }
+    },
+    "audio/mp2": {
+      "enums": {
+        "Audio": [
+          {
+            "name": "Mp2",
+            "order": 121
+          }
+        ]
+      }
+    },
+    "audio/mpa": {
+      "enums": {
+        "Audio": [
+          {
+            "name": "Mpa",
+            "order": 122
+          }
+        ]
+      }
+    },
+    "audio/mpa-robust": {
+      "enums": {
+        "Audio": [
+          {
+            "name": "MpaRobust",
+            "order": 123
+          }
+        ]
+      }
+    },
+    "audio/prs.sid": {
+      "enums": {
+        "Audio": [
+          {
+            "name": "Prs",
+            "order": 125
+          }
+        ]
+      }
+    },
+    "audio/rtp-enc-aescm128": {
+      "enums": {
+        "Audio": [
+          {
+            "name": "Rtp",
+            "order": 126
+          }
+        ]
+      }
+    },
+    "audio/rtp-midi": {
+      "enums": {
+        "Audio": [
+          {
+            "name": "RtpMidi",
+            "order": 127
+          }
+        ]
+      }
+    },
+    "audio/x-vorbis+ogg": {
+      "enums": {
+        "Audio": [
+          {
+            "name": "SofarVorbis",
+            "order": 128
+          }
+        ]
+      }
+    },
+    "audio/sp-midi": {
+      "enums": {
+        "Audio": [
+          {
+            "name": "Sp",
+            "order": 129
+          }
+        ]
+      }
+    },
+    "audio/ulpfec": {
+      "enums": {
+        "Audio": [
+          {
+            "name": "Ulpfec",
+            "order": 131
+          }
+        ]
+      }
+    },
+    "audio/usac": {
+      "enums": {
+        "Audio": [
+          {
+            "name": "Usac",
+            "order": 132
+          }
+        ]
+      }
+    },
+    "audio/vnd.3gpp.iufp": {
+      "enums": {
+        "Audio": [
+          {
+            "name": "Vnd3gppIufp",
+            "order": 133
+          }
+        ]
+      }
+    },
+    "application/x-font-ghostscript": {
+      "enums": {
+        "Font": [
+          {
+            "name": "Ghostscript",
+            "order": 16
+          }
+        ]
+      }
+    },
+    "application/x-font-linux-psf": {
+      "enums": {
+        "Font": [
+          {
+            "name": "LinuxPsf",
+            "order": 17
+          }
+        ]
+      }
+    },
+    "application/x-font-snf": {
+      "enums": {
+        "Font": [
+          {
+            "name": "Snf",
+            "order": 19
+          }
+        ]
+      }
+    },
+    "application/x-font-speedo": {
+      "enums": {
+        "Font": [
+          {
+            "name": "Speedo",
+            "order": 20
+          }
+        ]
+      }
+    },
+    "image/cgm": {
+      "enums": {
+        "Image": [
+          {
+            "name": "Cgm",
+            "order": 2
+          }
+        ]
+      }
+    },
+    "image/dicom+rle": {
+      "enums": {
+        "Image": [
+          {
+            "name": "Dicom",
+            "order": 3
+          }
+        ]
+      }
+    },
+    "image/fits": {
+      "enums": {
+        "Image": [
+          {
+            "name": "Fits",
+            "order": 5
+          }
+        ]
+      }
+    },
+    "image/g3fax": {
+      "enums": {
+        "Image": [
+          {
+            "name": "G3fax",
+            "order": 6
+          }
+        ]
+      }
+    },
+    "image/hej2k": {
+      "enums": {
+        "Image": [
+          {
+            "name": "Hej2k",
+            "order": 12
+          }
+        ]
+      }
+    },
+    "image/hsj2": {
+      "enums": {
+        "Image": [
+          {
+            "name": "Hsj2",
+            "order": 13
+          }
+        ]
+      }
+    },
+    "image/ief": {
+      "enums": {
+        "Image": [
+          {
+            "name": "Ief",
+            "order": 14
+          }
+        ]
+      }
+    },
+    "image/jls": {
+      "enums": {
+        "Image": [
+          {
+            "name": "Jls",
+            "order": 15
+          }
+        ]
+      }
+    },
+    "image/jphc": {
+      "enums": {
+        "Image": [
+          {
+            "name": "Jphc",
+            "order": 19
+          }
+        ]
+      }
+    },
+    "image/jxra": {
+      "enums": {
+        "Image": [
+          {
+            "name": "Jxra",
+            "order": 24
+          }
+        ]
+      }
+    },
+    "image/jxrs": {
+      "enums": {
+        "Image": [
+          {
+            "name": "Jxrs",
+            "order": 25
+          }
+        ]
+      }
+    },
+    "image/jxsc": {
+      "enums": {
+        "Image": [
+          {
+            "name": "Jxsc",
+            "order": 27
+          }
+        ]
+      }
+    },
+    "image/jxsi": {
+      "enums": {
+        "Image": [
+          {
+            "name": "Jxsi",
+            "order": 28
+          }
+        ]
+      }
+    },
+    "image/jxss": {
+      "enums": {
+        "Image": [
+          {
+            "name": "Jxss",
+            "order": 29
+          }
+        ]
+      }
+    },
+    "image/prs.btif": {
+      "enums": {
+        "Image": [
+          {
+            "name": "PrsBtif",
+            "order": 35
+          }
+        ]
+      }
+    },
+    "image/prs.pti": {
+      "enums": {
+        "Image": [
+          {
+            "name": "PrsPti",
+            "order": 36
+          }
+        ]
+      }
+    },
+    "image/pwg-raster": {
+      "enums": {
+        "Image": [
+          {
+            "name": "PwgRaster",
+            "order": 37
+          }
+        ]
+      }
+    },
+    "image/t38": {
+      "enums": {
+        "Image": [
+          {
+            "name": "T38",
+            "order": 39
+          }
+        ]
+      }
+    },
+    "image/tiff-fx": {
+      "enums": {
+        "Image": [
+          {
+            "name": "TiffFx",
+            "order": 41
+          }
+        ]
+      }
+    },
+    "image/vnd.airzip.accelerator.azv": {
+      "enums": {
+        "Image": [
+          {
+            "name": "VndAirzipAcceleratorAzv",
+            "order": 43
+          }
+        ]
+      }
+    },
+    "image/vnd.cns.inf2": {
+      "enums": {
+        "Image": [
+          {
+            "name": "VndCnsInf2",
+            "order": 44
+          }
+        ]
+      }
+    },
+    "image/vnd.dece.graphic": {
+      "enums": {
+        "Image": [
+          {
+            "name": "VndDeceGraphic",
+            "order": 45
+          }
+        ]
+      }
+    },
+    "image/vnd.dvb.subtitle": {
+      "enums": {
+        "Image": [
+          {
+            "name": "VndDvbSubtitle",
+            "order": 49
+          }
+        ]
+      }
+    },
+    "image/vnd.fastbidsheet": {
+      "enums": {
+        "Image": [
+          {
+            "name": "VndFastbidsheet",
+            "order": 50
+          }
+        ]
+      }
+    },
+    "image/vnd.fpx": {
+      "enums": {
+        "Image": [
+          {
+            "name": "VndFpx",
+            "order": 51
+          }
+        ]
+      }
+    },
+    "image/vnd.fst": {
+      "enums": {
+        "Image": [
+          {
+            "name": "VndFst",
+            "order": 52
+          }
+        ]
+      }
+    },
+    "image/vnd.fujixerox.edmics-mmr": {
+      "enums": {
+        "Image": [
+          {
+            "name": "VndFujixeroxEdmicsMmr",
+            "order": 53
+          }
+        ]
+      }
+    },
+    "image/vnd.fujixerox.edmics-rlc": {
+      "enums": {
+        "Image": [
+          {
+            "name": "VndFujixeroxEdmicsRlc",
+            "order": 54
+          }
+        ]
+      }
+    },
+    "image/vnd.globegraphics.bvh": {
+      "enums": {
+        "Image": [
+          {
+            "name": "VndGlobeGraphicsBvh",
+            "order": 55
+          }
+        ]
+      }
+    },
+    "image/vnd.mix": {
+      "enums": {
+        "Image": [
+          {
+            "name": "VndMix",
+            "order": 57
+          }
+        ]
+      }
+    },
+    "image/vnd.mozilla.apng": {
+      "enums": {
+        "Image": [
+          {
+            "name": "VndMozillaApng",
+            "order": 58
+          }
+        ]
+      }
+    },
+    "image/vnd.ms-modi": {
+      "enums": {
+        "Image": [
+          {
+            "name": "VndMsModi",
+            "order": 59
+          }
+        ]
+      }
+    },
+    "image/vnd.ms-photo": {
+      "enums": {
+        "Image": [
+          {
+            "name": "VndMsPhoto",
+            "order": 60
+          }
+        ]
+      }
+    },
+    "image/vnd.net-fpx": {
+      "enums": {
+        "Image": [
+          {
+            "name": "VndNetFpx",
+            "order": 61
+          }
+        ]
+      }
+    },
+    "image/vnd.pco.b16": {
+      "enums": {
+        "Image": [
+          {
+            "name": "VndPcoB16",
+            "order": 62
+          }
+        ]
+      }
+    },
+    "image/vnd.sealed.png": {
+      "enums": {
+        "Image": [
+          {
+            "name": "VndSealedPng",
+            "order": 64
+          }
+        ]
+      }
+    },
+    "image/vnd.sealedmedia.hd-imaging.jp2": {
+      "enums": {
+        "Image": [
+          {
+            "name": "VndSealedmediaHdImagingJp2",
+            "order": 65
+          }
+        ]
+      }
+    },
+    "image/vnd.svf": {
+      "enums": {
+        "Image": [
+          {
+            "name": "VndSvf",
+            "order": 66
+          }
+        ]
+      }
+    },
+    "image/vnd.tencent.tap": {
+      "enums": {
+        "Image": [
+          {
+            "name": "VndTencentTap",
+            "order": 67
+          }
+        ]
+      }
+    },
+    "image/vnd.valve.source.texture": {
+      "enums": {
+        "Image": [
+          {
+            "name": "VndValveSourceTexture",
+            "order": 68
+          }
+        ]
+      }
+    },
+    "image/vnd.xiff": {
+      "enums": {
+        "Image": [
+          {
+            "name": "VndXiff",
+            "order": 70
+          }
+        ]
+      }
+    },
+    "image/vnd.zbrush.pcx": {
+      "enums": {
+        "Image": [
+          {
+            "name": "VndZbrushPcx",
+            "order": 71
+          }
+        ]
+      }
+    },
+    "image/x-cmx": {
+      "enums": {
+        "Image": [
+          {
+            "name": "XCmx",
+            "order": 75
+          }
+        ]
+      }
+    },
+    "image/x-jng": {
+      "enums": {
+        "Image": [
+          {
+            "name": "XJng",
+            "order": 78
+          }
+        ]
+      }
+    },
+    "image/x-mrsid-image": {
+      "enums": {
+        "Image": [
+          {
+            "name": "XMrsidImage",
+            "order": 79
+          }
+        ]
+      }
+    },
+    "image/x-pict": {
+      "enums": {
+        "Image": [
+          {
+            "name": "XPict",
+            "order": 82
+          }
+        ]
+      }
+    },
+    "image/x-cur": {
+      "enums": {
+        "Image": [
+          {
+            "name": "XCur",
+            "order": 92
+          }
+        ]
+      }
+    },
+    "message/cpim": {
+      "enums": {
+        "Message": [
+          {
+            "name": "Cpim",
+            "order": 0
+          }
+        ]
+      }
+    },
+    "message/example": {
+      "enums": {
+        "Message": [
+          {
+            "name": "Example",
+            "order": 3
+          }
+        ]
+      }
+    },
+    "message/external-body": {
+      "enums": {
+        "Message": [
+          {
+            "name": "External",
+            "order": 4
+          }
+        ]
+      }
+    },
+    "message/feedback-report": {
+      "enums": {
+        "Message": [
+          {
+            "name": "FeedbackReport",
+            "order": 5
+          }
+        ]
+      }
+    },
+    "message/global": {
+      "enums": {
+        "Message": [
+          {
+            "name": "Global",
+            "order": 6
+          }
+        ]
+      }
+    },
+    "message/global-delivery-status": {
+      "enums": {
+        "Message": [
+          {
+            "name": "GlobalDeliveryStatus",
+            "order": 7
+          }
+        ]
+      }
+    },
+    "message/global-disposition-notification": {
+      "enums": {
+        "Message": [
+          {
+            "name": "GlobalDispositionNotification",
+            "order": 8
+          }
+        ]
+      }
+    },
+    "message/global-headers": {
+      "enums": {
+        "Message": [
+          {
+            "name": "GlobalHeaders",
+            "order": 9
+          }
+        ]
+      }
+    },
+    "message/imdn+xml": {
+      "enums": {
+        "Message": [
+          {
+            "name": "ImdnXml",
+            "order": 11
+          }
+        ]
+      }
+    },
+    "message/news": {
+      "enums": {
+        "Message": [
+          {
+            "name": "News",
+            "order": 12
+          }
+        ]
+      }
+    },
+    "message/s-http": {
+      "enums": {
+        "Message": [
+          {
+            "name": "Shttp",
+            "order": 15
+          }
+        ]
+      }
+    },
+    "message/sip": {
+      "enums": {
+        "Message": [
+          {
+            "name": "Sip",
+            "order": 16
+          }
+        ]
+      }
+    },
+    "message/sipfrag": {
+      "enums": {
+        "Message": [
+          {
+            "name": "Sipfrag",
+            "order": 17
+          }
+        ]
+      }
+    },
+    "message/tracking-status": {
+      "enums": {
+        "Message": [
+          {
+            "name": "TrackingStatus",
+            "order": 18
+          }
+        ]
+      }
+    },
+    "message/vnd.si.simp": {
+      "enums": {
+        "Message": [
+          {
+            "name": "VndSiSimp",
+            "order": 19
+          }
+        ]
+      }
+    },
+    "message/vnd.wfa.wsc": {
+      "enums": {
+        "Message": [
+          {
+            "name": "VndWfaWsc",
+            "order": 20
+          }
+        ]
+      }
+    },
+    "model/x.stl-ascii": {
+      "enums": {
+        "Model": [
+          {
+            "name": "XStlAscii",
+            "order": 5
+          }
+        ]
+      }
+    },
+    "model/x.stl-binary": {
+      "enums": {
+        "Model": [
+          {
+            "name": "XStlBinary",
+            "order": 6
+          }
+        ]
+      }
+    },
+    "model/step-xml+zip": {
+      "enums": {
+        "Model": [
+          {
+            "name": "StepXmlZip",
+            "order": 10
+          }
+        ]
+      }
+    },
+    "model/x3d+json": {
+      "enums": {
+        "Model": [
+          {
+            "name": "X3dJson",
+            "order": 17
+          }
+        ]
+      }
+    },
+    "model/vnd.usd": {
+      "enums": {
+        "Model": [
+          {
+            "name": "Usd",
+            "order": 18
+          }
+        ]
+      }
+    },
+    "model/vnd.usda": {
+      "enums": {
+        "Model": [
+          {
+            "name": "Usda",
+            "order": 19
+          }
+        ]
+      }
+    },
+    "model/vnd.usdc": {
+      "enums": {
+        "Model": [
+          {
+            "name": "Usdc",
+            "order": 20
+          }
+        ]
+      }
+    },
+    "model/vnd.gs-gdl": {
+      "enums": {
+        "Model": [
+          {
+            "name": "Gs",
+            "order": 24
+          }
+        ]
+      }
+    },
+    "model/vnd.pytha.pyox": {
+      "enums": {
+        "Model": [
+          {
+            "name": "PythaPyox",
+            "order": 29
+          }
+        ]
+      }
+    },
+    "model/vnd.rosette.annotated-data-model": {
+      "enums": {
+        "Model": [
+          {
+            "name": "RosetteRosette",
+            "order": 30
+          }
+        ]
+      }
+    },
+    "model/vnd.sap.vds": {
+      "enums": {
+        "Model": [
+          {
+            "name": "Sap",
+            "order": 31
+          }
+        ]
+      }
+    },
+    "model/vnd.valve.source.compiled-map": {
+      "enums": {
+        "Model": [
+          {
+            "name": "Valve",
+            "order": 32
+          }
+        ]
+      }
+    },
+    "model/jt": {
+      "enums": {
+        "Model": [
+          {
+            "name": "Jt",
+            "order": 37
+          }
+        ]
+      }
+    },
+    "model/example": {
+      "enums": {
+        "Model": [
+          {
+            "name": "Example",
+            "order": 40
+          }
+        ]
+      }
+    },
+    "multipart/appledouble": {
+      "enums": {
+        "Multipart": [
+          {
+            "name": "Appledouble",
+            "order": 1
+          }
+        ]
+      }
+    },
+    "multipart/digest": {
+      "enums": {
+        "Multipart": [
+          {
+            "name": "Digest",
+            "order": 3
+          }
+        ]
+      }
+    },
+    "multipart/encrypted": {
+      "enums": {
+        "Multipart": [
+          {
+            "name": "Encrypted",
+            "order": 4
+          }
+        ]
+      }
+    },
+    "multipart/example": {
+      "enums": {
+        "Multipart": [
+          {
+            "name": "Example",
+            "order": 5
+          }
+        ]
+      }
+    },
+    "multipart/header-set": {
+      "enums": {
+        "Multipart": [
+          {
+            "name": "HeaderSet",
+            "order": 7
+          }
+        ]
+      }
+    },
+    "multipart/multilingual": {
+      "enums": {
+        "Multipart": [
+          {
+            "name": "Multilingual",
+            "order": 9
+          }
+        ]
+      }
+    },
+    "multipart/parallel": {
+      "enums": {
+        "Multipart": [
+          {
+            "name": "Parallel",
+            "order": 10
+          }
+        ]
+      }
+    },
+    "multipart/report": {
+      "enums": {
+        "Multipart": [
+          {
+            "name": "Report",
+            "order": 12
+          }
+        ]
+      }
+    },
+    "multipart/signed": {
+      "enums": {
+        "Multipart": [
+          {
+            "name": "Signed",
+            "order": 13
+          }
+        ]
+      }
+    },
+    "multipart/vnd.bint.med-plus": {
+      "enums": {
+        "Multipart": [
+          {
+            "name": "VndBintMedPlus",
+            "order": 14
+          }
+        ]
+      }
+    },
+    "multipart/voice-message": {
+      "enums": {
+        "Multipart": [
+          {
+            "name": "VoiceMessage",
+            "order": 15
+          }
+        ]
+      }
+    },
+    "multipart/x-mixed-replace": {
+      "enums": {
+        "Multipart": [
+          {
+            "name": "XMixedReplace",
+            "order": 16
+          }
+        ]
+      }
+    },
+    "text/xml-external-parsed-entity": {
+      "enums": {
+        "Text": [
+          {
+            "name": "XmlExternal",
+            "order": 7
+          }
+        ]
+      }
+    },
+    "text/x-markdown": {
+      "enums": {
+        "Text": [
+          {
+            "name": "XMarkdown",
+            "order": 9
+          }
+        ]
+      }
+    },
+    "text/asciidoc": {
+      "enums": {
+        "Text": [
+          {
+            "name": "Asciidoc",
+            "order": 10
+          }
+        ]
+      }
+    },
+    "text/x-java": {
+      "enums": {
+        "Text": [
+          {
+            "name": "Java",
+            "order": 21
+          }
+        ]
+      }
+    },
+    "text/x-cobol": {
+      "enums": {
+        "Text": [
+          {
+            "name": "Cobol",
+            "order": 47
+          }
+        ]
+      }
+    },
+    "text/x-llvm": {
+      "enums": {
+        "Text": [
+          {
+            "name": "Llvm",
+            "order": 50
+          }
+        ]
+      }
+    },
+    "text/typescript": {
+      "enums": {
+        "Text": [
+          {
+            "name": "TypeScript",
+            "order": 58
+          }
+        ]
+      }
+    },
+    "text/tsx": {
+      "enums": {
+        "Text": [
+          {
+            "name": "Tsx",
+            "order": 59
+          }
+        ]
+      }
+    },
+    "text/jsx": {
+      "enums": {
+        "Text": [
+          {
+            "name": "Jsx",
+            "order": 60
+          }
+        ]
+      }
+    },
+    "text/coffeescript": {
+      "enums": {
+        "Text": [
+          {
+            "name": "CoffeeScript",
+            "order": 61
+          }
+        ]
+      }
+    },
+    "text/x-cmd": {
+      "enums": {
+        "Text": [
+          {
+            "name": "XCmd",
+            "order": 68
+          }
+        ]
+      }
+    },
+    "text/x-ant": {
+      "enums": {
+        "Text": [
+          {
+            "name": "XAnt",
+            "order": 72
+          }
+        ]
+      }
+    },
+    "text/x-maven": {
+      "enums": {
+        "Text": [
+          {
+            "name": "XMaven",
+            "order": 73
+          }
+        ]
+      }
+    },
+    "text/x-gradle": {
+      "enums": {
+        "Text": [
+          {
+            "name": "XGradle",
+            "order": 74
+          }
+        ]
+      }
+    },
+    "text/x-vagrantfile": {
+      "enums": {
+        "Text": [
+          {
+            "name": "XVagrantfile",
+            "order": 76
+          }
+        ]
+      }
+    },
+    "text/x-npmrc": {
+      "enums": {
+        "Text": [
+          {
+            "name": "XNpmrc",
+            "order": 88
+          }
+        ]
+      }
+    },
+    "text/x-yarnrc": {
+      "enums": {
+        "Text": [
+          {
+            "name": "XYarnrc",
+            "order": 89
+          }
+        ]
+      }
+    },
+    "text/x-sparql-query": {
+      "enums": {
+        "Text": [
+          {
+            "name": "XSparql",
+            "order": 92
+          }
+        ]
+      }
+    },
+    "text/x-cypher-query": {
+      "enums": {
+        "Text": [
+          {
+            "name": "XCypher",
+            "order": 93
+          }
+        ]
+      }
+    },
+    "text/x-slim": {
+      "enums": {
+        "Text": [
+          {
+            "name": "XSlim",
+            "order": 101
+          }
+        ]
+      }
+    },
+    "text/x-jade": {
+      "enums": {
+        "Text": [
+          {
+            "name": "XJade",
+            "order": 103
+          }
+        ]
+      }
+    },
+    "text/x-smarty-src": {
+      "enums": {
+        "Text": [
+          {
+            "name": "XSmartySrc",
+            "order": 104
+          }
+        ]
+      }
+    },
+    "text/vnd.sun.j2me.app-descriptor": {
+      "enums": {
+        "Text": [
+          {
+            "name": "VndSunJ2meAppDescriptor",
+            "order": 108
+          }
+        ]
+      }
+    },
+    "text/vnd.fly": {
+      "enums": {
+        "Text": [
+          {
+            "name": "VndFlyText",
+            "order": 109
+          }
+        ]
+      }
+    },
+    "text/vnd.fmi.flexstor": {
+      "enums": {
+        "Text": [
+          {
+            "name": "VndFmiFlexstor",
+            "order": 110
+          }
+        ]
+      }
+    },
+    "text/vnd.in3d.3dml": {
+      "enums": {
+        "Text": [
+          {
+            "name": "VndIn3d3dml",
+            "order": 112
+          }
+        ]
+      }
+    },
+    "text/vnd.in3d.spot": {
+      "enums": {
+        "Text": [
+          {
+            "name": "VndIn3dSpot",
+            "order": 113
+          }
+        ]
+      }
+    },
+    "text/vnd.iptc.nitf": {
+      "enums": {
+        "Text": [
+          {
+            "name": "VndIptc",
+            "order": 114
+          },
+          {
+            "name": "VndIptcAnpa",
+            "order": 115,
+            "aliasOf": "VndIptc"
+          }
+        ]
+      }
+    },
+    "text/vnd.latex-z": {
+      "enums": {
+        "Text": [
+          {
+            "name": "VndLatexZ",
+            "order": 116
+          }
+        ]
+      }
+    },
+    "text/vnd.motorola.reflex": {
+      "enums": {
+        "Text": [
+          {
+            "name": "VndMotorola",
+            "order": 117
+          }
+        ]
+      }
+    },
+    "text/vnd.ms-mediapackage": {
+      "enums": {
+        "Text": [
+          {
+            "name": "VndMsMediapackage",
+            "order": 118
+          }
+        ]
+      }
+    },
+    "text/vnd.net2phone.commcenter.command": {
+      "enums": {
+        "Text": [
+          {
+            "name": "VndNet2phone",
+            "order": 119
+          }
+        ]
+      }
+    },
+    "text/vnd.radisys.msml-basic-layout": {
+      "enums": {
+        "Text": [
+          {
+            "name": "VndRadisysMsml",
+            "order": 120
+          }
+        ]
+      }
+    },
+    "text/vnd.si.uricatalogue": {
+      "enums": {
+        "Text": [
+          {
+            "name": "VndSi",
+            "order": 121
+          }
+        ]
+      }
+    },
+    "text/vnd.wap.si": {
+      "enums": {
+        "Text": [
+          {
+            "name": "VndWapSi",
+            "order": 122
+          }
+        ]
+      }
+    },
+    "text/vnd.wap.sl": {
+      "enums": {
+        "Text": [
+          {
+            "name": "VndWapSl",
+            "order": 123
+          }
+        ]
+      }
+    },
+    "text/provenance-notation": {
+      "enums": {
+        "Text": [
+          {
+            "name": "Provenance",
+            "order": 130
+          }
+        ]
+      }
+    },
+    "text/shex": {
+      "enums": {
+        "Text": [
+          {
+            "name": "Shex",
+            "order": 131
+          }
+        ]
+      }
+    },
+    "text/spdx": {
+      "enums": {
+        "Text": [
+          {
+            "name": "Spdx",
+            "order": 132
+          }
+        ]
+      }
+    },
+    "text/strings": {
+      "enums": {
+        "Text": [
+          {
+            "name": "Strings",
+            "order": 133
+          }
+        ]
+      }
+    },
+    "text/wgsl": {
+      "enums": {
+        "Text": [
+          {
+            "name": "Wgsl",
+            "order": 136
+          }
+        ]
+      }
+    },
+    "text/x-uuencode": {
+      "enums": {
+        "Text": [
+          {
+            "name": "XUuencode",
+            "order": 139
+          }
+        ]
+      }
+    },
+    "text/x-component": {
+      "enums": {
+        "Text": [
+          {
+            "name": "XComponent",
+            "order": 140
+          }
+        ]
+      }
+    },
+    "text/x-setext": {
+      "enums": {
+        "Text": [
+          {
+            "name": "XSetext",
+            "order": 141
+          }
+        ]
+      }
+    },
+    "text/x-patch": {
+      "enums": {
+        "Text": [
+          {
+            "name": "XPatch",
+            "order": 143
+          }
+        ]
+      }
+    },
+    "text/x-log": {
+      "enums": {
+        "Text": [
+          {
+            "name": "XLog",
+            "order": 144
+          }
+        ]
+      }
+    },
+    "text/x-changelog": {
+      "enums": {
+        "Text": [
+          {
+            "name": "XChangelog",
+            "order": 145
+          }
+        ]
+      }
+    },
+    "text/x-authors": {
+      "enums": {
+        "Text": [
+          {
+            "name": "XAuthors",
+            "order": 146
+          }
+        ]
+      }
+    },
+    "text/x-todo": {
+      "enums": {
+        "Text": [
+          {
+            "name": "XTodo",
+            "order": 147
+          }
+        ]
+      }
+    },
+    "text/x-readme": {
+      "enums": {
+        "Text": [
+          {
+            "name": "XReadme",
+            "order": 148
+          }
+        ]
+      }
+    },
+    "text/x-license": {
+      "enums": {
+        "Text": [
+          {
+            "name": "XLicense",
+            "order": 149
+          }
+        ]
+      }
+    },
+    "text/x-contributing": {
+      "enums": {
+        "Text": [
+          {
+            "name": "XContributing",
+            "order": 150
+          }
+        ]
+      }
+    },
+    "video/avi": {
+      "enums": {
+        "Video": [
+          {
+            "name": "Avi",
+            "order": 8
+          }
+        ]
+      }
+    },
+    "video/h264-rcdo": {
+      "enums": {
+        "Video": [
+          {
+            "name": "H264Rcdo",
+            "order": 14
+          }
+        ]
+      }
+    },
+    "video/h264-svc": {
+      "enums": {
+        "Video": [
+          {
+            "name": "H264Svc",
+            "order": 15
+          }
+        ]
+      }
+    },
+    "video/hevc": {
+      "enums": {
+        "Video": [
+          {
+            "name": "Hevc",
+            "order": 17
+          }
+        ]
+      }
+    },
+    "video/vvc": {
+      "enums": {
+        "Video": [
+          {
+            "name": "Vvc",
+            "order": 19
+          }
+        ]
+      }
+    },
+    "video/h261": {
+      "enums": {
+        "Video": [
+          {
+            "name": "H261",
+            "order": 23
+          }
+        ]
+      }
+    },
+    "video/h263": {
+      "enums": {
+        "Video": [
+          {
+            "name": "H263",
+            "order": 24
+          }
+        ]
+      }
+    },
+    "video/h263-1998": {
+      "enums": {
+        "Video": [
+          {
+            "name": "H2631998",
+            "order": 25
+          }
+        ]
+      }
+    },
+    "video/h263-2000": {
+      "enums": {
+        "Video": [
+          {
+            "name": "H2632000",
+            "order": 26
+          }
+        ]
+      }
+    },
+    "video/jpeg2000": {
+      "enums": {
+        "Video": [
+          {
+            "name": "Jpeg2000",
+            "order": 28
+          }
+        ]
+      }
+    },
+    "video/jpm": {
+      "enums": {
+        "Video": [
+          {
+            "name": "Jpm",
+            "order": 29
+          }
+        ]
+      }
+    },
+    "video/jpx": {
+      "enums": {
+        "Video": [
+          {
+            "name": "Jpx",
+            "order": 30
+          }
+        ]
+      }
+    },
+    "video/mp1s": {
+      "enums": {
+        "Video": [
+          {
+            "name": "Mp1s",
+            "order": 32
+          }
+        ]
+      }
+    },
+    "video/mp2p": {
+      "enums": {
+        "Video": [
+          {
+            "name": "Mp2p",
+            "order": 33
+          }
+        ]
+      }
+    },
+    "video/mp4v-es": {
+      "enums": {
+        "Video": [
+          {
+            "name": "Mp4vEs",
+            "order": 35
+          }
+        ]
+      }
+    },
+    "video/mpv": {
+      "enums": {
+        "Video": [
+          {
+            "name": "Mpv",
+            "order": 36
+          }
+        ]
+      }
+    },
+    "video/mpeg4-generic": {
+      "enums": {
+        "Video": [
+          {
+            "name": "Mpeg4Generic",
+            "order": 37
+          }
+        ]
+      }
+    },
+    "video/raw": {
+      "enums": {
+        "Video": [
+          {
+            "name": "Raw",
+            "order": 38
+          }
+        ]
+      }
+    },
+    "video/theora": {
+      "enums": {
+        "Video": [
+          {
+            "name": "Theora",
+            "order": 39
+          }
+        ]
+      }
+    },
+    "video/x-m4v": {
+      "enums": {
+        "Video": [
+          {
+            "name": "XM4v",
+            "order": 45
+          }
+        ]
+      }
+    },
+    "video/vnd.apple.mpegurl": {
+      "enums": {
+        "Video": [
+          {
+            "name": "VndAppleMpegurl",
+            "order": 46
+          }
+        ]
+      }
+    },
+    "video/vnd.dlna.mpeg-tts": {
+      "enums": {
+        "Video": [
+          {
+            "name": "VndDvbH264",
+            "order": 48
+          }
+        ]
+      }
+    },
+    "video/iso.segment": {
+      "enums": {
+        "Video": [
+          {
+            "name": "Iso",
+            "order": 49
+          }
+        ]
+      }
+    },
+    "video/vnd.dece.mp4": {
+      "enums": {
+        "Video": [
+          {
+            "name": "VndDeceMp4",
+            "order": 52
+          }
+        ]
+      }
+    },
+    "video/vnd.directv.mpeg": {
+      "enums": {
+        "Video": [
+          {
+            "name": "VndDirectvMpeg",
+            "order": 56
+          }
+        ]
+      }
+    },
+    "video/vnd.directv.mpeg-tts": {
+      "enums": {
+        "Video": [
+          {
+            "name": "VndDirectvMpegTts",
+            "order": 57
+          }
+        ]
+      }
+    },
+    "video/vnd.iptvforum.1dparityfec-1010": {
+      "enums": {
+        "Video": [
+          {
+            "name": "Rtsp",
+            "order": 58
+          }
+        ]
+      }
+    },
+    "video/vnd.iptvforum.1dparityfec-2005": {
+      "enums": {
+        "Video": [
+          {
+            "name": "Rtsp2d",
+            "order": 59
+          }
+        ]
+      }
+    },
+    "video/vnd.iptvforum.2dparityfec-1010": {
+      "enums": {
+        "Video": [
+          {
+            "name": "Rtsp2d2",
+            "order": 60
+          }
+        ]
+      }
+    },
+    "video/vnd.iptvforum.2dparityfec-2005": {
+      "enums": {
+        "Video": [
+          {
+            "name": "Rtsp2d22",
+            "order": 61
+          }
+        ]
+      }
+    },
+    "video/vnd.iptvforum.ttsavc": {
+      "enums": {
+        "Video": [
+          {
+            "name": "Rtspt",
+            "order": 62
+          }
+        ]
+      }
+    },
+    "video/vnd.iptvforum.ttsmpeg2": {
+      "enums": {
+        "Video": [
+          {
+            "name": "Rtspt264",
+            "order": 63
+          }
+        ]
+      }
+    },
+    "video/vnd.cctv": {
+      "enums": {
+        "Video": [
+          {
+            "name": "VndCctv",
+            "order": 64
+          }
+        ]
+      }
+    },
+    "video/vnd.hns.video": {
+      "enums": {
+        "Video": [
+          {
+            "name": "VndHns",
+            "order": 66
+          }
+        ]
+      }
+    },
+    "video/vnd.motorola.video": {
+      "enums": {
+        "Video": [
+          {
+            "name": "VndMotorolaVideo",
+            "order": 67
+          }
+        ]
+      }
+    },
+    "video/vnd.motorola.videop": {
+      "enums": {
+        "Video": [
+          {
+            "name": "VndMotorolaVideop",
+            "order": 68
+          }
+        ]
+      }
+    },
+    "video/vnd.nokia.interleaved-multimedia": {
+      "enums": {
+        "Video": [
+          {
+            "name": "VndNokiaInterleavedMultimedia",
+            "order": 70
+          }
+        ]
+      }
+    },
+    "video/vnd.nokia.mp4vr": {
+      "enums": {
+        "Video": [
+          {
+            "name": "VndNokiaMp4vr",
+            "order": 71
+          }
+        ]
+      }
+    },
+    "video/vnd.nokia.videovoip": {
+      "enums": {
+        "Video": [
+          {
+            "name": "VndNokiaVideovoip",
+            "order": 72
+          }
+        ]
+      }
+    },
+    "video/vnd.objectvideo": {
+      "enums": {
+        "Video": [
+          {
+            "name": "VndObjectvideo",
+            "order": 73
+          }
+        ]
+      }
+    },
+    "video/vnd.sealed.mpeg1": {
+      "enums": {
+        "Video": [
+          {
+            "name": "VndSealedmedia",
+            "order": 76
+          }
+        ]
+      }
+    },
+    "video/vnd.sealed.mpeg4": {
+      "enums": {
+        "Video": [
+          {
+            "name": "VndSealedmedia4",
+            "order": 77
+          }
+        ]
+      }
+    },
+    "video/vnd.sealed.swf": {
+      "enums": {
+        "Video": [
+          {
+            "name": "VndSealedmediaSwf",
+            "order": 78
+          }
+        ]
+      }
+    },
+    "video/vnd.sealedmedia.softseal.mov": {
+      "enums": {
+        "Video": [
+          {
+            "name": "VndSealedmovie",
+            "order": 79
+          }
+        ]
+      }
+    },
+    "video/vnd.uvvu.mp4": {
+      "enums": {
+        "Video": [
+          {
+            "name": "VndUvvuMp4",
+            "order": 80
+          }
+        ]
+      }
+    },
+    "video/vnd.youtube.yt": {
+      "enums": {
+        "Video": [
+          {
+            "name": "VndYoutube",
+            "order": 82
+          }
+        ]
+      }
+    },
+    "video/bmpeg": {
+      "enums": {
+        "Video": [
+          {
+            "name": "Bmpeg",
+            "order": 83
+          }
+        ]
+      }
+    },
+    "video/bt656": {
+      "enums": {
+        "Video": [
+          {
+            "name": "Bt656",
+            "order": 84
+          }
+        ]
+      }
+    },
+    "video/celb": {
+      "enums": {
+        "Video": [
+          {
+            "name": "CelB",
+            "order": 85
+          }
+        ]
+      }
+    },
+    "video/dv": {
+      "enums": {
+        "Video": [
+          {
+            "name": "Dv",
+            "order": 86
+          }
+        ]
+      }
+    },
+    "video/encaprtp": {
+      "enums": {
+        "Video": [
+          {
+            "name": "Encap",
+            "order": 87
+          }
+        ]
+      }
+    },
+    "video/example": {
+      "enums": {
+        "Video": [
+          {
+            "name": "Example",
+            "order": 88
+          }
+        ]
+      }
+    },
+    "video/flexfec": {
+      "enums": {
+        "Video": [
+          {
+            "name": "Flexfec",
+            "order": 89
+          }
+        ]
+      }
+    },
+    "video/nv": {
+      "enums": {
+        "Video": [
+          {
+            "name": "Nv",
+            "order": 90
+          }
+        ]
+      }
+    },
+    "video/parityfec": {
+      "enums": {
+        "Video": [
+          {
+            "name": "Parityfec",
+            "order": 91
+          }
+        ]
+      }
+    },
+    "video/pointer": {
+      "enums": {
+        "Video": [
+          {
+            "name": "PointerRaw",
+            "order": 92
+          }
+        ]
+      }
+    },
+    "video/rtp-enc-aescm128": {
+      "enums": {
+        "Video": [
+          {
+            "name": "RtpEncAescm128",
+            "order": 93
+          }
+        ]
+      }
+    },
+    "video/rtploopback": {
+      "enums": {
+        "Video": [
+          {
+            "name": "Rtploopback",
+            "order": 94
+          }
+        ]
+      }
+    },
+    "video/rtx": {
+      "enums": {
+        "Video": [
+          {
+            "name": "Rtx",
+            "order": 95
+          }
+        ]
+      }
+    },
+    "video/scip": {
+      "enums": {
+        "Video": [
+          {
+            "name": "Scip",
+            "order": 96
+          }
+        ]
+      }
+    },
+    "video/smpte291": {
+      "enums": {
+        "Video": [
+          {
+            "name": "SmpteRaw",
+            "order": 97
+          }
+        ]
+      }
+    },
+    "video/smpte292m": {
+      "enums": {
+        "Video": [
+          {
+            "name": "Smpte2022",
+            "order": 98
+          }
+        ]
+      }
+    },
+    "video/ulpfec": {
+      "enums": {
+        "Video": [
+          {
+            "name": "Ulpfec",
+            "order": 99
+          }
+        ]
+      }
+    },
+    "video/vc1": {
+      "enums": {
+        "Video": [
+          {
+            "name": "VcRdp",
+            "order": 100
+          }
+        ]
+      }
+    },
+    "video/vc2": {
+      "enums": {
+        "Video": [
+          {
+            "name": "Vc2",
+            "order": 101
+          }
+        ]
+      }
+    },
+    "video/x-sgi-movie": {
+      "enums": {
+        "Video": [
+          {
+            "name": "XSgiMovie",
+            "order": 102
+          }
+        ]
+      }
+    },
+    "video/x-mng": {
+      "enums": {
+        "Video": [
+          {
+            "name": "XMng",
+            "order": 103
+          }
+        ]
+      }
+    },
+    "video/x-ogm+ogg": {
+      "enums": {
+        "Video": [
+          {
+            "name": "XOgm",
+            "order": 105
+          }
+        ]
+      }
+    },
+    "video/x-theora+ogg": {
+      "enums": {
+        "Video": [
+          {
+            "name": "XTheora",
+            "order": 106
+          }
+        ]
+      }
+    },
+    "video/x-dirac": {
+      "enums": {
+        "Video": [
+          {
+            "name": "XDirac",
+            "order": 107
+          }
+        ]
+      }
+    }
+  }
+}

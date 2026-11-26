@@ -6,7 +6,7 @@ namespace Componenta\Detector\MimeTypes;
 
 enum Video: string
 {
-    // Common
+    // BEGIN GENERATED MIME CASES
     case Mp4 = 'video/mp4';
     case Mpeg = 'video/mpeg';
     case Ogg = 'video/ogg';
@@ -20,28 +20,16 @@ enum Video: string
     case Asf = 'video/x-ms-asf';
     case ThreeGpp = 'video/3gpp';
     case ThreeGpp2 = 'video/3gpp2';
-    
-    // H.264 / AVC
     case H264 = 'video/h264';
     case H264Rcdo = 'video/h264-rcdo';
     case H264Svc = 'video/h264-svc';
-    
-    // H.265 / HEVC
     case H265 = 'video/h265';
     case Hevc = 'video/hevc';
-    
-    // H.266 / VVC
     case H266 = 'video/h266';
     case Vvc = 'video/vvc';
-    
-    // AV1
     case Av1 = 'video/av1';
-    
-    // VP8/VP9
     case Vp8 = 'video/vp8';
     case Vp9 = 'video/vp9';
-    
-    // Other codecs
     case H261 = 'video/h261';
     case H263 = 'video/h263';
     case H2631998 = 'video/h263-1998';
@@ -59,25 +47,16 @@ enum Video: string
     case Mpeg4Generic = 'video/mpeg4-generic';
     case Raw = 'video/raw';
     case Theora = 'video/theora';
-    
-    // Microsoft
-    /** Alias of Asf. */
     public const MsAsf = self::Asf;
     case MsWm = 'video/x-ms-wm';
     case MsWmx = 'video/x-ms-wmx';
     case MsWvx = 'video/x-ms-wvx';
     case VndMsPlayready = 'video/vnd.ms-playready.media.pyv';
-    
-    // Apple
     case XM4v = 'video/x-m4v';
     case VndAppleMpegurl = 'video/vnd.apple.mpegurl';
-    
-    // DVD / Blu-ray
     case VndDvbFile = 'video/vnd.dvb.file';
     case VndDvbH264 = 'video/vnd.dlna.mpeg-tts';
     case Iso = 'video/iso.segment';
-    
-    // Streaming
     case VndDeceHd = 'video/vnd.dece.hd';
     case VndDeceMobile = 'video/vnd.dece.mobile';
     case VndDeceMp4 = 'video/vnd.dece.mp4';
@@ -92,8 +71,6 @@ enum Video: string
     case Rtsp2d22 = 'video/vnd.iptvforum.2dparityfec-2005';
     case Rtspt = 'video/vnd.iptvforum.ttsavc';
     case Rtspt264 = 'video/vnd.iptvforum.ttsmpeg2';
-    
-    // Vendor specific
     case VndCctv = 'video/vnd.cctv';
     case VndFvt = 'video/vnd.fvt';
     case VndHns = 'video/vnd.hns.video';
@@ -113,8 +90,6 @@ enum Video: string
     case VndUvvuMp4 = 'video/vnd.uvvu.mp4';
     case VndVivo = 'video/vnd.vivo';
     case VndYoutube = 'video/vnd.youtube.yt';
-    
-    // Other
     case Bmpeg = 'video/bmpeg';
     case Bt656 = 'video/bt656';
     case CelB = 'video/celb';
@@ -134,14 +109,13 @@ enum Video: string
     case Ulpfec = 'video/ulpfec';
     case VcRdp = 'video/vc1';
     case Vc2 = 'video/vc2';
-    
-    // Legacy
     case XSgiMovie = 'video/x-sgi-movie';
     case XMng = 'video/x-mng';
     case XF4v = 'video/x-f4v';
     case XOgm = 'video/x-ogm+ogg';
     case XTheora = 'video/x-theora+ogg';
     case XDirac = 'video/x-dirac';
+    // END GENERATED MIME CASES
 
     /**
      * @return list<string>

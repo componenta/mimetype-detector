@@ -6,7 +6,7 @@ namespace Componenta\Detector\MimeTypes;
 
 enum Model: string
 {
-    // Common 3D formats
+    // BEGIN GENERATED MIME CASES
     case Gltf = 'model/gltf+json';
     case GltfBinary = 'model/gltf-binary';
     case Obj = 'model/obj';
@@ -19,22 +19,16 @@ enum Model: string
     case StepZip = 'model/step+zip';
     case StepXmlZip = 'model/step-xml+zip';
     case Iges = 'model/iges';
-    
-    // VRML / X3D
     case Vrml = 'model/vrml';
     case X3dVrml = 'model/x3d+vrml';
     case X3dXml = 'model/x3d+xml';
     case X3dBinary = 'model/x3d+binary';
     case X3dFastinfoset = 'model/x3d+fastinfoset';
     case X3dJson = 'model/x3d+json';
-    
-    // USD (Universal Scene Description)
     case Usd = 'model/vnd.usd';
     case Usda = 'model/vnd.usda';
     case Usdc = 'model/vnd.usdc';
     case Usdz = 'model/vnd.usdz+zip';
-    
-    // CAD
     case Dwf = 'model/vnd.dwf';
     case Gdl = 'model/vnd.gdl';
     case Gs = 'model/vnd.gs-gdl';
@@ -47,19 +41,14 @@ enum Model: string
     case Sap = 'model/vnd.sap.vds';
     case Valve = 'model/vnd.valve.source.compiled-map';
     case Vtu = 'model/vnd.vtu';
-    
-    // Mesh / Geometry
     case Mesh = 'model/mesh';
     case Prc = 'model/prc';
     case U3d = 'model/u3d';
     case Jt = 'model/jt';
-    
-    // 3MF
     case ThreeMf = 'model/3mf';
-    
-    // Other
     case E57 = 'model/e57';
     case Example = 'model/example';
+    // END GENERATED MIME CASES
 
     /**
      * @return list<string>

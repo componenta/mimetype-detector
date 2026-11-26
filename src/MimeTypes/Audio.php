@@ -6,7 +6,7 @@ namespace Componenta\Detector\MimeTypes;
 
 enum Audio: string
 {
-    // Common
+    // BEGIN GENERATED MIME CASES
     case Aac = 'audio/aac';
     case Ac3 = 'audio/ac3';
     case Aiff = 'audio/aiff';
@@ -34,8 +34,6 @@ enum Audio: string
     case Weba = 'audio/webm';
     case Wma = 'audio/x-ms-wma';
     case Xm = 'audio/xm';
-    
-    // High resolution / Lossless
     case XAls = 'audio/x-als';
     case Dsf = 'audio/dsf';
     case XDsf = 'audio/x-dsf';
@@ -43,19 +41,14 @@ enum Audio: string
     case XDff = 'audio/x-dff';
     case XTta = 'audio/x-tta';
     case XWavpack = 'audio/x-wavpack';
-    /** Alias of XApe. */
     public const XMonkeysAudio = self::XApe;
     case XTak = 'audio/x-tak';
     case XOptimfrog = 'audio/x-ofr';
     case XShorten = 'audio/x-shn';
-    
-    // Tracker / Module
     case XMod = 'audio/x-mod';
     case XS3m = 'audio/x-s3m';
     case XIt = 'audio/x-it';
     case XXm = 'audio/x-xm';
-    
-    // Speech / Voice
     case Silk = 'audio/silk';
     case Speex = 'audio/speex';
     case Vorbis = 'audio/vorbis';
@@ -93,8 +86,6 @@ enum Audio: string
     case Smv = 'audio/smv';
     case Smv0 = 'audio/smv0';
     case SmvQcp = 'audio/smv-qcp';
-    
-    // Streaming / Special
     case MpegUrl = 'audio/x-mpegurl';
     case Scpls = 'audio/x-scpls';
     case Pls = 'audio/x-pls';
@@ -102,8 +93,6 @@ enum Audio: string
     case XPnRealaudio = 'audio/x-pn-realaudio';
     case XPnRealaudioPlugin = 'audio/x-pn-realaudio-plugin';
     case XRealaudio = 'audio/x-realaudio';
-    
-    // Vendor specific
     case VndDeceAudio = 'audio/vnd.dece.audio';
     case VndDigitalWinds = 'audio/vnd.digital-winds';
     case VndDlnaAdts = 'audio/vnd.dlna.adts';
@@ -124,8 +113,6 @@ enum Audio: string
     case VndRip = 'audio/vnd.rip';
     case VndSealedmedia = 'audio/vnd.sealedmedia.softseal.mpeg';
     case VndVmx = 'audio/vnd.vmx.cvsd';
-    
-    // Other
     case Adpcm = 'audio/adpcm';
     case Aptx = 'audio/aptx';
     case Atrac3 = 'audio/atrac3';
@@ -150,11 +137,11 @@ enum Audio: string
     case RtpMidi = 'audio/rtp-midi';
     case SofarVorbis = 'audio/x-vorbis+ogg';
     case Sp = 'audio/sp-midi';
-    /** Alias of XTta. */
     public const Tta = self::XTta;
     case Ulpfec = 'audio/ulpfec';
     case Usac = 'audio/usac';
     case Vnd3gppIufp = 'audio/vnd.3gpp.iufp';
+    // END GENERATED MIME CASES
 
     /**
      * @return list<string>

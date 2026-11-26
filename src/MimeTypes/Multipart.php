@@ -6,6 +6,7 @@ namespace Componenta\Detector\MimeTypes;
 
 enum Multipart: string
 {
+    // BEGIN GENERATED MIME CASES
     case Alternative = 'multipart/alternative';
     case Appledouble = 'multipart/appledouble';
     case Byteranges = 'multipart/byteranges';
@@ -23,6 +24,7 @@ enum Multipart: string
     case VndBintMedPlus = 'multipart/vnd.bint.med-plus';
     case VoiceMessage = 'multipart/voice-message';
     case XMixedReplace = 'multipart/x-mixed-replace';
+    // END GENERATED MIME CASES
 
     /**
      * @return list<string>
