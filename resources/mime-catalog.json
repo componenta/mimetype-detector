@@ -4,7 +4,8 @@
     "https://www.iana.org/assignments/media-types/",
     "https://httpd.apache.org/docs/current/mod/mod_mime.html",
     "https://www.rfc-editor.org/rfc/rfc8081 (SFNT, OpenType and legacy font associations)",
-    "PHP 8.4.24 bundled fileinfo: locally observed text/rtf, text/x-script.python and application/vnd.ms-opentype"
+    "PHP 8.4.24 bundled fileinfo: locally observed text/rtf, text/x-script.python and application/vnd.ms-opentype",
+    "https://www.iana.org/assignments/media-types/image/vnd.dwg (registered DWG label; observed with PHP fileinfo)"
   ],
   "types": {
     "image/avif": {
@@ -316,7 +317,9 @@
       }
     },
     "image/vnd.dwg": {
-      "extensions": [],
+      "extensions": [
+        "dwg"
+      ],
       "enums": {
         "Image": [
           {
@@ -3383,9 +3386,6 @@
       }
     },
     "application/vnd.autocad.dwg": {
-      "extensions": [
-        "dwg"
-      ],
       "enums": {
         "Application": [
           {
@@ -3393,7 +3393,8 @@
             "order": 115
           }
         ]
-      }
+      },
+      "extensionAliasOf": "image/vnd.dwg"
     },
     "application/pkcs7-mime": {
       "extensions": [

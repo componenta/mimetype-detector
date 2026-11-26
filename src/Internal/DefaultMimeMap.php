@@ -32,7 +32,7 @@ final class DefaultMimeMap
         'image/vnd.microsoft.icon' => ['ico'],
         'image/vnd.adobe.photoshop' => ['psd'],
         'image/vnd.djvu' => ['djvu', 'djv'],
-        'image/vnd.dwg' => [],
+        'image/vnd.dwg' => ['dwg'],
         'image/vnd.dxf' => ['dxf'],
         'image/vnd.wap.wbmp' => ['wbmp'],
         'image/vnd.radiance' => ['hdr', 'rgbe'],

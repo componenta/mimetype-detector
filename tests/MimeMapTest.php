@@ -88,3 +88,11 @@ test('maps observed fileinfo labels and preserves preferred reverse associations
     Assert::assertSame('font/otf', $map->getMimeType('otf'));
     Assert::assertSame('font/ttf', $map->getMimeType('ttf'));
 });
+
+test('prefers the registered DWG media type and retains its legacy association', function (): void {
+    $map = new MimeMap();
+    Assert::assertSame('dwg', $map->getExtension('image/vnd.dwg'));
+    Assert::assertSame('dwg', $map->getExtension('application/vnd.autocad.dwg'));
+    Assert::assertSame('image/vnd.dwg', $map->getMimeType('dwg'));
+    Assert::assertSame(['image/vnd.dwg', 'application/vnd.autocad.dwg'], $map->getMimeTypes('dwg'));
+});
