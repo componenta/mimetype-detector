@@ -7,11 +7,15 @@ require_once $root . '/src/InvalidMimeTypeException.php';
 require_once $root . '/src/Internal/MediaTypeParser.php';
 require_once $root . '/src/Ext.php';
 $catalog = json_decode(file_get_contents($root . '/resources/mime-catalog.json'), true, flags: JSON_THROW_ON_ERROR);
+if (!is_array($catalog) || !isset($catalog['types']) || !is_array($catalog['types']) || $catalog['types'] === []) {
+    throw new RuntimeException('Expected a nonempty MIME catalog.');
+}
 $types = $catalog['types'];
 $check = in_array('--check', $argv, true);
 $failed = false;
 $enums = [];
 $map = [];
+$generated = [];
 
 $write = static function (string $path, string $content) use ($root, $check, &$failed): void {
     $path = $root . '/' . $path;
@@ -32,21 +36,39 @@ foreach ($types as $mime => $record) {
     if (!is_string($mime) || \Componenta\Detector\Internal\MediaTypeParser::tryNormalize($mime) !== $mime) {
         throw new RuntimeException('Invalid canonical MIME type: ' . $mime);
     }
+    if (!is_array($record) || $record === [] || array_diff(array_keys($record), ['extensions', 'extensionAliasOf', 'enums']) !== []) {
+        throw new RuntimeException("Invalid record for $mime");
+    }
+    if (array_key_exists('extensions', $record) && !is_array($record['extensions'])) {
+        throw new RuntimeException("Invalid extension list for $mime");
+    }
+    if (array_key_exists('extensionAliasOf', $record) && !is_string($record['extensionAliasOf'])) {
+        throw new RuntimeException("Invalid extension alias for $mime");
+    }
+    if (array_key_exists('enums', $record) && (!is_array($record['enums']) || $record['enums'] === [])) {
+        throw new RuntimeException("Invalid enum definitions for $mime");
+    }
     if (isset($record['extensions']) && isset($record['extensionAliasOf'])) {
         throw new RuntimeException("Conflicting extension definitions for $mime");
     }
     if (isset($record['extensionAliasOf']) && !isset($types[$record['extensionAliasOf']]['extensions'])) {
         throw new RuntimeException("Unknown or noncanonical extension alias target for $mime");
     }
+    if (isset($record['extensionAliasOf']) && !array_key_exists($record['extensionAliasOf'], $map)) {
+        throw new RuntimeException("Extension alias must follow its canonical type: $mime");
+    }
     $extensions = $record['extensions'] ?? (isset($record['extensionAliasOf']) ? $types[$record['extensionAliasOf']]['extensions'] : null);
     if ($extensions !== null) {
-        if (!is_array($extensions) || !array_is_list($extensions) || count($extensions) !== count(array_unique($extensions))) {
+        if (!is_array($extensions) || !array_is_list($extensions)) {
             throw new RuntimeException("Invalid extension list for $mime");
         }
         foreach ($extensions as $extension) {
             if (!is_string($extension) || \Componenta\Detector\Ext::tryCreate($extension)?->value !== $extension) {
                 throw new RuntimeException("Invalid extension for $mime");
             }
+        }
+        if (count($extensions) !== count(array_unique($extensions))) {
+            throw new RuntimeException("Duplicate extension for $mime");
         }
         $map[$mime] = $extensions;
     }
@@ -55,11 +77,24 @@ foreach ($types as $mime => $record) {
         if (!in_array($enum, ['Application', 'Audio', 'Font', 'Image', 'Message', 'Model', 'Multipart', 'Text', 'Video'], true)) {
             throw new RuntimeException("Unknown enum $enum");
         }
+        if (!is_array($cases) || !array_is_list($cases) || $cases === []) {
+            throw new RuntimeException("Invalid enum member list for $mime");
+        }
         foreach ($cases as $case) {
-            $name = $case['name'];
-            $order = $case['order'];
+            if (!is_array($case) || array_diff(array_keys($case), ['name', 'order', 'aliasOf']) !== []
+                || (array_key_exists('aliasOf', $case) && !is_string($case['aliasOf']))) {
+                throw new RuntimeException("Invalid enum member for $mime");
+            }
+            $name = $case['name'] ?? null;
+            $order = $case['order'] ?? null;
             if (!is_string($name) || preg_match('/\A[A-Za-z_][A-Za-z0-9_]*\z/D', $name) !== 1 || !is_int($order) || $order < 0 || isset($enums[$enum][$order])) {
                 throw new RuntimeException("Invalid enum case for $mime");
+            }
+            if (strtolower($name) === 'class') {
+                throw new RuntimeException("Reserved enum member name for $mime");
+            }
+            if (!str_starts_with($mime, strtolower($enum) . '/') && !($enum === 'Font' && str_starts_with($mime, 'application/'))) {
+                throw new RuntimeException("MIME type $mime does not belong to enum $enum");
             }
             $enums[$enum][$order] = ['name' => $name, 'mime' => $mime, 'aliasOf' => $case['aliasOf'] ?? null];
         }
@@ -83,7 +118,7 @@ final class DefaultMimeMap
     /** @var array<string, list<string>> */
     public const array MAPPINGS = [
 PHP;
-$write('src/Internal/DefaultMimeMap.php', $header . "\n" . implode("\n", $lines) . "\n    ];\n}\n");
+$generated['src/Internal/DefaultMimeMap.php'] = $header . "\n" . implode("\n", $lines) . "\n    ];\n}\n";
 
 foreach (['Application', 'Audio', 'Font', 'Image', 'Message', 'Model', 'Multipart', 'Text', 'Video'] as $enum) {
     $cases = $enums[$enum] ?? throw new RuntimeException("Missing enum $enum from catalog");
@@ -122,7 +157,12 @@ foreach (['Application', 'Audio', 'Font', 'Image', 'Message', 'Model', 'Multipar
     if ($start === false || $stop === false || $stop <= $start) {
         throw new RuntimeException("Missing generated section in $path");
     }
-    $write($path, substr($source, 0, $start) . $begin . implode("\n", $lines) . "\n" . substr($source, $stop));
+    $generated[$path] = substr($source, 0, $start) . $begin . implode("\n", $lines) . "\n" . substr($source, $stop);
+}
+
+// Validate the complete catalog and all generated sections before writing any file.
+foreach ($generated as $path => $content) {
+    $write($path, $content);
 }
 
 exit($failed ? 1 : 0);
