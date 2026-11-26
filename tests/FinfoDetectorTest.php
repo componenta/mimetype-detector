@@ -4,7 +4,8 @@ declare(strict_types=1);
 
 namespace Componenta\Detector\Tests;
 
-use Componenta\Detector\{DetectorException, Ext, FileNotFoundException, FileNotReadableException, FinfoDetector, MimeMap, MimeType};
+use Componenta\Detector\{DetectorException, FileNotFoundException, FileNotReadableException, FinfoDetector, MimeMap};
+use GuzzleHttp\Psr7\Utils;
 use PHPUnit\Framework\Assert;
 use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\StreamInterface;
@@ -115,4 +116,113 @@ test('rejects directories and wrappers', function (): void {
 test('rejects non positive limit', function (): void {
     $this->expectException(\InvalidArgumentException::class);
     new FinfoDetector(maxBytes: 0);
+});
+
+test('classifies representative formats consistently across all input sources', function (): void {
+    $fixtures = [
+        ['image/gif', 'gif', base64_decode('R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7', true)],
+        ['image/png', 'png', base64_decode('iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+/S9sAAAAASUVORK5CYII=', true)],
+        ['application/pdf', 'pdf', "%PDF-1.4\n1 0 obj\n<< /Type /Catalog >>\nendobj\n%%EOF\n"],
+        ['application/json', 'json', '{"name":"value"}'],
+        ['text/plain', 'txt', 'plain text'],
+    ];
+    $detector = new FinfoDetector();
+    $path = tempnam(sys_get_temp_dir(), 'mime');
+    Assert::assertIsString($path);
+    try {
+        foreach ($fixtures as [$type, $extension, $bytes]) {
+            Assert::assertIsString($bytes);
+            file_put_contents($path, $bytes);
+            $stream = Utils::streamFor($bytes);
+            $stream->seek(1);
+            Assert::assertSame($type, $detector->detectMimeType($bytes)?->value);
+            Assert::assertSame($type, $detector->detectFileMimeType($path)?->value);
+            Assert::assertSame($type, $detector->detectMimeType($stream)?->value);
+            Assert::assertSame(1, $stream->tell());
+            Assert::assertSame($extension, $detector->detectExtension($bytes)?->value);
+            Assert::assertSame($extension, $detector->detectFileExtension($path)?->value);
+            Assert::assertSame($extension, $detector->detectExtension($stream)?->value);
+            Assert::assertSame(1, $stream->tell());
+            $stream->close();
+        }
+        file_put_contents($path, '');
+        Assert::assertNull($detector->detectFileMimeType($path));
+        Assert::assertNull($detector->detectFileExtension($path));
+    } finally {
+        unlink($path);
+    }
+});
+
+test('rejects a non-readable stream and wraps tell failures', function (): void {
+    $detector = new FinfoDetector();
+    $stream = Utils::streamFor('plain text');
+    $stream->close();
+    try {
+        $detector->detectMimeType($stream);
+        Assert::fail('Expected unreadable stream failure');
+    } catch (DetectorException) {
+        Assert::assertTrue(true);
+    }
+
+    $cause = new \RuntimeException('tell failed');
+    $mock = $this->createMock(StreamInterface::class);
+    $mock->method('isReadable')->willReturn(true);
+    $mock->method('isSeekable')->willReturn(true);
+    $mock->method('tell')->willThrowException($cause);
+    $mock->expects(TestCase::never())->method('rewind');
+    $mock->expects(TestCase::never())->method('seek');
+    try {
+        $detector->detectMimeType($mock);
+        Assert::fail('Expected tell failure');
+    } catch (DetectorException $exception) {
+        Assert::assertSame($cause, $exception->getPrevious());
+    }
+});
+
+test('reports restoration failure and retains an original read failure', function (): void {
+    $read = new \RuntimeException('read failed');
+    $restore = new \RuntimeException('seek failed');
+    foreach ([false, true] as $readFails) {
+        $mock = $this->createMock(StreamInterface::class);
+        $mock->method('isReadable')->willReturn(true);
+        $mock->method('isSeekable')->willReturn(true);
+        $mock->method('tell')->willReturn(2);
+        $mock->expects(TestCase::once())->method('seek')->with(2)->willThrowException($restore);
+        if ($readFails) {
+            $mock->method('eof')->willReturn(false);
+            $mock->method('read')->willThrowException($read);
+        } else {
+            $mock->method('eof')->willReturnOnConsecutiveCalls(false, true);
+            $mock->method('read')->willReturn('plain text');
+        }
+        try {
+            (new FinfoDetector())->detectMimeType($mock);
+            Assert::fail('Expected restoration failure');
+        } catch (DetectorException $exception) {
+            if ($readFails) {
+                Assert::assertInstanceOf(DetectorException::class, $exception->getPrevious());
+                Assert::assertSame($read, $exception->getPrevious()->getPrevious());
+            } else {
+                Assert::assertSame($restore, $exception->getPrevious());
+            }
+        }
+    }
+});
+
+test('rejects a named pipe without opening it', function (): void {
+    if (!function_exists('posix_mkfifo')) {
+        $this->markTestSkipped('POSIX FIFO support is unavailable.');
+    }
+    $path = tempnam(sys_get_temp_dir(), 'mime-fifo');
+    Assert::assertIsString($path);
+    unlink($path);
+    if (!posix_mkfifo($path, 0600)) {
+        $this->markTestSkipped('Cannot create FIFO in this environment.');
+    }
+    try {
+        $this->expectException(FileNotReadableException::class);
+        (new FinfoDetector())->detectFileMimeType($path);
+    } finally {
+        unlink($path);
+    }
 });

@@ -4,65 +4,36 @@ declare(strict_types=1);
 
 namespace Componenta\Detector;
 
+/** Read-only lookup contract; mappings are not evidence of content or file safety. */
 interface MimeMapInterface
 {
-    /**
-     * Get extensions for a MIME type
-     *
-     * @return list<string>
-     */
+    /** @return list<string> Ordered normalized extensions; unknown or unmapped types yield an empty list. */
     public function getExtensions(string $mimeType): array;
 
-    /**
-     * Get primary extension for a MIME type
-     */
+    /** Preferred extension, or null when none is mapped. */
     public function getExtension(string $mimeType): ?string;
 
-    /**
-     * Get MIME type for an extension
-     */
+    /** First associated MIME type, or null when none is mapped. */
     public function getMimeType(string $extension): ?string;
 
-    /**
-     * Get all MIME types for an extension
-     *
-     * @return list<string>
-     */
+    /** @return list<string> All associated MIME types in preference order. */
     public function getMimeTypes(string $extension): array;
 
-    /**
-     * Check if extension is valid for a MIME type
-     */
+    /** Whether the supplied extension is registered for the supplied media type. */
     public function isValidExtension(string $mimeType, string $extension): bool;
 
-    /**
-     * Check if MIME type exists in the map
-     */
+    /** Whether the media type is registered, even if its extension list is empty. */
     public function hasMimeType(string $mimeType): bool;
 
-    /**
-     * Check if extension exists in the map
-     */
+    /** Whether at least one MIME type is associated with this extension. */
     public function hasExtension(string $extension): bool;
 
-    /**
-     * Get all registered MIME types
-     *
-     * @return list<string>
-     */
+    /** @return list<string> Registered concrete media type names in map order. */
     public function getAllMimeTypes(): array;
 
-    /**
-     * Get all registered extensions
-     *
-     * @return list<string>
-     */
+    /** @return list<string> Unique extensions in first-registration order, including numeric extensions as strings. */
     public function getAllExtensions(): array;
 
-    /**
-     * Get MIME types by category (image, video, audio, etc.)
-     *
-     * @return array<string, list<string>>
-     */
+    /** @return array<string, list<string>> Mappings with the given top-level category. */
     public function getMimeTypesByCategory(string $category): array;
 }
