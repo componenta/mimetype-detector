@@ -6,7 +6,7 @@ namespace Componenta\Detector\MimeTypes;
 
 enum Application: string
 {
-    // Common
+    // BEGIN GENERATED MIME CASES
     case Json = 'application/json';
     case JsonLd = 'application/ld+json';
     case JsonPatch = 'application/json-patch+json';
@@ -30,23 +30,19 @@ enum Application: string
     case X7zCompressed = 'application/x-7z-compressed';
     case XZstd = 'application/x-zstd';
     case Zstd = 'application/zstd';
-    
-    // Documents
     case Rtf = 'application/rtf';
     case Postscript = 'application/postscript';
     case Latex = 'application/x-latex';
     case Tex = 'application/x-tex';
-    
-    // Microsoft Office
     case Msword = 'application/msword';
     case MswordX = 'application/vnd.openxmlformats-officedocument.wordprocessingml.document';
     case MswordTemplate = 'application/vnd.openxmlformats-officedocument.wordprocessingml.template';
     case MsExcel = 'application/vnd.ms-excel';
     case MsExcelX = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet';
     case MsExcelTemplate = 'application/vnd.openxmlformats-officedocument.spreadsheetml.template';
-    case MsExcelAddin = 'application/vnd.ms-excel.addin.macroEnabled.12';
-    case MsExcelSheetMacro = 'application/vnd.ms-excel.sheet.macroEnabled.12';
-    case MsExcelSheetBinary = 'application/vnd.ms-excel.sheet.binary.macroEnabled.12';
+    case MsExcelAddin = 'application/vnd.ms-excel.addin.macroenabled.12';
+    case MsExcelSheetMacro = 'application/vnd.ms-excel.sheet.macroenabled.12';
+    case MsExcelSheetBinary = 'application/vnd.ms-excel.sheet.binary.macroenabled.12';
     case MsPowerpoint = 'application/vnd.ms-powerpoint';
     case MsPowerpointX = 'application/vnd.openxmlformats-officedocument.presentationml.presentation';
     case MsPowerpointTemplate = 'application/vnd.openxmlformats-officedocument.presentationml.template';
@@ -58,8 +54,6 @@ enum Application: string
     case MsOutlook = 'application/vnd.ms-outlook';
     case MsFontObject = 'application/vnd.ms-fontobject';
     case MsXpsdocument = 'application/vnd.ms-xpsdocument';
-    
-    // OpenDocument
     case OdtText = 'application/vnd.oasis.opendocument.text';
     case OdtTextTemplate = 'application/vnd.oasis.opendocument.text-template';
     case OdsSpreadsheet = 'application/vnd.oasis.opendocument.spreadsheet';
@@ -72,19 +66,13 @@ enum Application: string
     case OdfFormula = 'application/vnd.oasis.opendocument.formula';
     case OdbDatabase = 'application/vnd.oasis.opendocument.database';
     case OdiImage = 'application/vnd.oasis.opendocument.image';
-    
-    // iWork
     case IworkKeynote = 'application/vnd.apple.keynote';
     case IworkNumbers = 'application/vnd.apple.numbers';
     case IworkPages = 'application/vnd.apple.pages';
-    
-    // E-books
     case Epub = 'application/epub+zip';
     case Mobi = 'application/x-mobipocket-ebook';
     case AmazonEbook = 'application/vnd.amazon.ebook';
     case Fictionbook = 'application/x-fictionbook+xml';
-    
-    // Data Exchange
     case AtomXml = 'application/atom+xml';
     case RssXml = 'application/rss+xml';
     case SoapXml = 'application/soap+xml';
@@ -93,8 +81,8 @@ enum Application: string
     case MathMl = 'application/mathml+xml';
     case Yaml = 'application/x-yaml';
     case Toml = 'application/toml';
-    case EdiX12 = 'application/EDI-X12';
-    case Edifact = 'application/EDIFACT';
+    case EdiX12 = 'application/edi-x12';
+    case Edifact = 'application/edifact';
     case Cbor = 'application/cbor';
     case CborSeq = 'application/cbor-seq';
     case Msgpack = 'application/msgpack';
@@ -102,8 +90,6 @@ enum Application: string
     case Thrift = 'application/vnd.apache.thrift.binary';
     case Avro = 'application/avro';
     case Parquet = 'application/vnd.apache.parquet';
-    
-    // Binary / Executable
     case JavaArchive = 'application/java-archive';
     case JavaSerializedObject = 'application/java-serialized-object';
     case JavaVm = 'application/java-vm';
@@ -116,30 +102,22 @@ enum Application: string
     case XPeExecutable = 'application/vnd.microsoft.portable-executable';
     case XMachoBinary = 'application/x-mach-binary';
     case XElf = 'application/x-elf';
-    
-    // Fonts
     case FontOtf = 'application/font-otf';
     case FontTtf = 'application/font-ttf';
     case FontWoff = 'application/font-woff';
     case FontWoff2 = 'application/font-woff2';
     case FontSfnt = 'application/font-sfnt';
     case FontCollection = 'application/font-tdpfr';
-    
-    // Multimedia containers
     case Ogg = 'application/ogg';
     case Mp4 = 'application/mp4';
     case Dash = 'application/dash+xml';
     case Smil = 'application/smil+xml';
     case Mxf = 'application/mxf';
-    
-    // Geo
     case Geo = 'application/geo+json';
     case Gpx = 'application/gpx+xml';
     case Kml = 'application/vnd.google-earth.kml+xml';
     case Kmz = 'application/vnd.google-earth.kmz';
     case Gml = 'application/gml+xml';
-    
-    // 3D / CAD
     case Gltf = 'application/gltf+json';
     case GltfBinary = 'application/gltf-binary';
     case Step = 'application/step';
@@ -148,8 +126,6 @@ enum Application: string
     case Stl = 'application/sla';
     case X3d = 'application/vnd.hzn-3d-crossword';
     case Obj = 'application/x-tgif';
-    
-    // Security / Crypto
     case Pkcs7Mime = 'application/pkcs7-mime';
     case Pkcs7Signature = 'application/pkcs7-signature';
     case Pkcs8 = 'application/pkcs8';
@@ -161,7 +137,7 @@ enum Application: string
     case XPemFile = 'application/x-pem-file';
     case XPkcs7Certificates = 'application/x-pkcs7-certificates';
     case XPkcs7Certreqresp = 'application/x-pkcs7-certreqresp';
-    case XPkcs12 = 'application/x-pkcs12';
+    public const XPkcs12 = self::Pkcs12;
     case XSshKey = 'application/x-ssh-key';
     case Pgp = 'application/pgp-encrypted';
     case PgpKeys = 'application/pgp-keys';
@@ -174,8 +150,6 @@ enum Application: string
     case CoseKey = 'application/cose-key';
     case CoseKeySet = 'application/cose-key-set';
     case Cwt = 'application/cwt';
-    
-    // API / Web
     case FormUrlencoded = 'application/x-www-form-urlencoded';
     case GraphQL = 'application/graphql+json';
     case GraphQLResponse = 'application/graphql-response+json';
@@ -187,13 +161,9 @@ enum Application: string
     case Merge = 'application/merge-patch+json';
     case Activity = 'application/activity+json';
     case Scim = 'application/scim+json';
-    
-    // Cycle
     case Sql = 'application/sql';
     case Sqlite3 = 'application/vnd.sqlite3';
     case XSqlite3 = 'application/x-sqlite3';
-    
-    // Archives / Packages
     case XArj = 'application/x-arj';
     case XAce = 'application/x-ace-compressed';
     case XLzh = 'application/x-lzh-compressed';
@@ -212,8 +182,6 @@ enum Application: string
     case Xz = 'application/x-xz';
     case Lz4 = 'application/x-lz4';
     case Br = 'application/x-br';
-    
-    // Package managers
     case Deb = 'application/vnd.debian.binary-package';
     case Rpm = 'application/x-rpm';
     case XRedhatPackageManager = 'application/x-redhat-package-manager';
@@ -226,15 +194,11 @@ enum Application: string
     case AppImage = 'application/vnd.appimage';
     case Npm = 'application/vnd.npm.manifest+json';
     case Composer = 'application/vnd.composer.package+json';
-    
-    // Adobe
     case AdobeAir = 'application/vnd.adobe.air-application-installer-package+zip';
     case Flash = 'application/x-shockwave-flash';
     case Fxp = 'application/vnd.adobe.fxp';
     case XIndesign = 'application/x-indesign';
     case Illustrator = 'application/vnd.adobe.illustrator';
-    
-    // Other
     case XBittorrent = 'application/x-bittorrent';
     case XNzb = 'application/x-nzb';
     case Xspf = 'application/xspf+xml';
@@ -244,13 +208,17 @@ enum Application: string
     case VndSymbianInstall = 'application/vnd.symbian.install';
     case VndTcpdump = 'application/vnd.tcpdump.pcap';
     case Xpcap = 'application/x-pcap';
-    
-    // OpenAPI / Schema
     case OpenApi = 'application/vnd.oai.openapi+json';
     case OpenApiYaml = 'application/vnd.oai.openapi';
     case JsonSchema = 'application/schema+json';
     case JsonSchemaInstance = 'application/schema-instance+json';
-    
+    case VndHdfgroupHdf5 = 'application/vnd.hdfgroup.hdf5';
+    case XHdf5 = 'application/x-hdf5';
+    case XNetcdf = 'application/x-netcdf';
+    case XMatlabData = 'application/x-matlab-data';
+    case Fits = 'application/fits';
+    // END GENERATED MIME CASES
+
     /**
      * @return list<string>
      */
@@ -264,8 +232,8 @@ enum Application: string
      */
     public static function isApplication(string $mimeType): bool
     {
-        return self::tryFrom($mimeType) !== null 
-            || str_starts_with($mimeType, 'application/');
+        $value = \Componenta\Detector\Internal\MediaTypeParser::tryNormalize($mimeType);
+        return $value !== null && str_starts_with($value, 'application/');
     }
 
     /**

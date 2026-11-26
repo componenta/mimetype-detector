@@ -9,13 +9,10 @@ use Psr\Http\Message\StreamInterface;
 interface ExtensionDetectorInterface
 {
     /**
-     * Detect file extension from raw content
-     *
-     * @param string|StreamInterface $content Raw file content
-     * @param bool $asObject If true, returns Ext object instead of string
-     * @return ($asObject is true ? Ext|null : string|null)
+     * Resolve a preferred extension for the detected content; null means no result.
+     * Strings contain raw bytes; seekable streams preserve their position. Non-seekable streams are consumed.
      *
      * @throws DetectorException
      */
-    public function detectExtension(string|StreamInterface $content, bool $asObject = false): string|Ext|null;
+    public function detectExtension(string|StreamInterface $content): ?Ext;
 }

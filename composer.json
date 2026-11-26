@@ -5,12 +5,16 @@
     "license": "MIT",
     "require": {
         "php": "^8.4",
+        "componenta/config": "^4.0",
         "ext-fileinfo": "*",
-        "componenta/config": "^1.0 || ^2.0.2",
+        "psr/container": "^2.0",
         "psr/http-message": "^2.0"
     },
     "require-dev": {
-        "phpunit/phpunit": "^12.0"
+        "guzzlehttp/psr7": "^3.6",
+        "pestphp/pest": "^4.0",
+        "phpbench/phpbench": "^1.7",
+        "phpstan/phpstan": "^2.1"
     },
     "autoload": {
         "psr-4": {
@@ -23,16 +27,31 @@
         }
     },
     "scripts": {
-        "test": "@php vendor/bin/phpunit tests"
+        "test": "@php vendor/bin/pest",
+        "analyse": "@php vendor/bin/phpstan analyse src --level=max --no-progress",
+        "bench": "@php vendor/bin/phpbench run --report=aggregate",
+        "check": [
+            "@catalog-check",
+            "@test",
+            "@analyse"
+        ],
+        "catalog-generate": "@php scripts/generate-catalog.php",
+        "catalog-check": "@php scripts/generate-catalog.php --check"
     },
     "config": {
-        "sort-packages": true
+        "sort-packages": true,
+        "allow-plugins": {
+            "pestphp/pest-plugin": true
+        }
     },
     "extra": {
         "componenta": {
             "config-providers": [
                 "Componenta\\Detector\\ConfigProvider"
             ]
+        },
+        "branch-alias": {
+            "dev-refactor/mimetype-detector-v2": "2.0.x-dev"
         }
     },
     "minimum-stability": "stable",

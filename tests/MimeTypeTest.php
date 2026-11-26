@@ -4,43 +4,54 @@ declare(strict_types=1);
 
 namespace Componenta\Detector\Tests;
 
-use Componenta\Detector\InvalidMimeTypeException;
-use Componenta\Detector\MimeType;
-use PHPUnit\Framework\TestCase;
+use Componenta\Detector\{InvalidMimeTypeException, MimeType};
+use Componenta\Detector\MimeTypes\{Application, Video};
+use PHPUnit\Framework\Assert;
 
-final class MimeTypeTest extends TestCase
-{
-    public function testParsesMimeTypeAndParameters(): void
-    {
-        $mimeType = new MimeType('Text/HTML; charset=utf-8; boundary="abc"');
+test('parses type and quoted parameters', function (): void {
+    $mime = new MimeType('Text/HTML; charset=UTF-8; name="a;b.txt"; boundary="a\"b"; 123=x');
+    Assert::assertSame('text/html', $mime->value);
+    Assert::assertSame('text', $mime->type);
+    Assert::assertSame('html', $mime->subtype);
+    Assert::assertSame('utf-8', $mime->charset);
+    Assert::assertSame('a;b.txt', $mime->getParameter('NAME'));
+    Assert::assertSame('a"b', $mime->boundary);
+    Assert::assertSame('x', $mime->getParameter('123'));
+    Assert::assertTrue($mime->hasParameters());
+    Assert::assertSame('text/html', (string) $mime);
+});
 
-        self::assertSame('text/html', $mimeType->value);
-        self::assertSame('text', $mimeType->type);
-        self::assertSame('html', $mimeType->subtype);
-        self::assertSame('Text/HTML; charset=utf-8; boundary="abc"', $mimeType->raw);
-        self::assertSame('utf-8', $mimeType->charset);
-        self::assertSame('abc', $mimeType->boundary);
-        self::assertTrue($mimeType->hasParameters());
+test('separates exact equality and ranges', function (): void {
+    $mime = new MimeType('image/jpeg; x=1');
+    Assert::assertTrue($mime->equals('IMAGE/JPEG'));
+    Assert::assertTrue($mime->equals('image/jpeg; x=2'));
+    Assert::assertFalse($mime->equals('image/*', '*/*'));
+    Assert::assertTrue($mime->matches('image/*'));
+    Assert::assertTrue($mime->matches('*/*'));
+    Assert::assertTrue($mime->matches('IMAGE/JPEG'));
+    Assert::assertFalse($mime->matches('video/*', '*/jpeg', 'image/*; q=1'));
+    Assert::assertTrue($mime->isImage());
+    Assert::assertTrue($mime->isMedia());
+    Assert::assertFalse($mime->isText());
+    Assert::assertFalse($mime->isFont());
+    Assert::assertFalse((new MimeType('application/not-a-font'))->isFont());
+    Assert::assertSame(Video::H264, (new MimeType('VIDEO/H264'))->toVideoEnum());
+    Assert::assertSame(Application::Json, (new MimeType('application/json'))->toApplicationEnum());
+});
+
+test('validation and construction agree', function (): void {
+    foreach (['text/html/other', 'text / html', 'image/*', '*/*', 'text/ht ml', "text/html\r\nX: y", 'text/html; broken', 'text/html; x="unclosed', 'text/html; x=1; X=2', 'text/html; x='] as $value) {
+        Assert::assertFalse(MimeType::isValid($value), $value);
+        Assert::assertNull(MimeType::tryCreate($value));
+        try {
+            new MimeType($value);
+            Assert::fail('Expected InvalidMimeTypeException');
+        } catch (InvalidMimeTypeException) {
+            Assert::assertTrue(true);
+        }
     }
-
-    public function testSupportsMatchingAndCategoryHelpers(): void
-    {
-        $mimeType = new MimeType('image/jpeg');
-
-        self::assertTrue($mimeType->equals('image/jpeg'));
-        self::assertTrue($mimeType->equals('image/*'));
-        self::assertTrue($mimeType->contains('jpeg'));
-        self::assertTrue($mimeType->isImage());
-        self::assertTrue($mimeType->isMedia());
-        self::assertTrue($mimeType->isWebSafe());
-        self::assertTrue($mimeType->isBinary());
-        self::assertFalse($mimeType->isText());
+    foreach (['application/vnd.api+json', 'text/plain; x="";', " \ttext/plain; ; charset=utf-8\t", 'model/gltf+json'] as $value) {
+        Assert::assertTrue(MimeType::isValid($value), $value);
+        Assert::assertInstanceOf(MimeType::class, MimeType::tryCreate($value));
     }
-
-    public function testRejectsInvalidMimeType(): void
-    {
-        $this->expectException(InvalidMimeTypeException::class);
-
-        new MimeType('plain-text');
-    }
-}
+});

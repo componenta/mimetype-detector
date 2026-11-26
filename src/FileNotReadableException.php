@@ -8,6 +8,6 @@ class FileNotReadableException extends DetectorException
 {
     public static function forPath(string $path): self
     {
-        return new self("File not readable: $path");
+        return new self('File is not a readable regular file.');
     }
 }

@@ -1,6 +1,6 @@
 # Componenta MIME Type Detector
 
-Определение MIME-типа и расширения файла с объектами значения и локальной MIME-картой.
+Определение MIME-типа и расширения файла с неизменяемыми объектами значения, настраиваемым справочником расширений и расширением PHP fileinfo.
 
 ## Установка
 
@@ -8,96 +8,132 @@
 composer require componenta/mimetype-detector
 ```
 
-Пакет объявляет `Componenta\Detector\ConfigProvider` в `extra.componenta.config-providers`.
-Если установлен `componenta/composer-plugin`, провайдер автоматически добавляется в сгенерированный список провайдеров.
+Требуются PHP 8.4+, ext-fileinfo, PSR-7 2.x и Componenta Config 4.x. Библиотека работает без контейнера зависимостей; ConfigProvider обеспечивает интеграцию с приложениями Componenta.
 
-## Требования
-
-- PHP 8.4+
-- Расширение `fileinfo`
-- PSR-7 stream interfaces из `psr/http-message`
-
-## Связанные пакеты
-
-Пакет самодостаточный, но требует PHP-расширение `fileinfo`.
-
-| Пакет | Зачем может использоваться рядом |
-|---|---|
-| `componenta/validation` | MIME-правила могут использовать detector для проверки загруженных файлов. |
-| `componenta/http-responder` | Файловые ответы могут использовать MIME-тип при выдаче контента. |
-| `componenta/image-converter` | Медиа-сценарии могут определять формат до конвертации. |
-
-## Что предоставляет пакет
-
-- `MimeType`: объект значения для разобранного MIME-типа.
-- `Ext`: объект значения для нормализованного расширения файла.
-- `MimeMapInterface` и `MimeMap`: карта MIME -> extensions и extension -> MIME.
-- `FinfoDetector`: detector на основе `fileinfo` для строк, stream-объектов и файлов.
-- `DetectorInterface`: общий контракт для определения MIME-типа, расширения, MIME-типа файла и расширения файла.
-- Более узкие контракты: `MimeTypeDetectorInterface`, `ExtensionDetectorInterface`, `FileMimeTypeDetectorInterface` и `FileExtensionDetectorInterface`.
-- `ConfigProvider`: регистрирует стандартный detector и MIME-карту в Componenta-приложениях.
-- Типизированные исключения для отсутствующих/нечитаемых файлов и некорректных MIME-типов.
-
-## MIME-типы
-
-```php
-use Componenta\Detector\MimeType;
-
-$mime = new MimeType('text/html; charset=utf-8');
-
-$mime->value;      // text/html
-$mime->type;       // text
-$mime->subtype;    // html
-$mime->charset;    // utf-8
-$mime->isText();   // true
-$mime->isWebSafe(); // true
-```
-
-Некорректные MIME-строки выбрасывают `InvalidMimeTypeException`.
-
-## Расширения
+## Объекты значения
 
 ```php
 use Componenta\Detector\Ext;
+use Componenta\Detector\MimeType;
 
-$ext = new Ext('.JPG');
+$mime = new MimeType('Text/HTML; charset=UTF-8; name="a;b.html"');
 
-$ext->value;    // jpg
-$ext->withDot(); // .jpg
-$ext->isImage(); // true
+$mime->value;                 // text/html
+$mime->type;                  // text
+$mime->subtype;               // html
+$mime->charset;               // utf-8
+$mime->boundary;              // null
+$mime->parameters;            // ['charset' => 'utf-8', 'name' => 'a;b.html']
+$mime->raw;                   // исходная строка
+$mime->getParameter('NAME');  // a;b.html
+$mime->hasParameters();       // true
+(string) $mime;               // text/html, без параметров
+
+$mime->equals('TEXT/HTML');   // true
+$mime->equals('text/*');      // false
+$mime->matches('text/*');     // true
+$mime->matches('*/*');        // true
+
+$ext = new Ext('.TAR.GZ');
+$ext->value;                  // tar.gz
+$ext->withDot();              // .tar.gz
+$ext->equals('tar.gz');       // true
 ```
+
+MimeType разбирает конкретные типы и подтипы по грамматике имён RFC 6838, параметры — по синтаксису HTTP из RFC 9110. Поддерживаются значения в кавычках, экранирование, точки с запятой внутри кавычек и пустые значения в кавычках. Регистр имён и обозначений кодировок не учитывается; регистр остальных значений сохраняется. Повторяющиеся имена параметров, шаблоны вместо конкретного типа, повреждённые параметры и недопустимые управляющие символы отклоняются. Методы MimeType::isValid() и MimeType::tryCreate() используют тот же механизм разбора, что и конструктор. Конструктор выбрасывает InvalidMimeTypeException.
+
+equals() сравнивает нормализованные тип и подтип, не учитывая параметры. matches() поддерживает точные типы без параметров, шаблоны по основному типу и универсальный шаблон. Метод не разбирает заголовок Accept, параметры сопоставления и коэффициенты качества. Оба метода принимают несколько вариантов и возвращают false при отсутствии совпадений.
+
+Методы isImage(), isAudio(), isVideo(), isText(), isApplication(), isModel(), isMessage(), isMultipart() и isMedia() классифицируют имя MIME-типа. isFont() дополнительно распознаёт известные устаревшие обозначения шрифтов. Классификация не подтверждает корректность содержимого. Методы toImageEnum(), toAudioEnum(), toVideoEnum(), toTextEnum(), toApplicationEnum(), toFontEnum(), toModelEnum(), toMessageEnum() и toMultipartEnum() возвращают соответствующий элемент перечисления или null.
+
+Ext принимает простое или составное расширение из допустимых ASCII-символов, с одной необязательной ведущей точкой. Пустые значения, пути и некорректные расширения приводят к InvalidArgumentException; Ext::tryCreate() возвращает null. Объекты значения не выполняют операции ввода-вывода и не создают сервисы.
+
+## Определение типа и расширения
+
+```php
+use Componenta\Detector\FinfoDetector;
+
+$detector = new FinfoDetector(maxBytes: 8192);
+
+$mime = $detector->detectMimeType('plain text');
+$mime?->value; // text/plain
+
+$ext = $detector->detectExtension('plain text');
+$ext?->value;  // txt
+
+$mime = $detector->detectFileMimeType('/path/to/file.txt');
+$ext = $detector->detectFileExtension('/path/to/file.txt');
+
+// Для потока PSR-7 StreamInterface:
+$mime = $detector->detectMimeType($stream);
+```
+
+Все четыре метода возвращают объекты значения или null, а не строки или логические значения. Строковые аргументы — содержимое, а не путь. Для файлов, потоков и строк используется одинаковый настраиваемый положительный предел числа анализируемых байтов (по умолчанию 8192). Поток с поддержкой позиционирования читается с начала; исходная позиция восстанавливается, в том числе при ошибке чтения, если восстановление возможно. Поток без поддержки позиционирования потребляется с текущей позиции. Если восстановить позицию не удалось, выбрасывается StreamPositionRestoreException: getPrevious() содержит ошибку восстановления, а readFailure — предшествующую ошибку чтения, если она была. Отсутствие продвижения при чтении до конца потока приводит к исключению, а не к бесконечному циклу. Используйте читаемые блокирующие потоки с подходящими ограничениями времени ожидания.
+
+Файловые методы принимают разрешённые вызывающим кодом локальные пути к обычным файлам. Каталоги, специальные файлы и адреса потоковых обёрток отклоняются. Для отсутствующих файлов выбрасывается FileNotFoundException, для недопустимых или нечитаемых файлов — FileNotReadableException, для остальных ошибок ввода-вывода и определения типа — DetectorException. В системах POSIX используется неблокирующий режим открытия с проверкой открытого дескриптора, чтобы снизить риск блокирования при подмене обычного файла именованным каналом. Проверка пути не заменяет контроль доступа: приложение отвечает за разрешённые каталоги, политику символических ссылок и защиту от гонок. Пустое содержимое возвращает null. Для неизвестного формата fileinfo может вернуть application/octet-stream.
+
+Определение типа эвристическое: результат зависит от версии PHP/libmagic и исследованного префикса. Увеличение предела чтения иногда улучшает распознавание структурированных форматов, но не гарантирует полной проверки файла. Расширение определяется только по настроенной MIME-карте; имя файла не используется. Если соответствующее расширение в карте отсутствует, метод возвращает null.
 
 ## MIME-карта
 
 ```php
+use Componenta\Detector\FinfoDetector;
 use Componenta\Detector\MimeMap;
 
 $map = new MimeMap();
+$map->getExtension('image/jpeg');      // jpg
+$map->getExtensions('image/jpeg');     // ['jpg', 'jpeg', 'jpe']
+$map->getMimeType('.JPG');             // image/jpeg
+$map->getMimeTypes('xml');             // содержит application/xml и text/xml
+$map->hasMimeType('text/plain');       // true
+$map->hasExtension('jpg');             // true
+$map->isValidExtension('image/jpeg', 'jpg'); // true
 
-$map->getExtension('image/jpeg'); // jpg
-$map->getMimeType('jpg');         // image/jpeg
+$map->extend(['application/x-custom' => ['.CUSTOM']]);
+$map->extend(['text/plain' => ['text']], override: true);
+$map->remove('application/x-custom');
+$map->setMap(['text/plain' => ['txt']]);
 
-$map->extend(['application/x-custom' => ['custom']]);
+$map->getAllMimeTypes();
+$map->getAllExtensions();
+$map->getMimeTypesByCategory('text');
+
+$detector = new FinfoDetector($map);
 ```
 
-## Определение типа
+Ключи карты — нормализованные конкретные MIME-типы без параметров. Поиск и запись расширений используют одну нормализацию Ext. Порядок значений значим: первое расширение считается предпочтительным, при обратном поиске выбирается первый MIME-тип. getMimeTypes() возвращает все сопоставленные типы в порядке регистрации, в том числе устаревшие обозначения. Для известных типов список расширений может быть пустым. Изменения атомарны: некорректные данные не меняют ни карту, ни её обратный индекс. Сопоставление с одним расширением не означает семантической эквивалентности двух MIME-типов.
 
-```php
-use Componenta\Detector\FinfoDetector;
-use Componenta\Detector\MimeTypeDetectorInterface;
+## Перечисления и справочник
 
-/** @var MimeTypeDetectorInterface $detector */
-$detector = new FinfoDetector();
+Перечисления Componenta\Detector\MimeTypes содержат канонические значения MIME-типов в нижнем регистре, метод values() и специализированные выборки (например, Image::common() и Image::commonWebFormats()). Прежние имена дублирующихся элементов сохранены как константы-псевдонимы. commonWebFormats() обозначает распространённые форматы для браузера, но не гарантирует безопасность или поддержку конкретным браузером.
 
-$detector->detectMimeType('plain text'); // text/plain
-$detector->detectExtension('plain text'); // txt
+Редактируемый источник данных — resources/mime-catalog.json. В нём находятся сопоставления расширений, устаревшие обозначения и имена элементов перечислений. Это локальный справочник, а не полный реестр IANA. Для генерации и проверки файлов PHP:
 
-$detector->detectFileMimeType('/path/to/file.txt');
-$detector->detectFileExtension('/path/to/file.txt');
+```bash
+composer catalog-generate
+composer catalog-check
 ```
 
-Передайте `asObject: true`, чтобы вернуть объекты `MimeType` или `Ext`.
+## Внедрение зависимостей
 
-`FinfoDetector` читает до 8192 байт из файлов и stream-объектов. Seekable stream будет перемотан для определения типа, а затем возвращён на прежнюю позицию. Non-seekable stream читается с текущей позиции, поэтому вызывающий код должен заранее установить корректный offset.
+ConfigProvider регистрирует MimeMap как стандартную реализацию MimeMapInterface, а FinfoDetector — через фабрику, получающую этот интерфейс из контейнера. DetectorInterface объединяет четыре специализированных контракта: MimeTypeDetectorInterface, ExtensionDetectorInterface, FileMimeTypeDetectorInterface и FileExtensionDetectorInterface. Все они направлены на один сервис детектора в соответствии с правилами жизненного цикла контейнера. Чтобы изменить правила определения расширений, замените привязку MIME-карты.
 
-Определение по файлу выбрасывает `FileNotFoundException`, `FileNotReadableException` или `DetectorException` при ошибках ввода-вывода.
+Для проверки интеграции в приложении, где установлены Config 4, DI 6 и данная версия библиотеки:
+
+```bash
+php tests/integration/config-consumer.php /path/to/consumer/vendor/autoload.php
+```
+
+## Безопасность
+
+MIME-тип и расширение сами по себе не подтверждают безопасность, подлинность и полную корректность файла. Не используйте их как единственный критерий разрешения загрузки или отображения файла в браузере. Независимо проверяйте содержимое, применяйте явный список разрешённых форматов, ограничения размера, корректные заголовки ответа, изоляцию и правила хранения. HTML, JavaScript, SVG и другие форматы могут содержать активный контент.
+
+## Разработка
+
+```bash
+composer install
+composer check
+composer bench
+```
+
+Тесты выполняются через Pest. PHPStan анализирует исходный код библиотеки на максимальном уровне; PHPBench измеряет основные публичные операции. Проверки следует проводить на PHP 8.4 и 8.5. Перед публикацией релиза соответствующая процедура проверяет коммит.

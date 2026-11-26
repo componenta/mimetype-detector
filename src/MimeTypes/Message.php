@@ -6,7 +6,8 @@ namespace Componenta\Detector\MimeTypes;
 
 enum Message: string
 {
-    case Cpim = 'message/CPIM';
+    // BEGIN GENERATED MIME CASES
+    case Cpim = 'message/cpim';
     case DeliveryStatus = 'message/delivery-status';
     case DispositionNotification = 'message/disposition-notification';
     case Example = 'message/example';
@@ -27,6 +28,7 @@ enum Message: string
     case TrackingStatus = 'message/tracking-status';
     case VndSiSimp = 'message/vnd.si.simp';
     case VndWfaWsc = 'message/vnd.wfa.wsc';
+    // END GENERATED MIME CASES
 
     /**
      * @return list<string>
@@ -41,8 +43,8 @@ enum Message: string
      */
     public static function isMessage(string $mimeType): bool
     {
-        return self::tryFrom($mimeType) !== null 
-            || str_starts_with($mimeType, 'message/');
+        $value = \Componenta\Detector\Internal\MediaTypeParser::tryNormalize($mimeType);
+        return $value !== null && str_starts_with($value, 'message/');
     }
 
     /**

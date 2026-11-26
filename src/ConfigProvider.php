@@ -9,8 +9,14 @@ class ConfigProvider extends \Componenta\Config\ConfigProvider
     protected function getInvokables(): array
     {
         return [
-            FinfoDetector::class,
             MimeMap::class,
+        ];
+    }
+
+    protected function getFactories(): array
+    {
+        return [
+            FinfoDetector::class => [FinfoDetectorFactory::class, 'create'],
         ];
     }
 
@@ -19,15 +25,15 @@ class ConfigProvider extends \Componenta\Config\ConfigProvider
         return [
             // Main interface
             DetectorInterface::class => FinfoDetector::class,
-            
+
             // MIME type detection
             MimeTypeDetectorInterface::class => FinfoDetector::class,
             FileMimeTypeDetectorInterface::class => FinfoDetector::class,
-            
+
             // Extension detection
             ExtensionDetectorInterface::class => FinfoDetector::class,
             FileExtensionDetectorInterface::class => FinfoDetector::class,
-            
+
             // MIME map
             MimeMapInterface::class => MimeMap::class,
         ];

@@ -6,7 +6,7 @@ namespace Componenta\Detector\MimeTypes;
 
 enum Text: string
 {
-    // Common
+    // BEGIN GENERATED MIME CASES
     case Plain = 'text/plain';
     case Html = 'text/html';
     case Css = 'text/css';
@@ -15,8 +15,6 @@ enum Text: string
     case Javascript = 'text/javascript';
     case Xml = 'text/xml';
     case XmlExternal = 'text/xml-external-parsed-entity';
-    
-    // Markup
     case Markdown = 'text/markdown';
     case XMarkdown = 'text/x-markdown';
     case Asciidoc = 'text/asciidoc';
@@ -26,8 +24,6 @@ enum Text: string
     case Troff = 'text/troff';
     case Rtx = 'text/richtext';
     case Sgml = 'text/sgml';
-    
-    // Programming languages
     case Php = 'text/x-php';
     case Python = 'text/x-python';
     case Ruby = 'text/x-ruby';
@@ -74,8 +70,6 @@ enum Text: string
     case Jsx = 'text/jsx';
     case CoffeeScript = 'text/coffeescript';
     case XCoffeeScript = 'text/x-coffeescript';
-    
-    // Scripting
     case XSh = 'text/x-sh';
     case XBash = 'text/x-bash';
     case XZsh = 'text/x-zsh';
@@ -90,8 +84,6 @@ enum Text: string
     case XGradle = 'text/x-gradle';
     case XDockerfile = 'text/x-dockerfile';
     case XVagrantfile = 'text/x-vagrantfile';
-    
-    // Config
     case XYaml = 'text/x-yaml';
     case XToml = 'text/x-toml';
     case XProperties = 'text/x-properties';
@@ -105,14 +97,10 @@ enum Text: string
     case XGitattributes = 'text/x-gitattributes';
     case XNpmrc = 'text/x-npmrc';
     case XYarnrc = 'text/x-yarnrc';
-    
-    // Data / Query
     case XSql = 'text/x-sql';
     case XGraphql = 'text/x-graphql';
     case XSparql = 'text/x-sparql-query';
     case XCypher = 'text/x-cypher-query';
-    
-    // Template engines
     case XTwig = 'text/x-twig';
     case XBlade = 'text/x-blade';
     case XJinja = 'text/x-jinja';
@@ -124,8 +112,6 @@ enum Text: string
     case XHaml = 'text/x-haml';
     case XJade = 'text/x-jade';
     case XSmartySrc = 'text/x-smarty-src';
-    
-    // Web
     case VCard = 'text/vcard';
     case VndWapWml = 'text/vnd.wap.wml';
     case VndWapWmlscript = 'text/vnd.wap.wmlscript';
@@ -136,7 +122,7 @@ enum Text: string
     case VndIn3d3dml = 'text/vnd.in3d.3dml';
     case VndIn3dSpot = 'text/vnd.in3d.spot';
     case VndIptc = 'text/vnd.iptc.nitf';
-    case VndIptcAnpa = 'text/vnd.IPTC.NITF';
+    public const VndIptcAnpa = self::VndIptc;
     case VndLatexZ = 'text/vnd.latex-z';
     case VndMotorola = 'text/vnd.motorola.reflex';
     case VndMsMediapackage = 'text/vnd.ms-mediapackage';
@@ -145,8 +131,6 @@ enum Text: string
     case VndSi = 'text/vnd.si.uricatalogue';
     case VndWapSi = 'text/vnd.wap.si';
     case VndWapSl = 'text/vnd.wap.sl';
-    
-    // Other formats
     case Calendar = 'text/calendar';
     case XVcalendar = 'text/x-vcalendar';
     case CacheManifest = 'text/cache-manifest';
@@ -174,6 +158,10 @@ enum Text: string
     case XReadme = 'text/x-readme';
     case XLicense = 'text/x-license';
     case XContributing = 'text/x-contributing';
+    case Rtf = 'text/rtf';
+    case XScriptPython = 'text/x-script.python';
+    case XCpp = 'text/x-c++';
+    // END GENERATED MIME CASES
 
     /**
      * @return list<string>
@@ -188,8 +176,8 @@ enum Text: string
      */
     public static function isText(string $mimeType): bool
     {
-        return self::tryFrom($mimeType) !== null 
-            || str_starts_with($mimeType, 'text/');
+        $value = \Componenta\Detector\Internal\MediaTypeParser::tryNormalize($mimeType);
+        return $value !== null && str_starts_with($value, 'text/');
     }
 
     /**

@@ -6,7 +6,7 @@ namespace Componenta\Detector\MimeTypes;
 
 enum Audio: string
 {
-    // Common
+    // BEGIN GENERATED MIME CASES
     case Aac = 'audio/aac';
     case Ac3 = 'audio/ac3';
     case Aiff = 'audio/aiff';
@@ -34,8 +34,6 @@ enum Audio: string
     case Weba = 'audio/webm';
     case Wma = 'audio/x-ms-wma';
     case Xm = 'audio/xm';
-    
-    // High resolution / Lossless
     case XAls = 'audio/x-als';
     case Dsf = 'audio/dsf';
     case XDsf = 'audio/x-dsf';
@@ -43,57 +41,51 @@ enum Audio: string
     case XDff = 'audio/x-dff';
     case XTta = 'audio/x-tta';
     case XWavpack = 'audio/x-wavpack';
-    case XMonkeysAudio = 'audio/x-ape';
+    public const XMonkeysAudio = self::XApe;
     case XTak = 'audio/x-tak';
     case XOptimfrog = 'audio/x-ofr';
     case XShorten = 'audio/x-shn';
-    
-    // Tracker / Module
     case XMod = 'audio/x-mod';
     case XS3m = 'audio/x-s3m';
     case XIt = 'audio/x-it';
     case XXm = 'audio/x-xm';
-    
-    // Speech / Voice
     case Silk = 'audio/silk';
     case Speex = 'audio/speex';
     case Vorbis = 'audio/vorbis';
     case ThreeGpp = 'audio/3gpp';
     case ThreeGpp2 = 'audio/3gpp2';
-    case Ilbc = 'audio/iLBC';
-    case Evrc = 'audio/EVRC';
-    case Evrc0 = 'audio/EVRC0';
-    case Evrc1 = 'audio/EVRC1';
-    case EvrcB = 'audio/EVRCB';
-    case EvrcB0 = 'audio/EVRCB0';
-    case EvrcB1 = 'audio/EVRCB1';
-    case EvrcNw = 'audio/EVRCNW';
-    case EvrcNw0 = 'audio/EVRCNW0';
-    case EvrcNw1 = 'audio/EVRCNW1';
-    case EvrcWb = 'audio/EVRCWB';
-    case EvrcWb0 = 'audio/EVRCWB0';
-    case EvrcWb1 = 'audio/EVRCWB1';
-    case G711 = 'audio/G711-0';
-    case G7221 = 'audio/G7221';
-    case G722 = 'audio/G722';
-    case G723 = 'audio/G723';
-    case G726 = 'audio/G726-16';
-    case G728 = 'audio/G728';
-    case G729 = 'audio/G729';
-    case G7291 = 'audio/G7291';
-    case Gsm = 'audio/GSM';
-    case GsmEfr = 'audio/GSM-EFR';
-    case GsmHr08 = 'audio/GSM-HR-08';
-    case Pcma = 'audio/PCMA';
-    case PcmaWb = 'audio/PCMA-WB';
-    case Pcmu = 'audio/PCMU';
-    case PcmuWb = 'audio/PCMU-WB';
-    case Qcelp = 'audio/QCELP';
-    case Smv = 'audio/SMV';
-    case Smv0 = 'audio/SMV0';
-    case SmvQcp = 'audio/SMV-QCP';
-    
-    // Streaming / Special
+    case Ilbc = 'audio/ilbc';
+    case Evrc = 'audio/evrc';
+    case Evrc0 = 'audio/evrc0';
+    case Evrc1 = 'audio/evrc1';
+    case EvrcB = 'audio/evrcb';
+    case EvrcB0 = 'audio/evrcb0';
+    case EvrcB1 = 'audio/evrcb1';
+    case EvrcNw = 'audio/evrcnw';
+    case EvrcNw0 = 'audio/evrcnw0';
+    case EvrcNw1 = 'audio/evrcnw1';
+    case EvrcWb = 'audio/evrcwb';
+    case EvrcWb0 = 'audio/evrcwb0';
+    case EvrcWb1 = 'audio/evrcwb1';
+    case G711 = 'audio/g711-0';
+    case G7221 = 'audio/g7221';
+    case G722 = 'audio/g722';
+    case G723 = 'audio/g723';
+    case G726 = 'audio/g726-16';
+    case G728 = 'audio/g728';
+    case G729 = 'audio/g729';
+    case G7291 = 'audio/g7291';
+    case Gsm = 'audio/gsm';
+    case GsmEfr = 'audio/gsm-efr';
+    case GsmHr08 = 'audio/gsm-hr-08';
+    case Pcma = 'audio/pcma';
+    case PcmaWb = 'audio/pcma-wb';
+    case Pcmu = 'audio/pcmu';
+    case PcmuWb = 'audio/pcmu-wb';
+    case Qcelp = 'audio/qcelp';
+    case Smv = 'audio/smv';
+    case Smv0 = 'audio/smv0';
+    case SmvQcp = 'audio/smv-qcp';
     case MpegUrl = 'audio/x-mpegurl';
     case Scpls = 'audio/x-scpls';
     case Pls = 'audio/x-pls';
@@ -101,8 +93,6 @@ enum Audio: string
     case XPnRealaudio = 'audio/x-pn-realaudio';
     case XPnRealaudioPlugin = 'audio/x-pn-realaudio-plugin';
     case XRealaudio = 'audio/x-realaudio';
-    
-    // Vendor specific
     case VndDeceAudio = 'audio/vnd.dece.audio';
     case VndDigitalWinds = 'audio/vnd.digital-winds';
     case VndDlnaAdts = 'audio/vnd.dlna.adts';
@@ -123,18 +113,16 @@ enum Audio: string
     case VndRip = 'audio/vnd.rip';
     case VndSealedmedia = 'audio/vnd.sealedmedia.softseal.mpeg';
     case VndVmx = 'audio/vnd.vmx.cvsd';
-    
-    // Other
     case Adpcm = 'audio/adpcm';
     case Aptx = 'audio/aptx';
     case Atrac3 = 'audio/atrac3';
     case AtracAdvancedLossless = 'audio/atrac-advanced-lossless';
     case AtracX = 'audio/atrac-x';
-    case L8 = 'audio/L8';
-    case L16 = 'audio/L16';
-    case L20 = 'audio/L20';
-    case L24 = 'audio/L24';
-    case Lpc = 'audio/LPC';
+    case L8 = 'audio/l8';
+    case L16 = 'audio/l16';
+    case L20 = 'audio/l20';
+    case L24 = 'audio/l24';
+    case Lpc = 'audio/lpc';
     case Matroska = 'audio/x-matroska';
     case MelodyRcp = 'audio/vnd.cns.anp1';
     case MelodyInf1 = 'audio/vnd.cns.inf1';
@@ -149,10 +137,11 @@ enum Audio: string
     case RtpMidi = 'audio/rtp-midi';
     case SofarVorbis = 'audio/x-vorbis+ogg';
     case Sp = 'audio/sp-midi';
-    case Tta = 'audio/x-tta';
+    public const Tta = self::XTta;
     case Ulpfec = 'audio/ulpfec';
     case Usac = 'audio/usac';
     case Vnd3gppIufp = 'audio/vnd.3gpp.iufp';
+    // END GENERATED MIME CASES
 
     /**
      * @return list<string>
@@ -167,8 +156,8 @@ enum Audio: string
      */
     public static function isAudio(string $mimeType): bool
     {
-        return self::tryFrom($mimeType) !== null 
-            || str_starts_with($mimeType, 'audio/');
+        $value = \Componenta\Detector\Internal\MediaTypeParser::tryNormalize($mimeType);
+        return $value !== null && str_starts_with($value, 'audio/');
     }
 
     /**
@@ -208,7 +197,7 @@ enum Audio: string
     /**
      * @return list<self>
      */
-    public static function webSafe(): array
+    public static function commonWebFormats(): array
     {
         return [
             self::Mp3,

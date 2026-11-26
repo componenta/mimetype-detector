@@ -6,6 +6,7 @@ namespace Componenta\Detector\MimeTypes;
 
 enum Image: string
 {
+    // BEGIN GENERATED MIME CASES
     case Avif = 'image/avif';
     case Bmp = 'image/bmp';
     case Cgm = 'image/cgm';
@@ -99,6 +100,7 @@ enum Image: string
     case XXpixmap = 'image/x-xpixmap';
     case XXwindowdump = 'image/x-xwindowdump';
     case XCur = 'image/x-cur';
+    // END GENERATED MIME CASES
 
     /**
      * @return list<string>
@@ -113,8 +115,8 @@ enum Image: string
      */
     public static function isImage(string $mimeType): bool
     {
-        return self::tryFrom($mimeType) !== null 
-            || str_starts_with($mimeType, 'image/');
+        $value = \Componenta\Detector\Internal\MediaTypeParser::tryNormalize($mimeType);
+        return $value !== null && str_starts_with($value, 'image/');
     }
 
     /**
@@ -140,11 +142,11 @@ enum Image: string
     }
 
     /**
-     * Get web-safe image types
+     * Get common browser-oriented image formats (not a security guarantee).
      * 
      * @return list<self>
      */
-    public static function webSafe(): array
+    public static function commonWebFormats(): array
     {
         return [
             self::Jpeg,

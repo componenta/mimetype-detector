@@ -6,26 +6,21 @@ namespace Componenta\Detector\MimeTypes;
 
 enum Font: string
 {
+    // BEGIN GENERATED MIME CASES
     case Collection = 'font/collection';
     case Otf = 'font/otf';
     case Sfnt = 'font/sfnt';
     case Ttf = 'font/ttf';
     case Woff = 'font/woff';
     case Woff2 = 'font/woff2';
-    
-    // Application aliases (for compatibility)
     case ApplicationOtf = 'application/font-otf';
     case ApplicationTtf = 'application/font-ttf';
     case ApplicationWoff = 'application/font-woff';
     case ApplicationWoff2 = 'application/font-woff2';
     case ApplicationSfnt = 'application/font-sfnt';
-    
-    // X-prefixed (legacy)
     case XOtf = 'application/x-font-otf';
     case XTtf = 'application/x-font-ttf';
     case XWoff = 'application/x-font-woff';
-    
-    // Other font types
     case Eot = 'application/vnd.ms-fontobject';
     case Bdf = 'application/x-font-bdf';
     case Ghostscript = 'application/x-font-ghostscript';
@@ -34,6 +29,8 @@ enum Font: string
     case Snf = 'application/x-font-snf';
     case Speedo = 'application/x-font-speedo';
     case Type1 = 'application/x-font-type1';
+    case VndMsOpentype = 'application/vnd.ms-opentype';
+    // END GENERATED MIME CASES
 
     /**
      * @return list<string>
@@ -48,15 +45,14 @@ enum Font: string
      */
     public static function isFont(string $mimeType): bool
     {
-        return self::tryFrom($mimeType) !== null 
-            || str_starts_with($mimeType, 'font/')
-            || str_contains($mimeType, 'font');
+        $value = \Componenta\Detector\Internal\MediaTypeParser::tryNormalize($mimeType);
+        return $value !== null && (str_starts_with($value, 'font/') || self::tryFrom($value) !== null);
     }
 
     /**
      * @return list<self>
      */
-    public static function webSafe(): array
+    public static function commonWebFormats(): array
     {
         return [
             self::Woff,

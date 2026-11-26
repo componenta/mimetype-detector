@@ -7,15 +7,12 @@ namespace Componenta\Detector;
 interface FileExtensionDetectorInterface
 {
     /**
-     * Detect file extension from file
-     * 
-     * @param string $filename Path to the file
-     * @param bool $asObject If true, returns Ext object instead of string
-     * @return ($asObject is true ? Ext|null : string|null)
-     * 
-     * @throws FileNotFoundException if file does not exist
-     * @throws FileNotReadableException if file cannot be read
-     * @throws DetectorException on other detection errors
+     * Resolve a preferred extension for the detected content; null means no result.
+     * The path must refer to a readable regular file.
+     *
+     * @throws FileNotFoundException
+     * @throws FileNotReadableException
+     * @throws DetectorException
      */
-    public function detectFileExtension(string $filename, bool $asObject = false): string|Ext|null;
+    public function detectFileExtension(string $filename): ?Ext;
 }

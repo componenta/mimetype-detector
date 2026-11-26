@@ -6,6 +6,7 @@ namespace Componenta\Detector\MimeTypes;
 
 enum Multipart: string
 {
+    // BEGIN GENERATED MIME CASES
     case Alternative = 'multipart/alternative';
     case Appledouble = 'multipart/appledouble';
     case Byteranges = 'multipart/byteranges';
@@ -23,6 +24,7 @@ enum Multipart: string
     case VndBintMedPlus = 'multipart/vnd.bint.med-plus';
     case VoiceMessage = 'multipart/voice-message';
     case XMixedReplace = 'multipart/x-mixed-replace';
+    // END GENERATED MIME CASES
 
     /**
      * @return list<string>
@@ -37,8 +39,8 @@ enum Multipart: string
      */
     public static function isMultipart(string $mimeType): bool
     {
-        return self::tryFrom($mimeType) !== null 
-            || str_starts_with($mimeType, 'multipart/');
+        $value = \Componenta\Detector\Internal\MediaTypeParser::tryNormalize($mimeType);
+        return $value !== null && str_starts_with($value, 'multipart/');
     }
 
     /**

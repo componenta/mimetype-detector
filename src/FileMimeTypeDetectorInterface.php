@@ -7,15 +7,12 @@ namespace Componenta\Detector;
 interface FileMimeTypeDetectorInterface
 {
     /**
-     * Detect MIME type from file
-     * 
-     * @param string $filename Path to the file
-     * @param bool $asObject If true, returns MimeType object instead of string
-     * @return ($asObject is true ? MimeType|null : string|null)
-     * 
-     * @throws FileNotFoundException if file does not exist
-     * @throws FileNotReadableException if file cannot be read
-     * @throws DetectorException on other detection errors
+     * Detect a concrete MIME type; null means no result.
+     * The path must refer to a readable regular file.
+     *
+     * @throws FileNotFoundException
+     * @throws FileNotReadableException
+     * @throws DetectorException
      */
-    public function detectFileMimeType(string $filename, bool $asObject = false): string|MimeType|null;
+    public function detectFileMimeType(string $filename): ?MimeType;
 }

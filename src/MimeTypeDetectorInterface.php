@@ -9,11 +9,10 @@ use Psr\Http\Message\StreamInterface;
 interface MimeTypeDetectorInterface
 {
     /**
-     * Detect MIME type from raw content
-     * 
-     * @param string|StreamInterface $content Raw file content
-     * @param bool $asObject If true, returns MimeType object instead of string
-     * @return ($asObject is true ? MimeType|null : string|null)
+     * Detect a concrete MIME type; null means no result.
+     * Strings contain raw bytes; seekable streams preserve their position. Non-seekable streams are consumed.
+     *
+     * @throws DetectorException
      */
-    public function detectMimeType(string|StreamInterface $content, bool $asObject = false): string|MimeType|null;
+    public function detectMimeType(string|StreamInterface $content): ?MimeType;
 }

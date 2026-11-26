@@ -8,6 +8,7 @@ class InvalidMimeTypeException extends \InvalidArgumentException
 {
     public static function forValue(string $value): self
     {
-        return new self("Invalid MIME type format: '$value'. Expected format: type/subtype");
+        // Do not reflect untrusted control characters or arbitrarily long input in logs.
+        return new self('Invalid concrete MIME type or media type parameters.');
     }
 }

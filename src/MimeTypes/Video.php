@@ -6,7 +6,7 @@ namespace Componenta\Detector\MimeTypes;
 
 enum Video: string
 {
-    // Common
+    // BEGIN GENERATED MIME CASES
     case Mp4 = 'video/mp4';
     case Mpeg = 'video/mpeg';
     case Ogg = 'video/ogg';
@@ -20,63 +20,43 @@ enum Video: string
     case Asf = 'video/x-ms-asf';
     case ThreeGpp = 'video/3gpp';
     case ThreeGpp2 = 'video/3gpp2';
-    
-    // H.264 / AVC
-    case H264 = 'video/H264';
-    case H264Rcdo = 'video/H264-RCDO';
-    case H264Svc = 'video/H264-SVC';
-    
-    // H.265 / HEVC
-    case H265 = 'video/H265';
+    case H264 = 'video/h264';
+    case H264Rcdo = 'video/h264-rcdo';
+    case H264Svc = 'video/h264-svc';
+    case H265 = 'video/h265';
     case Hevc = 'video/hevc';
-    
-    // H.266 / VVC
-    case H266 = 'video/H266';
+    case H266 = 'video/h266';
     case Vvc = 'video/vvc';
-    
-    // AV1
-    case Av1 = 'video/AV1';
-    
-    // VP8/VP9
-    case Vp8 = 'video/VP8';
-    case Vp9 = 'video/VP9';
-    
-    // Other codecs
-    case H261 = 'video/H261';
-    case H263 = 'video/H263';
-    case H2631998 = 'video/H263-1998';
-    case H2632000 = 'video/H263-2000';
-    case Jpeg = 'video/JPEG';
+    case Av1 = 'video/av1';
+    case Vp8 = 'video/vp8';
+    case Vp9 = 'video/vp9';
+    case H261 = 'video/h261';
+    case H263 = 'video/h263';
+    case H2631998 = 'video/h263-1998';
+    case H2632000 = 'video/h263-2000';
+    case Jpeg = 'video/jpeg';
     case Jpeg2000 = 'video/jpeg2000';
     case Jpm = 'video/jpm';
     case Jpx = 'video/jpx';
     case Mj2 = 'video/mj2';
-    case Mp1s = 'video/MP1S';
-    case Mp2p = 'video/MP2P';
-    case Mp2t = 'video/MP2T';
-    case Mp4vEs = 'video/MP4V-ES';
-    case Mpv = 'video/MPV';
+    case Mp1s = 'video/mp1s';
+    case Mp2p = 'video/mp2p';
+    case Mp2t = 'video/mp2t';
+    case Mp4vEs = 'video/mp4v-es';
+    case Mpv = 'video/mpv';
     case Mpeg4Generic = 'video/mpeg4-generic';
     case Raw = 'video/raw';
     case Theora = 'video/theora';
-    
-    // Microsoft
-    case MsAsf = 'video/x-ms-asf';
+    public const MsAsf = self::Asf;
     case MsWm = 'video/x-ms-wm';
     case MsWmx = 'video/x-ms-wmx';
     case MsWvx = 'video/x-ms-wvx';
     case VndMsPlayready = 'video/vnd.ms-playready.media.pyv';
-    
-    // Apple
     case XM4v = 'video/x-m4v';
     case VndAppleMpegurl = 'video/vnd.apple.mpegurl';
-    
-    // DVD / Blu-ray
     case VndDvbFile = 'video/vnd.dvb.file';
     case VndDvbH264 = 'video/vnd.dlna.mpeg-tts';
     case Iso = 'video/iso.segment';
-    
-    // Streaming
     case VndDeceHd = 'video/vnd.dece.hd';
     case VndDeceMobile = 'video/vnd.dece.mobile';
     case VndDeceMp4 = 'video/vnd.dece.mp4';
@@ -91,9 +71,7 @@ enum Video: string
     case Rtsp2d22 = 'video/vnd.iptvforum.2dparityfec-2005';
     case Rtspt = 'video/vnd.iptvforum.ttsavc';
     case Rtspt264 = 'video/vnd.iptvforum.ttsmpeg2';
-    
-    // Vendor specific
-    case VndCctv = 'video/vnd.CCTV';
+    case VndCctv = 'video/vnd.cctv';
     case VndFvt = 'video/vnd.fvt';
     case VndHns = 'video/vnd.hns.video';
     case VndMotorolaVideo = 'video/vnd.motorola.video';
@@ -112,12 +90,10 @@ enum Video: string
     case VndUvvuMp4 = 'video/vnd.uvvu.mp4';
     case VndVivo = 'video/vnd.vivo';
     case VndYoutube = 'video/vnd.youtube.yt';
-    
-    // Other
-    case Bmpeg = 'video/BMPEG';
-    case Bt656 = 'video/BT656';
-    case CelB = 'video/CelB';
-    case Dv = 'video/DV';
+    case Bmpeg = 'video/bmpeg';
+    case Bt656 = 'video/bt656';
+    case CelB = 'video/celb';
+    case Dv = 'video/dv';
     case Encap = 'video/encaprtp';
     case Example = 'video/example';
     case Flexfec = 'video/flexfec';
@@ -133,14 +109,13 @@ enum Video: string
     case Ulpfec = 'video/ulpfec';
     case VcRdp = 'video/vc1';
     case Vc2 = 'video/vc2';
-    
-    // Legacy
     case XSgiMovie = 'video/x-sgi-movie';
     case XMng = 'video/x-mng';
     case XF4v = 'video/x-f4v';
     case XOgm = 'video/x-ogm+ogg';
     case XTheora = 'video/x-theora+ogg';
     case XDirac = 'video/x-dirac';
+    // END GENERATED MIME CASES
 
     /**
      * @return list<string>
@@ -155,8 +130,8 @@ enum Video: string
      */
     public static function isVideo(string $mimeType): bool
     {
-        return self::tryFrom($mimeType) !== null 
-            || str_starts_with($mimeType, 'video/');
+        $value = \Componenta\Detector\Internal\MediaTypeParser::tryNormalize($mimeType);
+        return $value !== null && str_starts_with($value, 'video/');
     }
 
     /**
@@ -180,7 +155,7 @@ enum Video: string
     /**
      * @return list<self>
      */
-    public static function webSafe(): array
+    public static function commonWebFormats(): array
     {
         return [
             self::Mp4,
