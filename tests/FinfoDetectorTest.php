@@ -286,3 +286,40 @@ test('uses the general PostScript suffix instead of a specific application suffi
     Assert::assertSame('application/postscript', $detector->detectMimeType($bytes)?->value);
     Assert::assertSame('ps', $detector->detectExtension($bytes)?->value);
 });
+
+test('rejects a regular file replaced with a FIFO before open without blocking', function (): void {
+    if (PHP_OS_FAMILY === 'Windows' || !function_exists('posix_mkfifo') || !function_exists('pcntl_alarm') || !function_exists('proc_open')) {
+        $this->markTestSkipped('POSIX FIFO and subprocess support required.');
+    }
+
+    $directory = sys_get_temp_dir() . '/mime-replace-' . bin2hex(random_bytes(8));
+    Assert::assertTrue(mkdir($directory, 0700));
+    $path = $directory . '/file';
+    $fifo = $directory . '/pipe';
+    try {
+        Assert::assertSame(10, file_put_contents($path, 'plain text'));
+        Assert::assertTrue(posix_mkfifo($fifo, 0600));
+
+        $process = proc_open(
+            [PHP_BINARY, __DIR__ . '/fixtures/replace-with-fifo.php', $path, $fifo],
+            [0 => ['pipe', 'r'], 1 => ['pipe', 'w'], 2 => ['pipe', 'w']],
+            $pipes,
+        );
+        Assert::assertIsResource($process);
+        fclose($pipes[0]);
+        $output = stream_get_contents($pipes[1]);
+        $errors = stream_get_contents($pipes[2]);
+        fclose($pipes[1]);
+        fclose($pipes[2]);
+
+        Assert::assertSame(0, proc_close($process), (string) $errors);
+        Assert::assertSame("Rejected substituted FIFO.\n", $output);
+    } finally {
+        foreach ([$path, $fifo] as $entry) {
+            if (file_exists($entry)) {
+                unlink($entry);
+            }
+        }
+        rmdir($directory);
+    }
+});

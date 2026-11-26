@@ -158,7 +158,10 @@ final readonly class FinfoDetector implements DetectorInterface
                 throw FileNotReadableException::forPath($filename);
             }
 
-            $handle = @fopen($filename, 'rb');
+            // On POSIX, opening with O_NONBLOCK prevents a substituted FIFO from
+            // blocking before fstat() can reject it. Regular files read normally.
+            // This is defense in depth, not an atomic path authorization check.
+            $handle = @fopen($filename, PHP_OS_FAMILY === 'Windows' ? 'rb' : 'rbn');
             if ($handle === false) {
                 throw FileNotReadableException::forPath($filename);
             }
