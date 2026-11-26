@@ -4,19 +4,13 @@ declare(strict_types=1);
 
 namespace Componenta\Detector;
 
-class MimeMap implements MimeMapInterface
+final class MimeMap implements MimeMapInterface
 {
-    /**
-     * MIME type => extensions mapping
-     * @var array<string, list<string>>
-     */
+    /** @var array<string, list<string>> */
     private array $mimeToExt;
 
-    /**
-     * Extension => MIME type mapping (lazy-built)
-     * @var array<string, string>|null
-     */
-    private ?array $extToMime = null;
+    /** @var array<int|string, list<string>>|null PHP coerces numeric keys to integers. */
+    private ?array $extensionIndex = null;
 
     public function __construct()
     {
@@ -24,211 +18,156 @@ class MimeMap implements MimeMapInterface
     }
 
     /**
-     * Extend the map with additional MIME types
-     *
-     * @param array<string, list<string>> $map MIME type => extensions mapping
-     * @param bool $override Whether to override existing entries
-     */
-    public function extend(array $map, bool $override = false): static
-    {
-        foreach ($map as $mimeType => $extensions) {
-            $mimeType = strtolower($mimeType);
-            $extensions = array_map('strtolower', $extensions);
-
-            if ($override || !isset($this->mimeToExt[$mimeType])) {
-                $this->mimeToExt[$mimeType] = $extensions;
-            } else {
-                $this->mimeToExt[$mimeType] = array_values(
-                    array_unique([...$this->mimeToExt[$mimeType], ...$extensions])
-                );
-            }
-        }
-
-        // Reset lazy-built reverse map
-        $this->extToMime = null;
-
-        return $this;
-    }
-
-    /**
-     * Remove MIME types from the map
-     *
-     * @param string ...$mimeTypes
-     */
-    public function remove(string ...$mimeTypes): static
-    {
-        foreach ($mimeTypes as $mimeType) {
-            unset($this->mimeToExt[strtolower($mimeType)]);
-        }
-
-        $this->extToMime = null;
-
-        return $this;
-    }
-
-    /**
-     * Replace the entire map
+     * Add or merge mappings atomically. Existing MIME and extension order is retained.
      *
      * @param array<string, list<string>> $map
      */
-    public function setMap(array $map): static
+    public function extend(array $map, bool $override = false): self
     {
-        $this->mimeToExt = [];
+        $normalized = self::normalizeMap($map);
+        $next = $this->mimeToExt;
 
-        foreach ($map as $mimeType => $extensions) {
-            $this->mimeToExt[strtolower($mimeType)] = array_map('strtolower', $extensions);
+        foreach ($normalized as $mimeType => $extensions) {
+            $next[$mimeType] = $override || !isset($next[$mimeType])
+                ? $extensions
+                : array_values(array_unique([...$next[$mimeType], ...$extensions]));
         }
 
-        $this->extToMime = null;
-
+        $this->replace($next);
         return $this;
     }
 
-    /**
-     * @inheritDoc
-     */
+    public function remove(string ...$mimeTypes): self
+    {
+        $next = $this->mimeToExt;
+        foreach ($mimeTypes as $mimeType) {
+            $key = (new MimeType($mimeType))->value;
+            unset($next[$key]);
+        }
+        $this->replace($next);
+        return $this;
+    }
+
+    /** @param array<string, list<string>> $map */
+    public function setMap(array $map): self
+    {
+        $this->replace(self::normalizeMap($map));
+        return $this;
+    }
+
+    /** @param array<string, list<string>> $map */
+    private function replace(array $map): void
+    {
+        $this->mimeToExt = $map;
+        $this->extensionIndex = null;
+    }
+
+    /** @return array<string, list<string>> */
+    private static function normalizeMap(array $map): array
+    {
+        $result = [];
+        foreach ($map as $mimeType => $extensions) {
+            if (!is_string($mimeType) || !is_array($extensions) || !array_is_list($extensions)) {
+                throw new \InvalidArgumentException('Expected a MIME type mapped to a list of extensions.');
+            }
+            $key = (new MimeType($mimeType))->value;
+            if (array_key_exists($key, $result)) {
+                throw new \InvalidArgumentException('Duplicate normalized MIME type.');
+            }
+            $values = [];
+            foreach ($extensions as $extension) {
+                if (!is_string($extension)) {
+                    throw new \InvalidArgumentException('Expected a string extension.');
+                }
+                $values[] = (new Ext($extension))->value;
+            }
+            $result[$key] = array_values(array_unique($values));
+        }
+        return $result;
+    }
+
     public function getExtensions(string $mimeType): array
     {
-        return $this->mimeToExt[strtolower($mimeType)] ?? [];
+        $key = MimeType::tryCreate($mimeType)?->value;
+        return $key === null ? [] : ($this->mimeToExt[$key] ?? []);
     }
 
-    /**
-     * @inheritDoc
-     */
     public function getExtension(string $mimeType): ?string
     {
-        $extensions = $this->getExtensions($mimeType);
-
-        return $extensions[0] ?? null;
+        return $this->getExtensions($mimeType)[0] ?? null;
     }
 
-    /**
-     * @inheritDoc
-     */
     public function getMimeType(string $extension): ?string
     {
-        $extension = strtolower(ltrim($extension, '.'));
-
-        return $this->getExtToMimeMap()[$extension] ?? null;
+        return $this->getMimeTypes($extension)[0] ?? null;
     }
 
-    /**
-     * @inheritDoc
-     */
     public function getMimeTypes(string $extension): array
     {
-        $extension = strtolower(ltrim($extension, '.'));
-        $mimeTypes = [];
-
-        foreach ($this->mimeToExt as $mime => $extensions) {
-            if (in_array($extension, $extensions, true)) {
-                $mimeTypes[] = $mime;
-            }
-        }
-
-        return $mimeTypes;
+        $key = Ext::tryCreate($extension)?->value;
+        return $key === null ? [] : ($this->getExtensionIndex()[$key] ?? []);
     }
 
-    /**
-     * @inheritDoc
-     */
     public function isValidExtension(string $mimeType, string $extension): bool
     {
-        $extension = strtolower(ltrim($extension, '.'));
-
-        return in_array($extension, $this->getExtensions($mimeType), true);
+        $key = Ext::tryCreate($extension)?->value;
+        return $key !== null && in_array($key, $this->getExtensions($mimeType), true);
     }
 
-    /**
-     * @inheritDoc
-     */
     public function hasMimeType(string $mimeType): bool
     {
-        return isset($this->mimeToExt[strtolower($mimeType)]);
+        $key = MimeType::tryCreate($mimeType)?->value;
+        return $key !== null && array_key_exists($key, $this->mimeToExt);
     }
 
-    /**
-     * @inheritDoc
-     */
     public function hasExtension(string $extension): bool
     {
-        $extension = strtolower(ltrim($extension, '.'));
-
-        return isset($this->getExtToMimeMap()[$extension]);
+        return $this->getMimeTypes($extension) !== [];
     }
 
-    /**
-     * @inheritDoc
-     */
     public function getAllMimeTypes(): array
     {
         return array_keys($this->mimeToExt);
     }
 
-    /**
-     * @inheritDoc
-     */
     public function getAllExtensions(): array
     {
-        return array_keys($this->getExtToMimeMap());
+        return array_map(static fn (int|string $key): string => (string) $key, array_keys($this->getExtensionIndex()));
     }
 
-    /**
-     * @inheritDoc
-     */
     public function getMimeTypesByCategory(string $category): array
     {
-        $category = strtolower($category) . '/';
-        $result = [];
-
-        foreach ($this->mimeToExt as $mime => $extensions) {
-            if (str_starts_with($mime, $category)) {
-                $result[$mime] = $extensions;
-            }
-        }
-
-        return $result;
+        $prefix = strtolower(trim($category, " \t")) . '/';
+        return array_filter(
+            $this->mimeToExt,
+            static fn (string $mime): bool => str_starts_with($mime, $prefix),
+            ARRAY_FILTER_USE_KEY,
+        );
     }
 
-    /**
-     * Build extension to MIME map (lazy-loaded)
-     *
-     * @return array<string, string>
-     */
-    private function getExtToMimeMap(): array
+    /** @return array<int|string, list<string>> */
+    private function getExtensionIndex(): array
     {
-        if ($this->extToMime === null) {
-            $this->extToMime = [];
-
+        if ($this->extensionIndex === null) {
+            $index = [];
             foreach ($this->mimeToExt as $mime => $extensions) {
-                foreach ($extensions as $ext) {
-                    // First MIME type wins for each extension
-                    if (!isset($this->extToMime[$ext])) {
-                        $this->extToMime[$ext] = $mime;
-                    }
+                foreach ($extensions as $extension) {
+                    $index[$extension][] = $mime;
                 }
             }
+            $this->extensionIndex = $index;
         }
-
-        return $this->extToMime;
+        return $this->extensionIndex;
     }
 
     /**
-     * Get the default MIME type map
-     *
-     * Based on:
-     * - IANA Media Types Registry (https://www.iana.org/assignments/media-types/)
-     * - RFC 6838 (Media Type Specifications and Registration Procedures)
-     * - RFC 4855 (Media Type Registration of RTP Payload Formats)
-     * - RFC 7231 (HTTP/1.1 Semantics and Content)
-     * - Apache HTTPD mime.types
-     * - nginx mime.types
+     * Local extension associations; not an exhaustive registry of media types.
      *
      * @return array<string, list<string>>
      */
     public static function getDefaultMap(): array
     {
-        return [
+        $map = [
             // =============================================================
             // IMAGE (RFC 6838, IANA Image Media Types)
             // =============================================================
@@ -909,5 +848,40 @@ class MimeMap implements MimeMapInterface
             'model/3mf' => ['3mf'],
             'model/e57' => ['e57'],
         ];
+
+        // Legacy names emitted by common fileinfo databases. These are extension
+        // associations only, not claims of semantic equivalence of media types.
+        // Append them after canonical entries so reverse lookup prefers the latter.
+        foreach ([
+            'image/x-ms-bmp' => 'image/bmp',
+            'audio/x-wav' => 'audio/wav',
+            'audio/x-flac' => 'audio/flac',
+            'audio/x-aiff' => 'audio/aiff',
+            'audio/x-midi' => 'audio/midi',
+            'audio/x-m4a' => 'audio/mp4',
+            'audio/x-pn-realaudio' => 'audio/vnd.rn-realaudio',
+            'application/javascript' => 'text/javascript',
+            'application/x-gzip' => 'application/gzip',
+            'application/x-sqlite3' => 'application/vnd.sqlite3',
+            'application/font-otf' => 'font/otf',
+            'application/font-ttf' => 'font/ttf',
+            'application/font-woff' => 'font/woff',
+            'application/font-woff2' => 'font/woff2',
+            'application/x-font-otf' => 'font/otf',
+            'application/x-font-ttf' => 'font/ttf',
+            'application/x-font-woff' => 'font/woff',
+            'text/xml' => 'application/xml',
+            'text/x-shellscript' => 'application/x-sh',
+            'text/x-sh' => 'application/x-sh',
+            'text/x-yaml' => 'application/yaml',
+            'text/x-toml' => 'application/toml',
+            'text/x-sql' => 'application/sql',
+            'application/gltf+json' => 'model/gltf+json',
+            'application/gltf-binary' => 'model/gltf-binary',
+        ] as $alias => $canonical) {
+            unset($map[$alias]);
+            $map[$alias] = $map[$canonical];
+        }
+        return $map;
     }
 }
