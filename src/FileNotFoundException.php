@@ -8,6 +8,6 @@ class FileNotFoundException extends DetectorException
 {
     public static function forPath(string $path): self
     {
-        return new self("File not found: $path");
+        return new self('File not found.');
     }
 }
