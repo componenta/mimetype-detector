@@ -160,6 +160,7 @@ enum Text: string
     case XContributing = 'text/x-contributing';
     case Rtf = 'text/rtf';
     case XScriptPython = 'text/x-script.python';
+    case XCpp = 'text/x-c++';
     // END GENERATED MIME CASES
 
     /**

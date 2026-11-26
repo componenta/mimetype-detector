@@ -212,6 +212,11 @@ enum Application: string
     case OpenApiYaml = 'application/vnd.oai.openapi';
     case JsonSchema = 'application/schema+json';
     case JsonSchemaInstance = 'application/schema-instance+json';
+    case VndHdfgroupHdf5 = 'application/vnd.hdfgroup.hdf5';
+    case XHdf5 = 'application/x-hdf5';
+    case XNetcdf = 'application/x-netcdf';
+    case XMatlabData = 'application/x-matlab-data';
+    case Fits = 'application/fits';
     // END GENERATED MIME CASES
 
     /**

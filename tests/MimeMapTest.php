@@ -96,3 +96,20 @@ test('prefers the registered DWG media type and retains its legacy association',
     Assert::assertSame('image/vnd.dwg', $map->getMimeType('dwg'));
     Assert::assertSame(['image/vnd.dwg', 'application/vnd.autocad.dwg'], $map->getMimeTypes('dwg'));
 });
+
+test('maps real fileinfo labels for scientific formats and C++ without losing preferred types', function (): void {
+    $map = new MimeMap();
+    Assert::assertSame('cpp', $map->getExtension('text/x-c++'));
+    Assert::assertContains('hpp', $map->getExtensions('text/x-c++'));
+    Assert::assertSame('text/x-c++src', $map->getMimeType('cpp'));
+    Assert::assertSame('h5', $map->getExtension('application/x-hdf5'));
+    Assert::assertSame('application/vnd.hdfgroup.hdf5', $map->getMimeType('h5'));
+    Assert::assertSame('nc', $map->getExtension('application/x-netcdf'));
+    Assert::assertSame('mat', $map->getExtension('application/x-matlab-data'));
+    Assert::assertSame('application/x-matlab-data', $map->getMimeType('mat'));
+    Assert::assertSame(['m'], $map->getExtensions('text/x-matlab'));
+    Assert::assertSame('fits', $map->getExtension('image/fits'));
+    Assert::assertSame('fits', $map->getExtension('application/fits'));
+    Assert::assertSame('ps', $map->getExtension('application/postscript'));
+    Assert::assertContains('ai', $map->getExtensions('application/postscript'));
+});

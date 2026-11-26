@@ -279,3 +279,10 @@ test('rejects malformed extension values from a custom map', function (): void {
     $this->expectException(DetectorException::class);
     (new FinfoDetector($map))->detectExtension('plain text');
 });
+
+test('uses the general PostScript suffix instead of a specific application suffix', function (): void {
+    $bytes = "%!PS-Adobe-3.0\n%%Pages: 1\nshowpage\n";
+    $detector = new FinfoDetector();
+    Assert::assertSame('application/postscript', $detector->detectMimeType($bytes)?->value);
+    Assert::assertSame('ps', $detector->detectExtension($bytes)?->value);
+});

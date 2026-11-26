@@ -5,7 +5,10 @@
     "https://httpd.apache.org/docs/current/mod/mod_mime.html",
     "https://www.rfc-editor.org/rfc/rfc8081 (SFNT, OpenType and legacy font associations)",
     "PHP 8.4.24 bundled fileinfo: locally observed text/rtf, text/x-script.python and application/vnd.ms-opentype",
-    "https://www.iana.org/assignments/media-types/image/vnd.dwg (registered DWG label; observed with PHP fileinfo)"
+    "https://www.iana.org/assignments/media-types/image/vnd.dwg (registered DWG label; observed with PHP fileinfo)",
+    "https://www.rfc-editor.org/rfc/rfc4047 (FITS media types)",
+    "https://www.iana.org/assignments/media-types/application/vnd.hdfgroup.hdf5",
+    "Debian media-types and shared-mime-info extension associations; PHP 8.4.24 fileinfo observed in a local file corpus"
   ],
   "types": {
     "image/avif": {
@@ -2463,9 +2466,9 @@
     },
     "application/postscript": {
       "extensions": [
-        "ai",
+        "ps",
         "eps",
-        "ps"
+        "ai"
       ],
       "enums": {
         "Application": [
@@ -4513,8 +4516,7 @@
     },
     "text/x-matlab": {
       "extensions": [
-        "m",
-        "mat"
+        "m"
       ],
       "enums": {
         "Text": [
@@ -7345,7 +7347,12 @@
             "order": 5
           }
         ]
-      }
+      },
+      "extensions": [
+        "fits",
+        "fit",
+        "fts"
+      ]
     },
     "image/g3fax": {
       "enums": {
@@ -9461,6 +9468,93 @@
           {
             "name": "VndMsOpentype",
             "order": 22
+          }
+        ]
+      }
+    },
+    "text/x-c++": {
+      "extensions": [
+        "cpp",
+        "cxx",
+        "cc",
+        "c++",
+        "hpp",
+        "hxx",
+        "hh",
+        "h++"
+      ],
+      "enums": {
+        "Text": [
+          {
+            "name": "XCpp",
+            "order": 153
+          }
+        ]
+      }
+    },
+    "application/vnd.hdfgroup.hdf5": {
+      "extensions": [
+        "h5",
+        "hdf5"
+      ],
+      "enums": {
+        "Application": [
+          {
+            "name": "VndHdfgroupHdf5",
+            "order": 205
+          }
+        ]
+      }
+    },
+    "application/x-hdf5": {
+      "enums": {
+        "Application": [
+          {
+            "name": "XHdf5",
+            "order": 206
+          }
+        ]
+      },
+      "extensionAliasOf": "application/vnd.hdfgroup.hdf5"
+    },
+    "application/x-netcdf": {
+      "extensions": [
+        "nc",
+        "cdf"
+      ],
+      "enums": {
+        "Application": [
+          {
+            "name": "XNetcdf",
+            "order": 207
+          }
+        ]
+      }
+    },
+    "application/x-matlab-data": {
+      "extensions": [
+        "mat"
+      ],
+      "enums": {
+        "Application": [
+          {
+            "name": "XMatlabData",
+            "order": 208
+          }
+        ]
+      }
+    },
+    "application/fits": {
+      "extensions": [
+        "fits",
+        "fit",
+        "fts"
+      ],
+      "enums": {
+        "Application": [
+          {
+            "name": "Fits",
+            "order": 209
           }
         ]
       }
