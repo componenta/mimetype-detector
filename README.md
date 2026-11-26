@@ -101,3 +101,11 @@ Pass `asObject: true` to return `MimeType` or `Ext` objects.
 `FinfoDetector` reads up to 8192 bytes from files and streams. Seekable streams are rewound for detection and then restored to their previous position. Non-seekable streams are read from the current position, so callers should provide them at the correct offset.
 
 File detection throws `FileNotFoundException`, `FileNotReadableException`, or `DetectorException` for I/O failures.
+
+## Config 4 integration
+
+The configuration provider supports Config 4 alongside the existing Config 1 and 2 lines. In a consumer with Config 4, DI 6, and the current package installed, verify provider wiring with:
+
+```sh
+php tests/config-consumer.php /path/to/consumer/vendor/autoload.php
+```

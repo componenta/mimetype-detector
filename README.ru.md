@@ -101,3 +101,11 @@ $detector->detectFileExtension('/path/to/file.txt');
 `FinfoDetector` читает до 8192 байт из файлов и stream-объектов. Seekable stream будет перемотан для определения типа, а затем возвращён на прежнюю позицию. Non-seekable stream читается с текущей позиции, поэтому вызывающий код должен заранее установить корректный offset.
 
 Определение по файлу выбрасывает `FileNotFoundException`, `FileNotReadableException` или `DetectorException` при ошибках ввода-вывода.
+
+## Интеграция с Config 4
+
+Провайдер конфигурации поддерживает Config 4 и прежние ветки Config 1 и 2. В потребителе с Config 4, DI 6 и текущим пакетом проверьте регистрацию сервисов командой:
+
+```sh
+php tests/config-consumer.php /path/to/consumer/vendor/autoload.php
+```
