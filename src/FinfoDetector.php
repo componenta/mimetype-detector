@@ -124,13 +124,7 @@ final readonly class FinfoDetector implements DetectorInterface
             try {
                 $stream->seek($position);
             } catch (Throwable $exception) {
-                if ($failure !== null) {
-                    throw new DetectorException(
-                        'Unable to read stream content and restore its original position.',
-                        previous: $failure,
-                    );
-                }
-                throw new DetectorException('Unable to restore the stream position.', previous: $exception);
+                throw new StreamPositionRestoreException($exception, $failure);
             }
         }
 

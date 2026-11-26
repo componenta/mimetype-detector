@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Componenta\Detector\Tests;
 
-use Componenta\Detector\{DetectorException, FileNotFoundException, FileNotReadableException, FinfoDetector, MimeMap};
+use Componenta\Detector\{DetectorException, FileNotFoundException, FileNotReadableException, FinfoDetector, MimeMap, StreamPositionRestoreException};
 use GuzzleHttp\Psr7\Utils;
 use PHPUnit\Framework\Assert;
 use PHPUnit\Framework\TestCase;
@@ -199,11 +199,13 @@ test('reports restoration failure and retains an original read failure', functio
             (new FinfoDetector())->detectMimeType($mock);
             Assert::fail('Expected restoration failure');
         } catch (DetectorException $exception) {
+            Assert::assertInstanceOf(StreamPositionRestoreException::class, $exception);
+            Assert::assertSame($restore, $exception->getPrevious());
             if ($readFails) {
-                Assert::assertInstanceOf(DetectorException::class, $exception->getPrevious());
-                Assert::assertSame($read, $exception->getPrevious()->getPrevious());
+                Assert::assertInstanceOf(DetectorException::class, $exception->readFailure);
+                Assert::assertSame($read, $exception->readFailure->getPrevious());
             } else {
-                Assert::assertSame($restore, $exception->getPrevious());
+                Assert::assertNull($exception->readFailure);
             }
         }
     }
