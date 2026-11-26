@@ -10,6 +10,8 @@ use Throwable;
 
 final readonly class FinfoDetector implements DetectorInterface
 {
+    private const int READ_CHUNK_BYTES = 65536;
+
     private finfo $finfo;
     private MimeMapInterface $mimeMap;
 
@@ -99,7 +101,7 @@ final readonly class FinfoDetector implements DetectorInterface
             }
 
             while (strlen($content) < $this->maxBytes && !$stream->eof()) {
-                $remaining = $this->maxBytes - strlen($content);
+                $remaining = min(self::READ_CHUNK_BYTES, $this->maxBytes - strlen($content));
                 $chunk = $stream->read($remaining);
                 if ($chunk === '') {
                     if ($stream->eof()) {
@@ -167,7 +169,8 @@ final readonly class FinfoDetector implements DetectorInterface
                 }
                 $content = '';
                 while (strlen($content) < $this->maxBytes && !feof($handle)) {
-                    $chunk = @fread($handle, $this->maxBytes - strlen($content));
+                    $remaining = min(self::READ_CHUNK_BYTES, $this->maxBytes - strlen($content));
+                    $chunk = @fread($handle, $remaining);
                     if ($chunk === false || ($chunk === '' && !feof($handle))) {
                         throw new DetectorException('Unable to read file content.');
                     }

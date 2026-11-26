@@ -226,3 +226,33 @@ test('rejects a named pipe without opening it', function (): void {
         unlink($path);
     }
 });
+
+test('a large configured limit does not preallocate it for a small file or stream', function (): void {
+    $detector = new FinfoDetector(maxBytes: PHP_INT_MAX);
+    $path = tempnam(sys_get_temp_dir(), 'mime-limit');
+    Assert::assertIsString($path);
+    try {
+        file_put_contents($path, 'plain text');
+        Assert::assertSame('text/plain', $detector->detectFileMimeType($path)?->value);
+    } finally {
+        unlink($path);
+    }
+
+    $stream = $this->createMock(StreamInterface::class);
+    $stream->method('isReadable')->willReturn(true);
+    $stream->method('isSeekable')->willReturn(false);
+    $stream->method('eof')->willReturnOnConsecutiveCalls(false, true);
+    $stream->expects(TestCase::once())->method('read')
+        ->with(65536)->willReturn('plain text');
+    Assert::assertSame('text/plain', $detector->detectMimeType($stream)?->value);
+});
+
+test('rejects a stream that returns more than the requested number of bytes', function (): void {
+    $stream = $this->createMock(StreamInterface::class);
+    $stream->method('isReadable')->willReturn(true);
+    $stream->method('isSeekable')->willReturn(false);
+    $stream->method('eof')->willReturn(false);
+    $stream->expects(TestCase::once())->method('read')->with(4)->willReturn('12345');
+    $this->expectException(DetectorException::class);
+    (new FinfoDetector(maxBytes: 4))->detectMimeType($stream);
+});
