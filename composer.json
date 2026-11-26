@@ -49,6 +49,9 @@
             "config-providers": [
                 "Componenta\\Detector\\ConfigProvider"
             ]
+        },
+        "branch-alias": {
+            "dev-refactor/mimetype-detector-v2": "2.0.x-dev"
         }
     },
     "minimum-stability": "stable",

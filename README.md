@@ -118,6 +118,12 @@ composer catalog-check
 
 ConfigProvider registers MimeMap as the default MimeMapInterface, and FinfoDetector via a factory that resolves that interface from the container. DetectorInterface combines four narrow contracts: MimeTypeDetectorInterface, ExtensionDetectorInterface, FileMimeTypeDetectorInterface and FileExtensionDetectorInterface. Each resolves to the same detector service according to the container's service lifetime policy. Override the map binding to customize extension resolution.
 
+To verify integration in a consumer with Config 4, DI 6 and this package version installed:
+
+```bash
+php tests/integration/config-consumer.php /path/to/consumer/vendor/autoload.php
+```
+
 ## Security
 
 MIME and extension detection alone cannot establish file safety, authenticity or full format validity. Never authorize uploads or inline web rendering using only these values. Validate content independently, use an explicit allowlist, apply size limits and use appropriate response headers, isolation and storage policy. HTML, JavaScript, SVG and other types can contain active content.
