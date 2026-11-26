@@ -25,3 +25,9 @@ jobs:
       - run: composer install --no-interaction --prefer-dist
       - run: composer check
       - run: composer bench
+      - run: composer audit --no-dev
+      - name: Verify Config 4 and DI 6 integration
+        if: matrix.php == '8.5'
+        run: |
+          composer require --dev --no-interaction --prefer-dist --with-all-dependencies 'componenta/di:dev-main#e203077d12048936f078d37d1cf3badd661e1716'
+          php tests/integration/config-consumer.php vendor/autoload.php
