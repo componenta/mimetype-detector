@@ -2,7 +2,9 @@
   "sources": [
     "Existing Componenta MIME catalog, reviewed and normalized in this branch",
     "https://www.iana.org/assignments/media-types/",
-    "https://httpd.apache.org/docs/current/mod/mod_mime.html"
+    "https://httpd.apache.org/docs/current/mod/mod_mime.html",
+    "https://www.rfc-editor.org/rfc/rfc8081 (SFNT, OpenType and legacy font associations)",
+    "PHP 8.4.24 bundled fileinfo: locally observed text/rtf, text/x-script.python and application/vnd.ms-opentype"
   ],
   "types": {
     "image/avif": {
@@ -3067,7 +3069,10 @@
       }
     },
     "font/sfnt": {
-      "extensions": [],
+      "extensions": [
+        "otf",
+        "ttf"
+      ],
       "enums": {
         "Font": [
           {
@@ -6058,7 +6063,8 @@
             "order": 10
           }
         ]
-      }
+      },
+      "extensionAliasOf": "font/sfnt"
     },
     "application/font-tdpfr": {
       "enums": {
@@ -9421,6 +9427,39 @@
           {
             "name": "XDirac",
             "order": 107
+          }
+        ]
+      }
+    },
+    "text/rtf": {
+      "extensionAliasOf": "application/rtf",
+      "enums": {
+        "Text": [
+          {
+            "name": "Rtf",
+            "order": 151
+          }
+        ]
+      }
+    },
+    "text/x-script.python": {
+      "extensionAliasOf": "text/x-python",
+      "enums": {
+        "Text": [
+          {
+            "name": "XScriptPython",
+            "order": 152
+          }
+        ]
+      }
+    },
+    "application/vnd.ms-opentype": {
+      "extensionAliasOf": "font/otf",
+      "enums": {
+        "Font": [
+          {
+            "name": "VndMsOpentype",
+            "order": 22
           }
         ]
       }

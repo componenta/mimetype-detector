@@ -29,6 +29,7 @@ enum Font: string
     case Snf = 'application/x-font-snf';
     case Speedo = 'application/x-font-speedo';
     case Type1 = 'application/x-font-type1';
+    case VndMsOpentype = 'application/vnd.ms-opentype';
     // END GENERATED MIME CASES
 
     /**

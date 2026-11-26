@@ -158,6 +158,8 @@ enum Text: string
     case XReadme = 'text/x-readme';
     case XLicense = 'text/x-license';
     case XContributing = 'text/x-contributing';
+    case Rtf = 'text/rtf';
+    case XScriptPython = 'text/x-script.python';
     // END GENERATED MIME CASES
 
     /**

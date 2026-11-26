@@ -244,7 +244,7 @@ final class DefaultMimeMap
         'font/woff' => ['woff'],
         'font/woff2' => ['woff2'],
         'font/collection' => ['ttc'],
-        'font/sfnt' => [],
+        'font/sfnt' => ['otf', 'ttf'],
         'application/vnd.ms-fontobject' => ['eot'],
         'application/x-font-bdf' => ['bdf'],
         'application/x-font-pcf' => ['pcf'],
@@ -476,5 +476,9 @@ final class DefaultMimeMap
         'application/x-zstd' => ['zst', 'zstd'],
         'image/x-png' => ['png'],
         'image/pjpeg' => ['jpg', 'jpeg', 'jpe'],
+        'application/font-sfnt' => ['otf', 'ttf'],
+        'text/rtf' => ['rtf'],
+        'text/x-script.python' => ['py', 'pyw', 'pyx', 'pxd', 'pxi'],
+        'application/vnd.ms-opentype' => ['otf'],
     ];
 }

@@ -42,3 +42,10 @@ test('classifies concrete media type names without depending on value objects', 
     Assert::assertTrue(Model::isModel('model/JT'));
     Assert::assertTrue(Multipart::isMultipart('multipart/form-data; boundary=abc'));
 });
+
+test('recognizes legacy font and text labels observed in fileinfo', function (): void {
+    Assert::assertTrue(Font::isFont('application/vnd.ms-opentype'));
+    Assert::assertSame(Font::VndMsOpentype, Font::from('application/vnd.ms-opentype'));
+    Assert::assertSame(Text::Rtf, Text::from('text/rtf'));
+    Assert::assertSame(Text::XScriptPython, Text::from('text/x-script.python'));
+});

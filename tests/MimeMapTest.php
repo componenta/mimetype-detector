@@ -74,3 +74,17 @@ test('rejects non list and invalid extensions', function (): void {
         }
     }
 });
+
+test('maps observed fileinfo labels and preserves preferred reverse associations', function (): void {
+    $map = new MimeMap();
+    Assert::assertSame('rtf', $map->getExtension('text/rtf'));
+    Assert::assertSame('application/rtf', $map->getMimeType('rtf'));
+    Assert::assertContains('text/rtf', $map->getMimeTypes('rtf'));
+    Assert::assertSame('py', $map->getExtension('text/x-script.python'));
+    Assert::assertSame('text/x-python', $map->getMimeType('py'));
+    Assert::assertSame('otf', $map->getExtension('application/vnd.ms-opentype'));
+    Assert::assertSame(['otf', 'ttf'], $map->getExtensions('font/sfnt'));
+    Assert::assertSame(['otf', 'ttf'], $map->getExtensions('application/font-sfnt'));
+    Assert::assertSame('font/otf', $map->getMimeType('otf'));
+    Assert::assertSame('font/ttf', $map->getMimeType('ttf'));
+});
