@@ -573,6 +573,124 @@ try {
 
 The enums in `Componenta\Detector\MimeTypes` contain canonical lowercase types and a `values()` method. Curated subsets, e.g. `Image::commonWebFormats()`, are not security checks or guarantees of browser support. The catalog is local, not an exhaustive IANA registry.
 
+
+### Common enum methods
+
+All nine enums expose the following methods.
+
+#### `values()`
+
+`values(): array`
+
+Returns the string values of canonical cases in declaration order, without duplicates or aliases (`list<string>`). No arguments.
+
+#### `from()`
+
+`from(string $value): static`
+
+Native PHP backed-enum method. Returns the case with the exact backed value. `$value` is a canonical lowercase MIME type without parameters. Throws `ValueError` when the case does not exist.
+
+#### `tryFrom()`
+
+`tryFrom(string $value): ?static`
+
+Accepts the same values as `from()` but returns `null` when no case exists.
+
+#### `cases()`
+
+`cases(): array`
+
+Returns canonical enum cases in declaration order (`list<self>`). No arguments.
+
+### Category classification
+
+Each method below is static. The `$mimeType` argument is a concrete MIME type string with optional parameters. Type names are case insensitive. Invalid types, wildcards and unrelated categories return `false`; membership in the category does not require a corresponding enum case.
+
+| Enum | Signature | Condition for `true` |
+| --- | --- | --- |
+| [Application](src/MimeTypes/Application.php) | `isApplication(string $mimeType): bool` | A type in the `application` category. |
+| [Audio](src/MimeTypes/Audio.php) | `isAudio(string $mimeType): bool` | A type in the `audio` category. |
+| [Font](src/MimeTypes/Font.php) | `isFont(string $mimeType): bool` | A `font/*` type or a known legacy font type. |
+| [Image](src/MimeTypes/Image.php) | `isImage(string $mimeType): bool` | A type in the `image` category. |
+| [Message](src/MimeTypes/Message.php) | `isMessage(string $mimeType): bool` | A type in the `message` category. |
+| [Model](src/MimeTypes/Model.php) | `isModel(string $mimeType): bool` | A type in the `model` category. |
+| [Multipart](src/MimeTypes/Multipart.php) | `isMultipart(string $mimeType): bool` | A type in the `multipart` category. |
+| [Text](src/MimeTypes/Text.php) | `isText(string $mimeType): bool` | A type in the `text` category. |
+| [Video](src/MimeTypes/Video.php) | `isVideo(string $mimeType): bool` | A type in the `video` category. |
+
+### Curated subsets
+
+All methods below are static, take no arguments, and return an ordered list of cases of the respective enum (`list<self>`). These curated lists are not exhaustive and do not establish security, quality, or format compatibility.
+
+#### [`Application`](src/MimeTypes/Application.php)
+
+| Signature | Purpose |
+| --- | --- |
+| `archives(): array` | Common archive types. |
+| `documents(): array` | Common document, spreadsheet and presentation types. |
+| `data(): array` | Selected data serialization and interchange types. |
+
+#### [`Audio`](src/MimeTypes/Audio.php)
+
+| Signature | Purpose |
+| --- | --- |
+| `common(): array` | Common audio types. |
+| `lossless(): array` | Types associated with formats commonly used for lossless audio; the MIME type alone does not guarantee lossless encoding. |
+| `commonWebFormats(): array` | Common web-oriented audio formats. |
+
+#### [`Font`](src/MimeTypes/Font.php)
+
+| Signature | Purpose |
+| --- | --- |
+| `commonWebFormats(): array` | Common web-oriented font formats. |
+| `modern(): array` | WOFF2 and WOFF, in that order. |
+
+#### [`Image`](src/MimeTypes/Image.php)
+
+| Signature | Purpose |
+| --- | --- |
+| `common(): array` | Common image types. |
+| `commonWebFormats(): array` | Common web-oriented image formats. |
+
+#### [`Message`](src/MimeTypes/Message.php)
+
+| Signature | Purpose |
+| --- | --- |
+| `email(): array` | Selected email and email notification types. |
+
+#### [`Model`](src/MimeTypes/Model.php)
+
+| Signature | Purpose |
+| --- | --- |
+| `common(): array` | Common 3D model formats. |
+| `commonWebFormats(): array` | Selected formats for web-oriented 3D applications. |
+| `printing3d(): array` | Selected types used in 3D printing workflows. |
+
+#### [`Multipart`](src/MimeTypes/Multipart.php)
+
+| Signature | Purpose |
+| --- | --- |
+| `common(): array` | Common multipart message types. |
+
+#### [`Text`](src/MimeTypes/Text.php)
+
+| Signature | Purpose |
+| --- | --- |
+| `programming(): array` | Selected programming-language source types. |
+| `web(): array` | Selected web-related text types. |
+| `data(): array` | Selected textual data formats. |
+| `markup(): array` | Selected markup types. |
+
+#### [`Video`](src/MimeTypes/Video.php)
+
+| Signature | Purpose |
+| --- | --- |
+| `common(): array` | Common video types. |
+| `commonWebFormats(): array` | Common web-oriented video formats. |
+| `streaming(): array` | Selected streaming-related types. |
+| `highQuality(): array` | Selected types associated with higher-quality video; the label does not establish actual quality. |
+
+
 ## [`ExtensionResolverInterface`](src/ExtensionResolverInterface.php)
 
 The narrow contract for providing a preferred extension independently of a full MIME catalog. `MimeMapInterface` extends this contract.
