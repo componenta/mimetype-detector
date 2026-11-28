@@ -17,10 +17,10 @@ use Psr\Http\Message\StreamInterface;
 final readonly class FinfoDetector implements DetectorInterface
 {
     private finfo $finfo;
-    private MimeMapInterface $mimeMap;
+    private ExtensionResolverInterface $mimeMap;
 
     /** @throws DetectorConfigurationException */
-    public function __construct(?MimeMapInterface $mimeMap = null, private int $maxBytes = 8192)
+    public function __construct(?ExtensionResolverInterface $mimeMap = null, private int $maxBytes = 8192)
     {
         if ($maxBytes < 1) {
             throw new DetectorConfigurationException('The detection byte limit must be positive.');

@@ -5,7 +5,7 @@ declare(strict_types=1);
 use Componenta\Config\ConfigFactory;
 use Componenta\Config\Environment;
 use Componenta\DI\ContainerFactory;
-use Componenta\Detector\{ConfigProvider, DetectorInterface, ExtensionDetectorInterface, FileExtensionDetectorInterface, FileMimeTypeDetectorInterface, FinfoDetector, MimeMap, MimeMapInterface, MimeTypeDetectorInterface};
+use Componenta\Detector\{ConfigProvider, DetectorInterface, ExtensionDetectorInterface, ExtensionResolverInterface, FileExtensionDetectorInterface, FileMimeTypeDetectorInterface, FinfoDetector, MimeMap, MimeMapInterface, MimeTypeDetectorInterface};
 
 if ($argc !== 2 || !is_file($argv[1])) {
     fwrite(STDERR, "Usage: php tests/integration/config-consumer.php /path/to/consumer/vendor/autoload.php\n");
@@ -17,7 +17,8 @@ $composition = (new ConfigFactory())->create(new Environment([]), new ConfigProv
 $container = (new ContainerFactory())->create($composition->config, $composition->dependencies)->container;
 $detector = $container->get(DetectorInterface::class);
 $map = $container->get(MimeMapInterface::class);
-if (!$detector instanceof DetectorInterface || !$map instanceof MimeMap) {
+if (!$detector instanceof DetectorInterface || !$map instanceof MimeMap
+    || $container->get(ExtensionResolverInterface::class) !== $map) {
     throw new RuntimeException('Config must register the public detector and default MIME map services.');
 }
 

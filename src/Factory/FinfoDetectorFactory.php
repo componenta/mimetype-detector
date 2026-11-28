@@ -6,7 +6,7 @@ namespace Componenta\Detector\Factory;
 
 use Componenta\Detector\Exception\DetectorConfigurationException;
 use Componenta\Detector\FinfoDetector;
-use Componenta\Detector\MimeMapInterface;
+use Componenta\Detector\ExtensionResolverInterface;
 use Psr\Container\ContainerExceptionInterface;
 use Psr\Container\ContainerInterface;
 
@@ -14,15 +14,15 @@ use Psr\Container\ContainerInterface;
 final class FinfoDetectorFactory
 {
     /**
-     * @param array<array-key, mixed> $parameters Container invocation parameters; configuration is resolved from the map binding.
+     * @param array<array-key, mixed> $parameters Container invocation parameters; configuration is resolved from the extension resolver binding.
      * @throws ContainerExceptionInterface
      * @throws DetectorConfigurationException
      */
     public static function create(ContainerInterface $container, array $parameters = []): FinfoDetector
     {
-        $map = $container->get(MimeMapInterface::class);
-        if (!$map instanceof MimeMapInterface) {
-            throw new DetectorConfigurationException('The configured MIME map must implement MimeMapInterface.');
+        $map = $container->get(ExtensionResolverInterface::class);
+        if (!$map instanceof ExtensionResolverInterface) {
+            throw new DetectorConfigurationException('The configured extension resolver must implement ExtensionResolverInterface.');
         }
 
         return new FinfoDetector($map);

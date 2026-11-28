@@ -38,6 +38,7 @@ class ConfigProvider extends \Componenta\Config\ConfigProvider
 
             // MIME map
             MimeMapInterface::class => MimeMap::class,
+            ExtensionResolverInterface::class => MimeMapInterface::class,
         ];
     }
 }

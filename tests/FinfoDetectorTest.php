@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Componenta\Detector\Tests;
 
-use Componenta\Detector\{FinfoDetector, MimeMap, MimeMapInterface};
+use Componenta\Detector\{ExtensionResolverInterface, FinfoDetector, MimeMap, MimeMapInterface};
 use Componenta\Detector\Exception\{DetectorConfigurationException, DetectorException, DetectorExceptionInterface, FileExceptionInterface, FileReadException, FileUnavailableException, InvalidFileException, StreamExceptionInterface, StreamPositionRestoreException, StreamPositionRestoreExceptionInterface, StreamReadException};
 use GuzzleHttp\Psr7\Utils;
 use PHPUnit\Framework\Assert;
@@ -571,5 +571,28 @@ test('a declared stream read failure is not wrapped again', function (): void {
         Assert::fail('Expected the original stream failure.');
     } catch (StreamReadException $caught) {
         Assert::assertSame($error, $caught);
+    }
+});
+
+test('a standalone extension resolver needs only the preferred-extension contract', function (): void {
+    $resolver = $this->createMock(ExtensionResolverInterface::class);
+    $resolver->expects(TestCase::exactly(3))->method('getExtension')->with('text/plain')->willReturn('custom');
+    $detector = new FinfoDetector(mimeMap: $resolver);
+    Assert::assertSame('text/plain', $detector->detectMimeType('plain text')?->value);
+    Assert::assertSame('custom', $detector->detectExtension('plain text')?->value);
+    $stream = Utils::streamFor('plain text');
+    try {
+        Assert::assertSame('custom', $detector->detectExtension($stream)?->value);
+        Assert::assertSame(0, $stream->tell());
+    } finally {
+        $stream->close();
+    }
+    $path = tempnam(sys_get_temp_dir(), 'mime-resolver');
+    Assert::assertIsString($path);
+    try {
+        file_put_contents($path, 'plain text');
+        Assert::assertSame('custom', $detector->detectFileExtension($path)?->value);
+    } finally {
+        unlink($path);
     }
 });

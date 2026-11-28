@@ -4,20 +4,11 @@ declare(strict_types=1);
 
 namespace Componenta\Detector;
 
-use Componenta\Detector\Exception\DetectorExceptionInterface;
-
 /** Read-only lookup contract; mappings are not evidence of content or file safety. */
-interface MimeMapInterface
+interface MimeMapInterface extends ExtensionResolverInterface
 {
     /** @return list<string> Ordered normalized extensions; unknown or unmapped types yield an empty list. */
     public function getExtensions(string $mimeType): array;
-
-    /**
-     * Preferred extension, or null when none is mapped.
-     * @throws DetectorExceptionInterface If an external mapping backend fails.
-     * Implementations translate expected backend failures to this contract.
-     */
-    public function getExtension(string $mimeType): ?string;
 
     /** First associated MIME type, or null when none is mapped. */
     public function getMimeType(string $extension): ?string;
