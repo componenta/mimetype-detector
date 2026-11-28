@@ -21,3 +21,14 @@ final readonly class ContainerValue
      */
     public function get(string $id, ?string $type = null): mixed {}
 }
+
+// PHPStan validates stub files in isolation. Declare the referenced throwable
+// symbols with their actual native ancestry; no runtime classes are replaced.
+namespace Componenta\Config\Exception;
+
+final class InvalidContainerValueException extends \RuntimeException {}
+
+namespace Psr\Container;
+
+interface ContainerExceptionInterface extends \Throwable {}
+
