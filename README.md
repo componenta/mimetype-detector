@@ -145,7 +145,7 @@ Immutable concrete MIME type value using RFC 6838 names and RFC 9110 parameter s
 | `value: string` | Normalized type/subtype without parameters. |
 | `type: string` | Top-level type. |
 | `subtype: string` | Subtype. |
-| `parameters: array` | Parameters with normalized names; values retain case except charset. |
+| `parameters: MimeParameters` | Immutable collection of MIME parameters. |
 | `raw: string` | Original input. |
 | `charset: ?string` | Charset or null. |
 | `boundary: ?string` | Multipart boundary or null. |
@@ -187,28 +187,6 @@ Static method validating the same grammar as the constructor.
 | `$value` | Candidate string. |
 
 **Returns:** `true` if valid.
-
-
-#### `hasParameters()`
-
-`hasParameters(): bool`
-
-Checks whether the media type has parameters.
-
-**Returns:** `true` if parameters are present.
-
-
-#### `getParameter()`
-
-`getParameter(string $name): ?string`
-
-Looks up a parameter by case-insensitive name.
-
-| Argument | Description |
-| --- | --- |
-| `$name` | Parameter name. |
-
-**Returns:** Value or `null`.
 
 
 #### `equals()`
@@ -263,6 +241,103 @@ Classification methods inspect the MIME type name, not content. All methods belo
 | `toModelEnum(): ?Model` | Matching `Model` enum case or null. |
 | `toMessageEnum(): ?Message` | Matching `Message` enum case or null. |
 | `toMultipartEnum(): ?Multipart` | Matching `Multipart` enum case or null. |
+
+## [`MimeParameters`](src/MimeParameters.php)
+
+An immutable collection of decoded MIME parameters. Names are case insensitive and normalized to lowercase; values preserve their case except `charset`. An absent parameter returns `null`, whereas an explicitly empty value returns `''`. Implements `ArrayAccess`, `IteratorAggregate` and `Countable`.
+
+```php
+use Componenta\Detector\MimeType;
+
+$parameters = (new MimeType('text/plain; charset=UTF-8; name="Example"'))->parameters;
+$parameters->has('CHARSET'); // true
+$parameters->get('charset'); // utf-8
+$parameters['name']; // Example
+isset($parameters['NAME']); // true
+count($parameters); // 2
+foreach ($parameters as $name => $value) {
+    echo $name . ': ' . $value . PHP_EOL;
+}
+```
+
+#### `__construct()`
+
+`__construct(array $parameters = [])`
+
+Creates a validated collection from decoded parameter names and string values, not raw quoted header syntax.
+
+| Argument | Description |
+| --- | --- |
+| `$parameters` | Name-to-value map (`array<array-key, string>`). Defaults to an empty collection. Numeric keys represent numeric parameter names. |
+
+**Exceptions:** `InvalidMimeTypeException` for malformed names, non-string values, prohibited control characters or duplicate names after normalization.
+
+#### `has()`
+
+`has(string $name): bool`
+
+Checks whether the named parameter exists, including empty values.
+
+| Argument | Description |
+| --- | --- |
+| `$name` | Parameter name; case insensitive. |
+
+**Returns:** `true` if present.
+
+#### `get()`
+
+`get(string $name): ?string`
+
+Looks up a parameter.
+
+| Argument | Description |
+| --- | --- |
+| `$name` | Parameter name; case insensitive. |
+
+**Returns:** Decoded value or `null` when absent.
+
+#### `isEmpty()`
+
+`isEmpty(): bool`
+
+Returns `true` if the collection contains no parameters.
+
+#### `count()`
+
+`count(): int`
+
+Returns the number of parameters. Also available as `count($parameters)`.
+
+#### `offsetExists()`
+
+`offsetExists(mixed $offset): bool`
+
+Implements `isset($parameters[$offset])`. A string or integer is interpreted as a parameter name; other types return `false`.
+
+#### `offsetGet()`
+
+`offsetGet(mixed $offset): ?string`
+
+Implements array-style reads. A string or integer is interpreted as a parameter name; absent names and other offset types return `null`.
+
+#### `offsetSet()`
+
+`offsetSet(mixed $offset, mixed $value): never`
+
+Always throws `LogicException`: neither replacing nor appending a value is supported.
+
+#### `offsetUnset()`
+
+`offsetUnset(mixed $offset): never`
+
+Always throws `LogicException`: parameters cannot be removed.
+
+#### `getIterator()`
+
+`getIterator(): Traversable`
+
+Returns a fresh iterator over normalized string names and decoded string values in insertion order. Use `foreach` or `iterator_to_array()` to read a snapshot; PHP converts numeric string keys to integers when materializing an array.
+
 
 ## [`Ext`](src/Ext.php)
 

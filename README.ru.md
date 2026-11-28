@@ -145,7 +145,7 @@ $mime->matches('text/*');   // true
 | `value: string` | Нормализованный тип и подтип без параметров. |
 | `type: string` | Основной тип. |
 | `subtype: string` | Подтип. |
-| `parameters: array` | Параметры с нормализованными именами; регистр значений сохраняется, кроме charset. |
+| `parameters: MimeParameters` | Неизменяемая коллекция параметров MIME-типа. |
 | `raw: string` | Исходная строка. |
 | `charset: ?string` | Кодировка или null. |
 | `boundary: ?string` | Граница multipart или null. |
@@ -187,28 +187,6 @@ $mime->matches('text/*');   // true
 | `$value` | Проверяемая строка. |
 
 **Возвращает:** `true`, если значение допустимо.
-
-
-#### `hasParameters()`
-
-`hasParameters(): bool`
-
-Проверяет наличие параметров MIME-типа.
-
-**Возвращает:** `true`, если параметры присутствуют.
-
-
-#### `getParameter()`
-
-`getParameter(string $name): ?string`
-
-Получает параметр без учёта регистра имени.
-
-| Аргумент | Описание |
-| --- | --- |
-| `$name` | Имя параметра. |
-
-**Возвращает:** Значение или `null`.
 
 
 #### `equals()`
@@ -263,6 +241,103 @@ $mime->matches('text/*');   // true
 | `toModelEnum(): ?Model` | Соответствующий элемент `Model` или null. |
 | `toMessageEnum(): ?Message` | Соответствующий элемент `Message` или null. |
 | `toMultipartEnum(): ?Multipart` | Соответствующий элемент `Multipart` или null. |
+
+## [`MimeParameters`](src/MimeParameters.php)
+
+Неизменяемая коллекция разобранных параметров MIME-типа. Имена нормализуются к нижнему регистру; регистр значений сохраняется, кроме `charset`. Отсутствующий параметр возвращает `null`, а явно заданное пустое значение — `''`. Реализует `ArrayAccess`, `IteratorAggregate` и `Countable`.
+
+```php
+use Componenta\Detector\MimeType;
+
+$parameters = (new MimeType('text/plain; charset=UTF-8; name="Example"'))->parameters;
+$parameters->has('CHARSET'); // true
+$parameters->get('charset'); // utf-8
+$parameters['name']; // Example
+isset($parameters['NAME']); // true
+count($parameters); // 2
+foreach ($parameters as $name => $value) {
+    echo $name . ': ' . $value . PHP_EOL;
+}
+```
+
+#### `__construct()`
+
+`__construct(array $parameters = [])`
+
+Создаёт проверенную коллекцию из имён и разобранных строковых значений, а не из исходного синтаксиса заголовка.
+
+| Аргумент | Описание |
+| --- | --- |
+| `$parameters` | Соответствие имён значениям (`array<array-key, string>`). По умолчанию коллекция пуста. Числовые ключи обозначают числовые имена параметров. |
+
+**Исключения:** `InvalidMimeTypeException` при недопустимом имени, нестроковом значении, запрещённых управляющих символах или совпадении имён после нормализации.
+
+#### `has()`
+
+`has(string $name): bool`
+
+Проверяет наличие именованного параметра, в том числе с пустым значением.
+
+| Аргумент | Описание |
+| --- | --- |
+| `$name` | Имя параметра без учёта регистра. |
+
+**Возвращает:** `true`, если параметр присутствует.
+
+#### `get()`
+
+`get(string $name): ?string`
+
+Получает значение параметра.
+
+| Аргумент | Описание |
+| --- | --- |
+| `$name` | Имя параметра без учёта регистра. |
+
+**Возвращает:** разобранное значение или `null`, если параметр отсутствует.
+
+#### `isEmpty()`
+
+`isEmpty(): bool`
+
+Возвращает `true`, если коллекция не содержит параметров.
+
+#### `count()`
+
+`count(): int`
+
+Возвращает количество параметров. Также доступно через `count($parameters)`.
+
+#### `offsetExists()`
+
+`offsetExists(mixed $offset): bool`
+
+Реализует `isset($parameters[$offset])`. Строка или целое число трактуется как имя параметра, для остальных типов возвращается `false`.
+
+#### `offsetGet()`
+
+`offsetGet(mixed $offset): ?string`
+
+Реализует чтение по ключу. Строка или целое число трактуется как имя параметра; отсутствующие имена и прочие типы ключей возвращают `null`.
+
+#### `offsetSet()`
+
+`offsetSet(mixed $offset, mixed $value): never`
+
+Всегда выбрасывает `LogicException`: замена и добавление значений запрещены.
+
+#### `offsetUnset()`
+
+`offsetUnset(mixed $offset): never`
+
+Всегда выбрасывает `LogicException`: удаление параметров запрещено.
+
+#### `getIterator()`
+
+`getIterator(): Traversable`
+
+Возвращает новый итератор по нормализованным строковым именам и разобранным строковым значениям в порядке добавления. Используйте `foreach` или `iterator_to_array()` для чтения копии; при создании массива PHP преобразует числовые строковые ключи в целые числа.
+
 
 ## [`Ext`](src/Ext.php)
 
