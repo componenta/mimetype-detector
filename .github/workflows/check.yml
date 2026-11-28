@@ -36,3 +36,4 @@ jobs:
           composer require --dev --no-interaction --prefer-dist --with-all-dependencies \
             'componenta/di:dev-main#e203077d12048936f078d37d1cf3badd661e1716'
           php tests/integration/config-consumer.php vendor/autoload.php
+          php tests/integration/validation-consumer.php vendor/autoload.php

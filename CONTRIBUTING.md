@@ -4,4 +4,4 @@ Run `composer install`, `composer check`, and `composer bench` on PHP 8.4 and 8.
 
 To test the Config 4 / DI 6 integration with this package installed in a consumer, run `php tests/integration/config-consumer.php /path/to/consumer/vendor/autoload.php`.
 
-The 3.x branch requires consumers to update their dependency constraints and exception imports. The published 2.x validation integration pin is not compatible with 3.x; reinstate its integration check when a corresponding validation branch supports 3.x.
+The revised 2.0.0 edition retains the `^2.0` dependency constraint. Consumers must review the changed exception imports and contracts in [UPGRADE.md](UPGRADE.md). The integration workflow checks Config 4, DI 6 and the installed Validation package against the current source. To inspect the Validation rule's behavior independently in that environment, run `php tests/integration/validation-consumer.php vendor/autoload.php`.

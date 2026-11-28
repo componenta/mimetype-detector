@@ -40,4 +40,54 @@ if ($detector->detectExtension('plain text')?->value !== 'custom') {
     throw new RuntimeException('Detector does not use the map resolved from its container.');
 }
 
+// Replace the full map binding with a configured map and verify the alias chain.
+$customMap = (new MimeMap())->setMap(['text/plain' => ['mapped']]);
+$mapProvider = new class($customMap) extends \Componenta\Config\ConfigProvider {
+    public function __construct(private readonly MimeMapInterface $map) {}
+
+    protected function getServices(): array
+    {
+        return ['mime.test.map' => $this->map];
+    }
+
+    protected function getAliases(): array
+    {
+        return [MimeMapInterface::class => 'mime.test.map'];
+    }
+};
+$composition = (new ConfigFactory())->create(new Environment([]), new ConfigProvider(), $mapProvider);
+$container = (new ContainerFactory())->create($composition->config, $composition->dependencies)->container;
+if ($container->get(ExtensionResolverInterface::class) !== $customMap
+    || $container->get(DetectorInterface::class)->detectExtension('plain text')?->value !== 'mapped') {
+    throw new RuntimeException('Replacing the full map binding must affect extension detection.');
+}
+
+// An independent resolver need not implement or replace the full map.
+$customResolver = new class implements ExtensionResolverInterface {
+    public function getExtension(string $mimeType): ?string
+    {
+        return $mimeType === 'text/plain' ? 'resolved' : null;
+    }
+};
+$resolverProvider = new class($customResolver) extends \Componenta\Config\ConfigProvider {
+    public function __construct(private readonly ExtensionResolverInterface $resolver) {}
+
+    protected function getServices(): array
+    {
+        return ['mime.test.resolver' => $this->resolver];
+    }
+
+    protected function getAliases(): array
+    {
+        return [ExtensionResolverInterface::class => 'mime.test.resolver'];
+    }
+};
+$composition = (new ConfigFactory())->create(new Environment([]), new ConfigProvider(), $resolverProvider);
+$container = (new ContainerFactory())->create($composition->config, $composition->dependencies)->container;
+if ($container->get(ExtensionResolverInterface::class) !== $customResolver
+    || !$container->get(MimeMapInterface::class) instanceof MimeMap
+    || $container->get(DetectorInterface::class)->detectExtension('plain text')?->value !== 'resolved') {
+    throw new RuntimeException('Replacing only the extension resolver must affect detection without replacing the full map.');
+}
+
 echo 'Config 4 + DI 6 MIME provider passed.', PHP_EOL;

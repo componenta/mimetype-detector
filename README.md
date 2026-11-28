@@ -7,10 +7,10 @@ Detect MIME types and preferred extensions from content using a configurable ext
 ## Installation
 
 ```sh
-composer require componenta/mimetype-detector:dev-refactor/mimetype-detector-v3
+composer require componenta/mimetype-detector:^2.0
 ```
 
-Documentation for the revised version 2.0.0 (development branch). Requires PHP 8.4+, ext-fileinfo, PSR-7 2.x and Componenta Config 4.x. A DI container is not required for standalone use. [Upgrade guide](UPGRADE.md).
+Documentation for the revised version 2.0.0. Requires PHP 8.4+, ext-fileinfo, PSR-7 2.x and Componenta Config 4.x. A DI container is not required for standalone use. [Upgrade guide](UPGRADE.md).
 
 ## Quick start
 
@@ -586,15 +586,15 @@ Returns the string values of canonical cases in declaration order, without dupli
 
 #### `from()`
 
-`from(string $value): static`
+`from(int|string $value): static`
 
-Native PHP backed-enum method. Returns the case with the exact backed value. `$value` is a canonical lowercase MIME type without parameters. Throws `ValueError` when the case does not exist.
+Native PHP backed-enum method. Returns the case with the exact backed value. `$value` is a canonical lowercase MIME type without parameters. Throws `ValueError` when the case does not exist; strict PHP callers must pass a string or a `TypeError` is raised.
 
 #### `tryFrom()`
 
-`tryFrom(string $value): ?static`
+`tryFrom(int|string $value): ?static`
 
-Accepts the same values as `from()` but returns `null` when no case exists.
+Accepts the same values as `from()` but returns `null` when no case exists; strict callers must still pass a string.
 
 #### `cases()`
 
