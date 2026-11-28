@@ -123,7 +123,7 @@ Depend on the narrow contract you need. Custom implementations report detection 
 
 All sources are inspected within `maxBytes`. Seekable streams are read from the beginning and their position is restored on success and failure. Non-seekable streams consume the inspected prefix from the current position. The caller retains ownership of the stream. Failure to restore position raises a distinct exception.
 
-Local files are not modified. URLs, stream wrappers, directories and special files are rejected. Symlinks to regular files are allowed; the application must authorize the path. A bounded prefix does not guarantee full-format validity, safety, processing time or absolute memory usage. Use readable blocking streams with appropriate timeouts.
+Local files are not modified. URLs, stream wrappers, directories and special files are rejected. Symlinks to regular files are allowed; the application must authorize the path. The detector checks file identity where available and may invalidate PHP's realpath cache if path resolution is stale. These checks do not eliminate filesystem races or replace authorization. A bounded prefix does not guarantee full-format validity, safety, processing time or absolute memory usage. Use readable blocking streams with appropriate timeouts.
 
 Empty content yields `null`. Fileinfo may return `application/octet-stream` for unknown formats. Detection is heuristic and depends on PHP/libmagic and the inspected prefix.
 
