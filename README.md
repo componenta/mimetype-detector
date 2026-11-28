@@ -786,7 +786,7 @@ Resolves a normalized preferred extension without a leading dot. The MIME type i
 
 ## Dependency injection
 
-`ConfigProvider` registers `MimeMap` as the default `MimeMapInterface` and `FinfoDetector` through a factory. All four contracts and `DetectorInterface` resolve to the same service according to container lifetime policy. The default `ExtensionResolverInterface` alias points to `MimeMapInterface`, so overriding the map still affects detection. Override `ExtensionResolverInterface` directly when only preferred-extension lookup is required. A custom resolver must report expected lookup failures through `DetectorExceptionInterface`; other exceptions propagate unchanged.
+`ConfigProvider` registers `MimeMap` as the default `MimeMapInterface` and `FinfoDetector` through the invokable class `Factory\FinfoDetectorFactory`. The factory accepts Config 4's `ContainerValue` (the DI 6 factory ABI) and resolves `ExtensionResolverInterface` using typed `get()`. It does not consume runtime invocation parameters. An invalid resolver binding is reported as `DetectorConfigurationException` with the original configuration error as its cause. All four contracts and `DetectorInterface` resolve to the same service according to container lifetime policy. The default `ExtensionResolverInterface` alias points to `MimeMapInterface`, so overriding the map still affects detection. Override `ExtensionResolverInterface` directly when only preferred-extension lookup is required. A custom resolver must report expected lookup failures through `DetectorExceptionInterface`; other exceptions propagate unchanged.
 
 ```php
 use Componenta\Detector\MimeTypeDetectorInterface;

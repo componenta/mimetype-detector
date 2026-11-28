@@ -786,7 +786,7 @@ try {
 
 ## Внедрение зависимостей
 
-`ConfigProvider` регистрирует `MimeMap` как стандартный `MimeMapInterface` и `FinfoDetector` через фабрику. Все четыре контракта и `DetectorInterface` разрешаются в один сервис согласно правилам жизненного цикла контейнера. Стандартная привязка `ExtensionResolverInterface` указывает на `MimeMapInterface`, поэтому переопределение карты по-прежнему влияет на детектор. Если нужен только поиск предпочтительного расширения, переопределите `ExtensionResolverInterface` напрямую. Пользовательский источник соответствий должен сообщать о штатных сбоях поиска через `DetectorExceptionInterface`; прочие исключения передаются без изменения.
+`ConfigProvider` регистрирует `MimeMap` как стандартный `MimeMapInterface` и `FinfoDetector` через вызываемый класс `Factory\FinfoDetectorFactory`. Фабрика принимает `ContainerValue` из Config 4 согласно соглашению DI 6 и получает `ExtensionResolverInterface` через типизированный `get()`. Параметры вызова контейнера не используются. Некорректная привязка источника соответствий приводит к `DetectorConfigurationException` с сохранением исходной ошибки конфигурации. Все четыре контракта и `DetectorInterface` разрешаются в один сервис согласно правилам жизненного цикла контейнера. Стандартная привязка `ExtensionResolverInterface` указывает на `MimeMapInterface`, поэтому переопределение карты по-прежнему влияет на детектор. Если нужен только поиск предпочтительного расширения, переопределите `ExtensionResolverInterface` напрямую. Пользовательский источник соответствий должен сообщать о штатных сбоях поиска через `DetectorExceptionInterface`; прочие исключения передаются без изменения.
 
 ```php
 use Componenta\Detector\MimeTypeDetectorInterface;

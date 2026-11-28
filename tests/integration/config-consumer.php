@@ -34,9 +34,19 @@ if ($detector->detectMimeType('plain text')?->value !== 'text/plain'
     throw new RuntimeException('Configured MIME services must retain detection and map behavior.');
 }
 
+// DI 6 resolves the invokable class and supplies ContainerValue to it.
+// make() must construct a fresh detector without changing the shared entry.
+$fresh = $container->make(FinfoDetector::class);
+if (!$fresh instanceof FinfoDetector || $fresh === $detector
+    || $container->get(DetectorInterface::class) !== $detector
+    || $fresh->detectExtension('plain text')?->value !== 'txt') {
+    throw new RuntimeException('DI 6 factory must support fresh and shared detector resolution.');
+}
+
 // A mutation on the container-owned map must be visible to the existing detector.
 $map->extend(['text/plain' => ['custom']], override: true);
-if ($detector->detectExtension('plain text')?->value !== 'custom') {
+if ($detector->detectExtension('plain text')?->value !== 'custom'
+    || $fresh->detectExtension('plain text')?->value !== 'custom') {
     throw new RuntimeException('Detector does not use the map resolved from its container.');
 }
 

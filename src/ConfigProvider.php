@@ -18,7 +18,7 @@ class ConfigProvider extends \Componenta\Config\ConfigProvider
     protected function getFactories(): array
     {
         return [
-            FinfoDetector::class => [FinfoDetectorFactory::class, 'create'],
+            FinfoDetector::class => FinfoDetectorFactory::class,
         ];
     }
 
