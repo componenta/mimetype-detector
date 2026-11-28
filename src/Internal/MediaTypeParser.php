@@ -19,7 +19,7 @@ final class MediaTypeParser
     public static function parse(string $input): array
     {
         // Do not trim CR/LF or other prohibited control bytes away.
-        if (preg_match('/[\x00-\x08\x0A-\x1F\x7F]/', $input) !== 0) {
+        if (self::hasForbiddenControls($input)) {
             throw InvalidMimeTypeException::forValue($input);
         }
 
@@ -86,8 +86,7 @@ final class MediaTypeParser
                 $offset += strlen($parameter);
             }
 
-            // Charset labels are case insensitive; other values retain their case.
-            $parameters[$key] = $key === 'charset' ? strtolower($parameter) : $parameter;
+            $parameters[$key] = $parameter;
         }
 
         return [$type, $subtype, $parameters];
@@ -101,6 +100,16 @@ final class MediaTypeParser
         } catch (InvalidMimeTypeException) {
             return null;
         }
+    }
+
+    public static function isParameterName(string $name): bool
+    {
+        return preg_match('/\A' . self::TOKEN . '\z/D', $name) === 1;
+    }
+
+    public static function hasForbiddenControls(string $value): bool
+    {
+        return preg_match('/[\x00-\x08\x0A-\x1F\x7F]/', $value) !== 0;
     }
 
     private static function skipWhitespace(string $value, int &$offset): void

@@ -14,8 +14,7 @@ final readonly class MimeType implements \Stringable
     public string $type;
     public string $subtype;
 
-    /** @var array<array-key, string> Numeric parameter names are PHP integer keys. */
-    public array $parameters;
+    public MimeParameters $parameters;
     public string $raw;
 
     public ?string $charset;
@@ -29,9 +28,9 @@ final readonly class MimeType implements \Stringable
         $this->type = $type;
         $this->subtype = $subtype;
         $this->value = $type . '/' . $subtype;
-        $this->parameters = $parameters;
-        $this->charset = $parameters['charset'] ?? null;
-        $this->boundary = $parameters['boundary'] ?? null;
+        $this->parameters = new MimeParameters($parameters);
+        $this->charset = $this->parameters->get('charset');
+        $this->boundary = $this->parameters->get('boundary');
     }
 
     public static function tryCreate(string $value): ?self
@@ -46,16 +45,6 @@ final readonly class MimeType implements \Stringable
     public static function isValid(string $value): bool
     {
         return self::tryCreate($value) !== null;
-    }
-
-    public function hasParameters(): bool
-    {
-        return $this->parameters !== [];
-    }
-
-    public function getParameter(string $name): ?string
-    {
-        return $this->parameters[strtolower($name)] ?? null;
     }
 
     /** The normalized type/subtype, without parameters. */

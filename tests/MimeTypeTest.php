@@ -15,10 +15,10 @@ test('parses type and quoted parameters', function (): void {
     Assert::assertSame('text', $mime->type);
     Assert::assertSame('html', $mime->subtype);
     Assert::assertSame('utf-8', $mime->charset);
-    Assert::assertSame('a;b.txt', $mime->getParameter('NAME'));
+    Assert::assertSame('a;b.txt', $mime->parameters->get('NAME'));
     Assert::assertSame('a"b', $mime->boundary);
-    Assert::assertSame('x', $mime->getParameter('123'));
-    Assert::assertTrue($mime->hasParameters());
+    Assert::assertSame('x', $mime->parameters->get('123'));
+    Assert::assertFalse($mime->parameters->isEmpty());
     Assert::assertSame('text/html', (string) $mime);
 });
 
