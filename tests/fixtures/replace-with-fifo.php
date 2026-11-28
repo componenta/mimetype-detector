@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Componenta\Detector\Internal {
+namespace Componenta\Stdlib {
     // This fixture runs in its own PHP process. Schedule a real filesystem
     // replacement immediately after the last path-based type check.
     function stat(string $path): array|false

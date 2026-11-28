@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Componenta\Detector\Internal {
+namespace Componenta\Stdlib {
     function fread($handle, int $length): string|false
     {
         if (!\is_resource($handle)) {

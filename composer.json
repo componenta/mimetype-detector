@@ -6,6 +6,7 @@
     "require": {
         "php": "^8.4",
         "componenta/config": "^4.0",
+        "componenta/file-reader": "^1.0",
         "ext-fileinfo": "*",
         "psr/container": "^2.0",
         "psr/http-message": "^2.0"

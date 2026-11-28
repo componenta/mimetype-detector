@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Componenta\Detector\Internal {
+namespace Componenta\Stdlib {
     function fopen(string $path, string $mode): mixed
     {
         if ($path === \realpath($_SERVER['argv'][1])) {

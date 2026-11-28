@@ -24,6 +24,10 @@ jobs:
           coverage: none
           tools: composer:v2
       - run: composer validate --strict
+      - name: Select the unpublished file reader revision
+        run: |
+          composer config repositories.file-reader vcs https://github.com/componenta/file-reader
+          composer require --no-interaction --no-update 'componenta/file-reader:dev-main#2100dd40ff2d06cfaa0396f877fa9d049d311983'
       - run: composer install --no-interaction --prefer-dist
       - run: composer check
       - run: composer bench
