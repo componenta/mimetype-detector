@@ -28,7 +28,7 @@ jobs:
         run: |
           composer config repositories.file-reader vcs https://github.com/componenta/file-reader
           composer config repositories.stream-reader vcs https://github.com/componenta/stream-reader
-          composer require --no-interaction --no-update 'componenta/file-reader:dev-main#d226a3d3196bca882c0e408f07bf3e916f05434b' 'componenta/stream-reader:dev-main#97779ceb09cc119c047aa7fdf388b8a205c00778'
+          composer require --no-interaction --no-update 'componenta/file-reader:dev-main#d226a3d3196bca882c0e408f07bf3e916f05434b' 'componenta/stream-reader:dev-main#a1ec0bc9cba4afdee9ad0592f5e663b399846736'
       - run: composer install --no-interaction --prefer-dist
       - run: composer check
       - run: composer bench
