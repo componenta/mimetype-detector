@@ -1,8 +1,8 @@
-# Migrating to the revised 2.0.0 edition
+# Upgrading from 2.x to 3.0.0
 
-The revised 2.0.0 edition reorganizes exception and factory namespaces and separates detection failures from source I/O failures. It replaces the original 2.0.0 edition; existing consumers must review these source-level changes even though the version number is retained.
+Version 3.0.0 reorganizes exception and factory namespaces, separates detection failures from source I/O failures and introduces an immutable MIME parameter collection. The original 2.0.0 release remains unchanged. Update the Composer constraint to `^3.0` when migrating your code.
 
-| Original 2.0.0 | Revised 2.0.0 |
+| 2.x | 3.x |
 | --- | --- |
 | `Componenta\Detector\DetectorException` | `Componenta\Detector\Exception\DetectorException` |
 | `FileNotFoundException` | `Exception\FileUnavailableException` (missing or inaccessible path) |
@@ -20,7 +20,9 @@ Names in the table are relative to `Componenta\Detector` unless fully qualified.
 - Detector method names, parameter names, nullable value results, existing map APIs and DI service identifiers are unchanged. The detector now accepts the narrower `ExtensionResolverInterface`; existing `MimeMapInterface` implementations remain valid. Local file methods continue to read at most the configured prefix. Symbolic links to regular files are allowed; non-local paths and special files are rejected.
 - `MimeType::$parameters` now exposes an immutable `MimeParameters` object instead of an array. Replace `$mime->getParameter($name)` with `$mime->parameters->get($name)`, `$mime->hasParameters()` with `!$mime->parameters->isEmpty()`, and direct array emptiness comparisons with `isEmpty()`. Use `has($name)`, `isset($parameters[$name])`, `count($parameters)`, `foreach` or `iterator_to_array($parameters)` as appropriate. `charset` and `boundary` remain available. Array writes and unsets throw `LogicException`.
 - Programming errors in injected maps and streams are not blanket-converted into ordinary detector failures. Custom MIME maps must implement `Exception\DetectorExceptionInterface` on expected lookup failures; undeclared exceptions propagate unchanged.
-- Consumers pinned to `^2.0` must review these changes before updating the revised edition. In particular, callers that catch the old detector exception (including image converter/compressor) must update their exception translation. No changes to those packages are included in this branch. Existing lockfiles or cached archives may still refer to the original commit; verify the resolved source reference when migrating.
+- Consumers pinned to `^2.0` must update their exception imports, factory calls and parameter access before allowing `^3.0`. Version 3 requires File Reader 1.x and Stream Reader 1.x. Existing 2.x consumers remain on the original release until they deliberately widen or change their constraint.
+- File cleanup failures now use `Exception\FileCloseException`, a subtype of `Exception\FileReadException` that retains the earlier failure, if any.
+- Stream acquisition uses `componenta/stream-reader:^1.0`; seekable streams still restore their original position, nonseekable streams consume a bounded prefix, and the detector retains its stream exception contract.
 
 ---
 
@@ -48,4 +50,3 @@ Enum backed values are normalized to lowercase. Previously duplicated case names
 
 The detector does not guarantee file safety or exact identification. File paths must be authorized by the application. Non-seekable stream reads consume the prefix.
 
-- Stream acquisition uses `componenta/stream-reader:^1.0`; seekable streams still restore their original position, nonseekable streams consume a bounded prefix, and the detector retains its stream exception contract.

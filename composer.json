@@ -53,8 +53,7 @@
             ]
         },
         "branch-alias": {
-            "dev-main": "2.0.x-dev",
-            "dev-refactor/mimetype-detector-v3": "2.0.x-dev"
+            "dev-main": "3.0.x-dev"
         }
     },
     "minimum-stability": "stable",

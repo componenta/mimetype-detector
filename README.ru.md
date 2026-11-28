@@ -7,10 +7,10 @@
 ## Установка
 
 ```sh
-composer require componenta/mimetype-detector:^2.0
+composer require componenta/mimetype-detector:^3.0
 ```
 
-Документация для обновлённой редакции версии 2.0.0. Требуются PHP 8.4+, ext-fileinfo, PSR-7 2.x, Componenta Config 4.x и [Componenta File Reader 1.x](https://github.com/componenta/file-reader) и [Componenta Stream Reader 1.x](https://github.com/componenta/stream-reader). Контейнер зависимостей для обычного использования не нужен. [Руководство по миграции](UPGRADE.md).
+Документация для версии 3.0.0. Требуются PHP 8.4+, ext-fileinfo, PSR-7 2.x, Componenta Config 4.x, [Componenta File Reader 1.x](https://github.com/componenta/file-reader) и [Componenta Stream Reader 1.x](https://github.com/componenta/stream-reader). Контейнер зависимостей для обычного использования не нужен. [Руководство по миграции](UPGRADE.md).
 
 ## Быстрый старт
 
