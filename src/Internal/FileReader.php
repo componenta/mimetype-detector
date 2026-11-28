@@ -5,11 +5,13 @@ declare(strict_types=1);
 namespace Componenta\Detector\Internal;
 
 use Componenta\Detector\Exception\FileExceptionInterface;
+use Componenta\Detector\Exception\FileCloseException;
 use Componenta\Detector\Exception\FileReadException;
 use Componenta\Detector\Exception\FileUnavailableException;
 use Componenta\Detector\Exception\InvalidFileException;
 use Componenta\Stdlib\Exception\FileExceptionInterface as ReaderExceptionInterface;
 use Componenta\Stdlib\Exception\FileReadException as ReaderReadException;
+use Componenta\Stdlib\Exception\FileCloseException as ReaderCloseException;
 use Componenta\Stdlib\Exception\FileUnavailableException as ReaderUnavailableException;
 use Componenta\Stdlib\Exception\InvalidFileException as ReaderInvalidException;
 use Componenta\Stdlib\FileReader as LocalFileReader;
@@ -26,6 +28,12 @@ final class FileReader
             throw new InvalidFileException($error->getMessage(), previous: $error);
         } catch (ReaderUnavailableException $error) {
             throw new FileUnavailableException($error->getMessage(), previous: $error->getPrevious() ?? $error);
+        } catch (ReaderCloseException $error) {
+            throw new FileCloseException(
+                $error->getMessage(),
+                previous: $error->getPrevious() ?? $error,
+                readFailure: $error->readFailure,
+            );
         } catch (ReaderReadException $error) {
             throw new FileReadException(
                 $error->getMessage(),

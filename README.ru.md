@@ -625,6 +625,7 @@ $detector = new FinfoDetector($map);
 | `FileUnavailableException` | Файл отсутствует или недоступен при разрешении пути. |
 | `InvalidFileException` | Недопустимый путь или тип файла. |
 | `FileReadException` | Ошибка открытия, чтения, проверки открытого файла или закрытия. |
+| `FileCloseException` | Ошибка закрытия собственного дескриптора; наследует `FileReadException`. |
 | `StreamReadException` | Ошибка чтения или первоначального позиционирования потока. |
 | `StreamPositionRestoreException` | Исходную позицию восстановить не удалось. |
 | `InvalidMimeTypeException` | Недопустимый MIME-тип; наследует InvalidArgumentException. |

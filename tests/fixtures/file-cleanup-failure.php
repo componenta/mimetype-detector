@@ -34,7 +34,8 @@ namespace {
             (new \Componenta\Detector\FinfoDetector())->detectFileMimeType($_SERVER['argv'][1]);
             throw new \LogicException('Expected a cleanup failure.');
         } catch (\Componenta\Detector\Exception\FileReadException $error) {
-            if (!$error->getPrevious() instanceof \ErrorException
+            if (!$error instanceof \Componenta\Detector\Exception\FileCloseException
+                || !$error->getPrevious() instanceof \ErrorException
                 || $error->getPrevious()->getMessage() !== 'Simulated close failure.'
                 || !$error->readFailure instanceof \LogicException
                 || $error->readFailure->getMessage() !== 'Original read defect.') {

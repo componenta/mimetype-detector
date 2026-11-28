@@ -625,6 +625,7 @@ Library exceptions live in `Componenta\Detector\Exception`. The categories are i
 | `FileUnavailableException` | File is missing or inaccessible during resolution. |
 | `InvalidFileException` | Invalid file path or type. |
 | `FileReadException` | Failure opening, reading, inspecting the opened file or closing it. |
+| `FileCloseException` | Closing the owned file failed; extends `FileReadException`. |
 | `StreamReadException` | Stream reading or initial positioning failure. |
 | `StreamPositionRestoreException` | The original position could not be restored. |
 | `InvalidMimeTypeException` | Invalid MIME type; extends InvalidArgumentException. |
