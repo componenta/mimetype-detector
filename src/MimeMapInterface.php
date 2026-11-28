@@ -15,6 +15,7 @@ interface MimeMapInterface
     /**
      * Preferred extension, or null when none is mapped.
      * @throws DetectorExceptionInterface If an external mapping backend fails.
+     * Implementations translate expected backend failures to this contract.
      */
     public function getExtension(string $mimeType): ?string;
 

@@ -17,7 +17,7 @@ Names in the table are relative to `Componenta\Detector` unless fully qualified.
 - Stream restoration failures implement `Exception\StreamPositionRestoreExceptionInterface`; `getPrevious()` retains the restoration cause and `readFailure` may be any earlier throwable.
 - Invalid detector configuration is reported as `Exception\DetectorConfigurationException` (an `InvalidArgumentException`). Invalid MIME types remain argument errors.
 - Detector method names, parameters, nullable value results, map APIs and DI service identifiers are unchanged. Local file methods continue to read at most the configured prefix. Symbolic links to regular files are allowed; non-local paths and special files are rejected.
-- Programming errors in injected maps and streams are not blanket-converted into ordinary detector failures.
+- Programming errors in injected maps and streams are not blanket-converted into ordinary detector failures. Custom MIME maps must implement `Exception\DetectorExceptionInterface` on expected lookup failures; undeclared exceptions propagate unchanged.
 - Consumers pinned to `^2.0` must explicitly migrate to `^3.0` before installing this version. In particular, callers that catch the old detector exception (including image converter/compressor) must update their exception translation. No changes to those packages are included in this branch.
 
 ---

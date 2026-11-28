@@ -260,7 +260,7 @@ test('rejects a stream that returns more than the requested number of bytes', fu
     (new FinfoDetector(maxBytes: 4))->detectMimeType($stream);
 });
 
-test('normalizes failures of injected extension maps without affecting MIME detection', function (): void {
+test('propagates undeclared map failures without affecting MIME detection', function (): void {
     $cause = new \RuntimeException('custom map unavailable');
     $map = $this->createMock(MimeMapInterface::class);
     $map->expects(TestCase::once())->method('getExtension')->with('text/plain')->willThrowException($cause);
@@ -268,9 +268,9 @@ test('normalizes failures of injected extension maps without affecting MIME dete
     Assert::assertSame('text/plain', $detector->detectMimeType('plain text')?->value);
     try {
         $detector->detectExtension('plain text');
-        Assert::fail('Expected detector exception');
-    } catch (DetectorException $exception) {
-        Assert::assertSame($cause, $exception->getPrevious());
+        Assert::fail('Expected the original map failure.');
+    } catch (\RuntimeException $exception) {
+        Assert::assertSame($cause, $exception);
     }
 });
 

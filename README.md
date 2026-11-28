@@ -575,7 +575,7 @@ The enums in `Componenta\Detector\MimeTypes` contain canonical lowercase types a
 
 ## Dependency injection
 
-`ConfigProvider` registers `MimeMap` as the default `MimeMapInterface` and `FinfoDetector` through a factory. All four contracts and `DetectorInterface` resolve to the same service according to container lifetime policy. Override `MimeMapInterface` to customize extension resolution.
+`ConfigProvider` registers `MimeMap` as the default `MimeMapInterface` and `FinfoDetector` through a factory. All four contracts and `DetectorInterface` resolve to the same service according to container lifetime policy. Override `MimeMapInterface` to customize extension resolution. A custom map must report expected lookup failures through `DetectorExceptionInterface`; other exceptions propagate unchanged.
 
 ```php
 use Componenta\Detector\MimeTypeDetectorInterface;

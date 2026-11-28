@@ -93,13 +93,7 @@ final readonly class FinfoDetector implements DetectorInterface
             return null;
         }
 
-        try {
-            $extension = $this->mimeMap->getExtension($mime->value);
-        } catch (DetectorExceptionInterface $error) {
-            throw $error;
-        } catch (\RuntimeException $error) {
-            throw new DetectorException('Unable to resolve a mapped extension.', previous: $error);
-        }
+        $extension = $this->mimeMap->getExtension($mime->value);
 
         if ($extension === null) {
             return null;

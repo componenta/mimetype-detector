@@ -575,7 +575,7 @@ try {
 
 ## Внедрение зависимостей
 
-`ConfigProvider` регистрирует `MimeMap` как стандартный `MimeMapInterface` и `FinfoDetector` через фабрику. Все четыре контракта и `DetectorInterface` разрешаются в один сервис согласно правилам жизненного цикла контейнера. Для настройки расширений переопределите привязку `MimeMapInterface`.
+`ConfigProvider` регистрирует `MimeMap` как стандартный `MimeMapInterface` и `FinfoDetector` через фабрику. Все четыре контракта и `DetectorInterface` разрешаются в один сервис согласно правилам жизненного цикла контейнера. Для настройки расширений переопределите привязку `MimeMapInterface`. Пользовательская карта должна сообщать о штатных сбоях поиска через `DetectorExceptionInterface`; прочие исключения передаются без изменения.
 
 ```php
 use Componenta\Detector\MimeTypeDetectorInterface;
