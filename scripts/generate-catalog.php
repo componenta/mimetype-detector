@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 $root = dirname(__DIR__);
-require_once $root . '/src/InvalidMimeTypeException.php';
+require_once $root . '/src/Exception/InvalidMimeTypeException.php';
 require_once $root . '/src/Internal/MediaTypeParser.php';
 require_once $root . '/src/Ext.php';
 $catalog = json_decode(file_get_contents($root . '/resources/mime-catalog.json'), true, flags: JSON_THROW_ON_ERROR);

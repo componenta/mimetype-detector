@@ -4,7 +4,8 @@ declare(strict_types=1);
 
 namespace Componenta\Detector\Tests;
 
-use Componenta\Detector\{DetectorException, FileNotFoundException, FileNotReadableException, FinfoDetector, MimeMap, MimeMapInterface, StreamPositionRestoreException};
+use Componenta\Detector\{FinfoDetector, MimeMap, MimeMapInterface};
+use Componenta\Detector\Exception\{DetectorConfigurationException, DetectorException, DetectorExceptionInterface, FileExceptionInterface, FileReadException, FileUnavailableException, InvalidFileException, StreamExceptionInterface, StreamPositionRestoreException, StreamPositionRestoreExceptionInterface, StreamReadException};
 use GuzzleHttp\Psr7\Utils;
 use PHPUnit\Framework\Assert;
 use PHPUnit\Framework\TestCase;
@@ -60,7 +61,7 @@ test('stream read failure preserves cause and position', function (): void {
     try {
         (new FinfoDetector())->detectMimeType($stream);
         Assert::fail('Expected detector exception');
-    } catch (DetectorException $exception) {
+    } catch (StreamReadException $exception) {
         Assert::assertSame($cause, $exception->getPrevious());
     }
 });
@@ -72,7 +73,7 @@ test('rewind failure still attempts restore', function (): void {
     $stream->method('tell')->willReturn(7);
     $stream->method('rewind')->willThrowException(new \RuntimeException('rewind error'));
     $stream->expects(TestCase::once())->method('seek')->with(7);
-    $this->expectException(DetectorException::class);
+    $this->expectException(StreamReadException::class);
     (new FinfoDetector())->detectMimeType($stream);
 });
 
@@ -93,28 +94,28 @@ test('empty read before eof fails without spinning', function (): void {
     $stream->method('isSeekable')->willReturn(false);
     $stream->method('eof')->willReturn(false);
     $stream->expects(TestCase::once())->method('read')->willReturn('');
-    $this->expectException(DetectorException::class);
+    $this->expectException(StreamReadException::class);
     (new FinfoDetector())->detectMimeType($stream);
 });
 
 test('rejects missing file', function (): void {
-    $this->expectException(FileNotFoundException::class);
+    $this->expectException(FileUnavailableException::class);
     (new FinfoDetector())->detectFileMimeType(__DIR__ . '/missing.txt');
 });
 
 test('rejects directories and wrappers', function (): void {
-    foreach ([__DIR__, 'data://text/plain,hello', "bad\0path"] as $path) {
+    foreach ([__DIR__, '', 'file://' . __FILE__, 'data://text/plain,hello', 'data:text/plain,hello', "bad\0path"] as $path) {
         try {
             (new FinfoDetector())->detectFileMimeType($path);
             Assert::fail('Expected non-regular path rejection');
-        } catch (FileNotReadableException) {
+        } catch (InvalidFileException) {
             Assert::assertTrue(true);
         }
     }
 });
 
 test('rejects non positive limit', function (): void {
-    $this->expectException(\InvalidArgumentException::class);
+    $this->expectException(DetectorConfigurationException::class);
     new FinfoDetector(maxBytes: 0);
 });
 
@@ -160,7 +161,7 @@ test('rejects a non-readable stream and wraps tell failures', function (): void 
     try {
         $detector->detectMimeType($stream);
         Assert::fail('Expected unreadable stream failure');
-    } catch (DetectorException) {
+    } catch (StreamReadException) {
         Assert::assertTrue(true);
     }
 
@@ -174,7 +175,7 @@ test('rejects a non-readable stream and wraps tell failures', function (): void 
     try {
         $detector->detectMimeType($mock);
         Assert::fail('Expected tell failure');
-    } catch (DetectorException $exception) {
+    } catch (StreamReadException $exception) {
         Assert::assertSame($cause, $exception->getPrevious());
     }
 });
@@ -198,11 +199,11 @@ test('reports restoration failure and retains an original read failure', functio
         try {
             (new FinfoDetector())->detectMimeType($mock);
             Assert::fail('Expected restoration failure');
-        } catch (DetectorException $exception) {
+        } catch (StreamPositionRestoreExceptionInterface $exception) {
             Assert::assertInstanceOf(StreamPositionRestoreException::class, $exception);
             Assert::assertSame($restore, $exception->getPrevious());
             if ($readFails) {
-                Assert::assertInstanceOf(DetectorException::class, $exception->readFailure);
+                Assert::assertInstanceOf(StreamReadException::class, $exception->readFailure);
                 Assert::assertSame($read, $exception->readFailure->getPrevious());
             } else {
                 Assert::assertNull($exception->readFailure);
@@ -222,7 +223,7 @@ test('rejects a named pipe without opening it', function (): void {
         $this->markTestSkipped('Cannot create FIFO in this environment.');
     }
     try {
-        $this->expectException(FileNotReadableException::class);
+        $this->expectException(InvalidFileException::class);
         (new FinfoDetector())->detectFileMimeType($path);
     } finally {
         unlink($path);
@@ -255,7 +256,7 @@ test('rejects a stream that returns more than the requested number of bytes', fu
     $stream->method('isSeekable')->willReturn(false);
     $stream->method('eof')->willReturn(false);
     $stream->expects(TestCase::once())->method('read')->with(4)->willReturn('12345');
-    $this->expectException(DetectorException::class);
+    $this->expectException(StreamReadException::class);
     (new FinfoDetector(maxBytes: 4))->detectMimeType($stream);
 });
 
@@ -333,4 +334,181 @@ test('accepts an empty terminal read when EOF becomes true', function (): void {
         ->willReturnOnConsecutiveCalls('plain text', '');
 
     Assert::assertSame('text/plain', (new FinfoDetector())->detectMimeType($stream)?->value);
+});
+
+
+test('file and stream failures are independent of detection failures', function (): void {
+    $detector = new FinfoDetector();
+    try {
+        $detector->detectFileMimeType(__DIR__ . '/missing.txt');
+        Assert::fail('Expected file acquisition failure.');
+    } catch (FileExceptionInterface $error) {
+        Assert::assertInstanceOf(FileUnavailableException::class, $error);
+        Assert::assertNotInstanceOf(DetectorExceptionInterface::class, $error);
+        Assert::assertNotInstanceOf(StreamExceptionInterface::class, $error);
+    }
+    $stream = $this->createMock(StreamInterface::class);
+    $stream->method('isReadable')->willReturn(false);
+    try {
+        $detector->detectMimeType($stream);
+        Assert::fail('Expected stream acquisition failure.');
+    } catch (StreamExceptionInterface $error) {
+        Assert::assertInstanceOf(StreamReadException::class, $error);
+        Assert::assertNotInstanceOf(DetectorExceptionInterface::class, $error);
+        Assert::assertNotInstanceOf(FileExceptionInterface::class, $error);
+    }
+
+    $map = $this->createMock(MimeMapInterface::class);
+    $cause = new DetectorException('Mapping backend failed.');
+    $map->method('getExtension')->willThrowException($cause);
+    try {
+        (new FinfoDetector($map))->detectExtension('plain text');
+        Assert::fail('Expected detection failure.');
+    } catch (DetectorExceptionInterface $error) {
+        Assert::assertSame($cause, $error);
+        Assert::assertNotInstanceOf(FileExceptionInterface::class, $error);
+        Assert::assertNotInstanceOf(StreamExceptionInterface::class, $error);
+    }
+});
+
+test('unexpected stream defects propagate unchanged when restoration succeeds', function (): void {
+    $error = new \LogicException('Implementation defect.');
+    $stream = $this->createMock(StreamInterface::class);
+    $stream->method('isReadable')->willReturn(true);
+    $stream->method('isSeekable')->willReturn(true);
+    $stream->method('tell')->willReturn(4);
+    $stream->method('eof')->willReturn(false);
+    $stream->method('read')->willThrowException($error);
+    $stream->expects(TestCase::once())->method('seek')->with(4);
+    try {
+        (new FinfoDetector())->detectMimeType($stream);
+        Assert::fail('Expected original programming error.');
+    } catch (\LogicException $caught) {
+        Assert::assertSame($error, $caught);
+    }
+});
+
+test('restoration failure preserves an unexpected original error', function (): void {
+    $read = new \LogicException('Implementation defect.');
+    $restore = new \RuntimeException('Restoration failure.');
+    $stream = $this->createMock(StreamInterface::class);
+    $stream->method('isReadable')->willReturn(true);
+    $stream->method('isSeekable')->willReturn(true);
+    $stream->method('tell')->willReturn(4);
+    $stream->method('eof')->willReturn(false);
+    $stream->method('read')->willThrowException($read);
+    $stream->expects(TestCase::once())->method('seek')->with(4)->willThrowException($restore);
+    try {
+        (new FinfoDetector())->detectMimeType($stream);
+        Assert::fail('Expected restoration failure.');
+    } catch (StreamPositionRestoreExceptionInterface $error) {
+        Assert::assertSame($restore, $error->getPrevious());
+        Assert::assertSame($read, $error->readFailure);
+        Assert::assertNotInstanceOf(DetectorExceptionInterface::class, $error);
+    }
+});
+
+test('unexpected map programming errors are not converted into detection errors', function (): void {
+    $cause = new \LogicException('Map implementation defect.');
+    $map = $this->createMock(MimeMapInterface::class);
+    $map->method('getExtension')->willThrowException($cause);
+    try {
+        (new FinfoDetector($map))->detectExtension('plain text');
+        Assert::fail('Expected original error.');
+    } catch (\LogicException $error) {
+        Assert::assertSame($cause, $error);
+    }
+});
+
+test('file errors do not escape to the application warning handler and the handler is restored', function (): void {
+    $handler = static function (): never {
+        throw new \LogicException('Unexpected application warning.');
+    };
+    set_error_handler($handler);
+    try {
+        try {
+            (new FinfoDetector())->detectFileMimeType(__DIR__ . '/missing.txt');
+            Assert::fail('Expected unavailable file.');
+        } catch (FileUnavailableException) {
+            Assert::assertTrue(true);
+        }
+        $previous = set_error_handler(static fn(): bool => false);
+        restore_error_handler();
+        Assert::assertSame($handler, $previous);
+    } finally {
+        restore_error_handler();
+    }
+});
+
+test('file detection accepts a symlink to a regular file without modifying its contents', function (): void {
+    if (!function_exists('symlink')) {
+        $this->markTestSkipped('Symlinks are unavailable.');
+    }
+    $path = tempnam(sys_get_temp_dir(), 'mime-link');
+    Assert::assertIsString($path);
+    $link = $path . '.link';
+    try {
+        file_put_contents($path, 'plain text');
+        if (!@symlink($path, $link)) {
+            $this->markTestSkipped('Cannot create symbolic link.');
+        }
+        Assert::assertSame('text/plain', (new FinfoDetector())->detectFileMimeType($link)?->value);
+        Assert::assertSame('plain text', file_get_contents($path));
+    } finally {
+        if (is_link($link)) {
+            unlink($link);
+        }
+        unlink($path);
+    }
+});
+
+
+test('file reader preserves both a read error and a failed close', function (): void {
+    if (!function_exists('proc_open')) {
+        $this->markTestSkipped('Subprocess support is unavailable.');
+    }
+
+    $path = tempnam(sys_get_temp_dir(), 'mime-cleanup');
+    Assert::assertIsString($path);
+    try {
+        file_put_contents($path, 'plain text');
+        $process = proc_open(
+            [PHP_BINARY, __DIR__ . '/fixtures/file-cleanup-failure.php', $path],
+            [0 => ['pipe', 'r'], 1 => ['pipe', 'w'], 2 => ['pipe', 'w']],
+            $pipes,
+        );
+        Assert::assertIsResource($process);
+        fclose($pipes[0]);
+        $output = stream_get_contents($pipes[1]);
+        $errors = stream_get_contents($pipes[2]);
+        fclose($pipes[1]);
+        fclose($pipes[2]);
+        Assert::assertSame(0, proc_close($process), (string) $errors);
+        Assert::assertSame("Both failures preserved; handler restored.\n", $output);
+    } finally {
+        unlink($path);
+    }
+});
+
+test('a real unreadable regular file is classified as a file acquisition failure', function (): void {
+    $path = tempnam(sys_get_temp_dir(), 'mime-permission');
+    Assert::assertIsString($path);
+    try {
+        file_put_contents($path, 'plain text');
+        chmod($path, 0000);
+        clearstatcache(true, $path);
+        if (is_readable($path)) {
+            $this->markTestSkipped('Current privileges permit reading the file.');
+        }
+        try {
+            (new FinfoDetector())->detectFileMimeType($path);
+            Assert::fail('Expected a file acquisition failure.');
+        } catch (FileExceptionInterface $error) {
+            Assert::assertTrue($error instanceof FileReadException || $error instanceof FileUnavailableException);
+            Assert::assertNotInstanceOf(DetectorExceptionInterface::class, $error);
+        }
+    } finally {
+        chmod($path, 0600);
+        unlink($path);
+    }
 });

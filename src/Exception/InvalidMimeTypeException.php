@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Componenta\Detector;
+namespace Componenta\Detector\Exception;
 
 class InvalidMimeTypeException extends \InvalidArgumentException
 {

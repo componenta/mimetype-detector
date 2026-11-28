@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Componenta\Detector\Internal;
 
-use Componenta\Detector\InvalidMimeTypeException;
+use Componenta\Detector\Exception\InvalidMimeTypeException;
 
 /** @internal Parses concrete media types, not Accept media ranges. */
 final class MediaTypeParser
@@ -12,7 +12,10 @@ final class MediaTypeParser
     private const NAME = '[a-zA-Z0-9][a-zA-Z0-9!#$&^_.+-]{0,126}';
     private const TOKEN = '[!#$%&\'*+.^_\x60|~0-9a-zA-Z-]+';
 
-    /** @return array{string, string, array<array-key, string>} */
+    /**
+     * @return array{string, string, array<array-key, string>}
+     * @throws InvalidMimeTypeException
+     */
     public static function parse(string $input): array
     {
         // Do not trim CR/LF or other prohibited control bytes away.

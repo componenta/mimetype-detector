@@ -1,6 +1,8 @@
 name: Check
 
 on:
+  push:
+    branches: ['refactor/mimetype-detector-v3']
   pull_request:
   workflow_dispatch:
 
@@ -29,11 +31,8 @@ jobs:
       - name: Verify Config 4 and DI 6 integration
         if: matrix.php == '8.5'
         env:
-          COMPOSER_ROOT_VERSION: 2.0.x-dev
+          COMPOSER_ROOT_VERSION: 3.0.x-dev
         run: |
-          composer config repositories.validation-compat vcs https://github.com/componenta/validation.git
           composer require --dev --no-interaction --prefer-dist --with-all-dependencies \
-            'componenta/di:dev-main#e203077d12048936f078d37d1cf3badd661e1716' \
-            'componenta/validation:dev-compat/mimetype-detector-v2#59abbe8d1388fe9ccc016c12dc12a2de389685f7'
+            'componenta/di:dev-main#e203077d12048936f078d37d1cf3badd661e1716'
           php tests/integration/config-consumer.php vendor/autoload.php
-          php vendor/bin/phpunit --bootstrap vendor/autoload.php vendor/componenta/validation/tests/RegressionTest.php --filter testMimeRule

@@ -8,6 +8,7 @@ final readonly class Ext implements \Stringable
 {
     public string $value;
 
+    /** @throws \InvalidArgumentException */
     public function __construct(string $value)
     {
         $normalized = strtolower(str_starts_with($value, '.') ? substr($value, 1) : $value);

@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Componenta\Detector;
 
+use Componenta\Detector\Factory\FinfoDetectorFactory;
+
 class ConfigProvider extends \Componenta\Config\ConfigProvider
 {
     protected function getInvokables(): array

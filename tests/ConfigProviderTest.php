@@ -26,3 +26,12 @@ test('provider registers factory and all aliases', function (): void {
     Assert::assertInstanceOf(DetectorInterface::class, $detector);
     Assert::assertSame('custom', $detector->detectExtension('plain text')?->value);
 });
+
+
+test('an invalid container map binding is a configuration failure', function (): void {
+    $factory = (new ConfigProvider())()[ConfigKey::DEPENDENCIES][ConfigKey::FACTORIES][FinfoDetector::class];
+    $container = $this->createMock(ContainerInterface::class);
+    $container->expects(TestCase::once())->method('get')->with(MimeMapInterface::class)->willReturn(new \stdClass());
+    $this->expectException(\Componenta\Detector\Exception\DetectorConfigurationException::class);
+    $factory($container, []);
+});

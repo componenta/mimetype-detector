@@ -4,7 +4,8 @@ declare(strict_types=1);
 
 namespace Componenta\Detector\Tests;
 
-use Componenta\Detector\{InvalidMimeTypeException, MimeType};
+use Componenta\Detector\Exception\InvalidMimeTypeException;
+use Componenta\Detector\MimeType;
 use Componenta\Detector\MimeTypes\{Application, Video};
 use PHPUnit\Framework\Assert;
 

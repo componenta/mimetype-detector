@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Componenta\Detector;
 
+use Componenta\Detector\Exception\InvalidMimeTypeException;
+
 final class MimeMap implements MimeMapInterface
 {
     /** @var array<string, list<string>> */
@@ -21,6 +23,7 @@ final class MimeMap implements MimeMapInterface
      * Add or merge mappings atomically. Existing MIME and extension order is retained.
      *
      * @param array<string, list<string>> $map
+     * @throws \InvalidArgumentException
      */
     public function extend(array $map, bool $override = false): self
     {
@@ -37,6 +40,7 @@ final class MimeMap implements MimeMapInterface
         return $this;
     }
 
+    /** @throws InvalidMimeTypeException */
     public function remove(string ...$mimeTypes): self
     {
         $next = $this->mimeToExt;
@@ -48,7 +52,10 @@ final class MimeMap implements MimeMapInterface
         return $this;
     }
 
-    /** @param array<string, list<string>> $map */
+    /**
+     * @param array<string, list<string>> $map
+     * @throws \InvalidArgumentException
+     */
     public function setMap(array $map): self
     {
         $this->replace(self::normalizeMap($map));
@@ -65,6 +72,7 @@ final class MimeMap implements MimeMapInterface
     /**
      * @param array<array-key, mixed> $map
      * @return array<string, list<string>>
+     * @throws \InvalidArgumentException
      */
     private static function normalizeMap(array $map): array
     {

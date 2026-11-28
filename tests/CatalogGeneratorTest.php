@@ -11,7 +11,7 @@ test('catalog generation rejects invalid records without changing generated sour
     $tmp = sys_get_temp_dir() . '/mime-catalog-' . bin2hex(random_bytes(8));
     $paths = [
         'scripts/generate-catalog.php',
-        'src/InvalidMimeTypeException.php',
+        'src/Exception/InvalidMimeTypeException.php',
         'src/Internal/MediaTypeParser.php',
         'src/Ext.php',
         'src/Internal/DefaultMimeMap.php',

@@ -2,16 +2,14 @@
 
 declare(strict_types=1);
 
-namespace Componenta\Detector;
+namespace Componenta\Detector\Exception;
 
-use Throwable;
-
-/** The original position could not be restored; the stream may be unusable. */
-final class StreamPositionRestoreException extends DetectorException
+/** The original stream position could not be restored. */
+final class StreamPositionRestoreException extends \RuntimeException implements StreamPositionRestoreExceptionInterface
 {
     public function __construct(
-        Throwable $restorationFailure,
-        public readonly ?DetectorException $readFailure = null,
+        \Throwable $restorationFailure,
+        public readonly ?\Throwable $readFailure = null,
     ) {
         parent::__construct(
             $readFailure === null

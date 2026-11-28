@@ -1,139 +1,588 @@
 # Componenta MIME Type Detector
 
-MIME type and file extension detection with immutable value objects, a configurable extension catalog and PHP fileinfo.
+[Русский](README.ru.md)
+
+Detect MIME types and preferred extensions from content using a configurable extension map.
 
 ## Installation
 
-```bash
-composer require componenta/mimetype-detector
+```sh
+composer require componenta/mimetype-detector:dev-refactor/mimetype-detector-v3
 ```
 
-Requires PHP 8.4+, ext-fileinfo, PSR-7 2.x and Componenta Config 4.x. The package works without a DI container; its ConfigProvider integrates it with Componenta applications.
+Documentation for version 3.x (development branch). Requires PHP 8.4+, ext-fileinfo, PSR-7 2.x and Componenta Config 4.x. A DI container is not required for standalone use. [Upgrade guide](UPGRADE.md).
 
-## MIME type and extension values
-
-```php
-use Componenta\Detector\Ext;
-use Componenta\Detector\MimeType;
-
-$mime = new MimeType('Text/HTML; charset=UTF-8; name="a;b.html"');
-
-$mime->value;                 // text/html
-$mime->type;                  // text
-$mime->subtype;               // html
-$mime->charset;               // utf-8
-$mime->boundary;              // null
-$mime->parameters;            // ['charset' => 'utf-8', 'name' => 'a;b.html']
-$mime->raw;                   // original input
-$mime->getParameter('NAME');  // a;b.html
-$mime->hasParameters();       // true
-(string) $mime;               // text/html, without parameters
-
-$mime->equals('TEXT/HTML');   // true
-$mime->equals('text/*');      // false
-$mime->matches('text/*');     // true
-$mime->matches('*/*');        // true
-
-$ext = new Ext('.TAR.GZ');
-$ext->value;                  // tar.gz
-$ext->withDot();              // .tar.gz
-$ext->equals('tar.gz');       // true
-```
-
-MimeType parses concrete type/subtype names using the RFC 6838 name grammar and HTTP media type parameter syntax (RFC 9110). Quoted strings, escapes, semicolons inside quoted values and empty quoted values are supported. Names and charset labels are case-insensitive; other parameter values retain their case. Duplicate parameter names, wildcards in concrete types, malformed parameters and prohibited control characters are rejected. MimeType::isValid() and MimeType::tryCreate() use the same parser; the constructor throws InvalidMimeTypeException.
-
-equals() compares normalized type/subtype and deliberately ignores parameters. matches() supports exact bare types, type wildcards and the universal wildcard; it does not parse an Accept header, parameter constraints or quality weights. Both methods accept multiple candidates and return false for no match.
-
-The category methods isImage(), isAudio(), isVideo(), isText(), isApplication(), isModel(), isMessage(), isMultipart() and isMedia() classify the MIME type name. isFont() also recognizes known legacy application/font labels. These are classifications, not content validation. The toImageEnum(), toAudioEnum(), toVideoEnum(), toTextEnum(), toApplicationEnum(), toFontEnum(), toModelEnum(), toMessageEnum() and toMultipartEnum() methods return the corresponding enum case or null.
-
-Ext accepts a simple or compound ASCII extension, optionally prefixed by a single dot. Empty values, paths and malformed extensions are rejected with InvalidArgumentException; Ext::tryCreate() returns null instead. Neither value object performs I/O or creates detection services.
-
-## Detection
+## Quick start
 
 ```php
 use Componenta\Detector\FinfoDetector;
 
-$detector = new FinfoDetector(maxBytes: 8192);
-
+$detector = new FinfoDetector();
 $mime = $detector->detectMimeType('plain text');
-$mime?->value; // text/plain
+$extension = $detector->detectExtension('plain text');
 
-$ext = $detector->detectExtension('plain text');
-$ext?->value;  // txt
-
-$mime = $detector->detectFileMimeType('/path/to/file.txt');
-$ext = $detector->detectFileExtension('/path/to/file.txt');
-
-// For a PSR-7 StreamInterface:
-$mime = $detector->detectMimeType($stream);
+echo $mime?->value;       // text/plain
+echo $extension?->value;  // txt
 ```
 
-All four detection methods return nullable value objects, never a string or boolean. Raw strings are content, not paths. File and stream reads and string detection use the same configurable positive byte limit (8192 by default). Seekable streams are read from the beginning and their original position is restored, including on read failures when restoration is possible. Non-seekable streams are consumed from the current position. Failure to restore the original position throws StreamPositionRestoreException: getPrevious() contains the restoration error, and readFailure retains any earlier read failure. A read that makes no progress before EOF fails rather than spinning. Use blocking, readable streams with appropriate timeouts.
+For a local file, use `detectFileMimeType($path)` or `detectFileExtension($path)`. A string passed to a content method always means bytes, not a path.
 
-File methods accept caller-authorized regular local filesystem paths; directories, special files and stream wrapper URLs are rejected. Missing files throw FileNotFoundException, invalid or unreadable file sources throw FileNotReadableException, and other I/O or detection failures throw DetectorException. On POSIX, the file is opened with a non-blocking open flag and its opened handle is checked to mitigate FIFO substitution between path checks and opening. A file path is not an access control boundary: enforce authorized paths in the application, including symlink policy and races. Empty content returns null. The backend may return application/octet-stream when it cannot identify a more specific type.
+## Detection API
 
-Fileinfo provides a heuristic result, which may vary across libmagic/PHP versions and with the inspected prefix. Increasing the byte limit can improve detection of some structured formats but cannot guarantee complete format validation. Extension detection consults only the configured MIME map, selecting its primary extension. It never trusts the file name, and returns null if the detected type has no mapped extension.
+### [`FinfoDetector`](src/FinfoDetector.php)
 
-## MIME map
+Default implementation of all four detection contracts. Use directly or through a container.
+
+#### `__construct()`
+
+`__construct(?MimeMapInterface $mimeMap = null, int $maxBytes = 8192)`
+
+Creates a detector.
+
+| Argument | Description |
+| --- | --- |
+| `$mimeMap` | Extension map. `null` uses the default `MimeMap`. |
+| `$maxBytes` | Positive maximum number of bytes inspected for any source. |
+
+**Exceptions:** `DetectorConfigurationException`.
+
+
+#### `detectMimeType()`
+
+`detectMimeType(string|StreamInterface $content): ?MimeType`
+
+Detects a MIME type from content.
+
+| Argument | Description |
+| --- | --- |
+| `$content` | Content bytes or a PSR-7 stream. A string is not a path. |
+
+**Returns:** `MimeType`, or `null` if no result is available.
+
+**Exceptions:** `DetectorException`, `StreamExceptionInterface`.
+
+
+#### `detectFileMimeType()`
+
+`detectFileMimeType(string $filename): ?MimeType`
+
+Detects a MIME type from the beginning of a local file.
+
+| Argument | Description |
+| --- | --- |
+| `$filename` | An application-authorized path to a regular local file. |
+
+**Returns:** `MimeType`, or `null` if no result is available.
+
+**Exceptions:** `DetectorException`, `FileExceptionInterface`.
+
+
+#### `detectExtension()`
+
+`detectExtension(string|StreamInterface $content): ?Ext`
+
+Resolves the preferred extension for the detected MIME type using the configured map.
+
+| Argument | Description |
+| --- | --- |
+| `$content` | Content bytes or a PSR-7 stream. A string is not a path. |
+
+**Returns:** `Ext`, or `null` if no MIME type or mapped extension is available.
+
+**Exceptions:** `DetectorExceptionInterface`, `StreamExceptionInterface`.
+
+
+#### `detectFileExtension()`
+
+`detectFileExtension(string $filename): ?Ext`
+
+Resolves the preferred extension from local file content. The filename is not used for detection.
+
+| Argument | Description |
+| --- | --- |
+| `$filename` | An application-authorized path to a regular local file. |
+
+**Returns:** `Ext`, or `null` if no MIME type or mapped extension is available.
+
+**Exceptions:** `DetectorExceptionInterface`, `FileExceptionInterface`.
+
+
+### Contracts
+
+| Interface | Operations |
+| --- | --- |
+| [MimeTypeDetectorInterface](src/MimeTypeDetectorInterface.php) | `detectMimeType()` |
+| [FileMimeTypeDetectorInterface](src/FileMimeTypeDetectorInterface.php) | `detectFileMimeType()` |
+| [ExtensionDetectorInterface](src/ExtensionDetectorInterface.php) | `detectExtension()` |
+| [FileExtensionDetectorInterface](src/FileExtensionDetectorInterface.php) | `detectFileExtension()` |
+| [DetectorInterface](src/DetectorInterface.php) | All four operations |
+
+Depend on the narrow contract you need. Custom implementations report detection failures through `DetectorExceptionInterface` and source acquisition failures through the relevant file or stream interface. Stream failures apply only to stream input.
+
+### Sources and limits
+
+All sources are inspected within `maxBytes`. Seekable streams are read from the beginning and their position is restored on success and failure. Non-seekable streams consume the inspected prefix from the current position. The caller retains ownership of the stream. Failure to restore position raises a distinct exception.
+
+Local files are not modified. URLs, stream wrappers, directories and special files are rejected. Symlinks to regular files are allowed; the application must authorize the path. A bounded prefix does not guarantee full-format validity, safety, processing time or absolute memory usage. Use readable blocking streams with appropriate timeouts.
+
+Empty content yields `null`. Fileinfo may return `application/octet-stream` for unknown formats. Detection is heuristic and depends on PHP/libmagic and the inspected prefix.
+
+## [`MimeType`](src/MimeType.php)
+
+```php
+use Componenta\Detector\MimeType;
+
+$mime = new MimeType('Text/HTML; charset=UTF-8; name="a;b.html"');
+echo $mime->value; // text/html
+$mime->equals('text/html'); // true
+$mime->matches('text/*');   // true
+```
+
+Immutable concrete MIME type value using RFC 6838 names and RFC 9110 parameter syntax.
+
+| Property | Description |
+| --- | --- |
+| `value: string` | Normalized type/subtype without parameters. |
+| `type: string` | Top-level type. |
+| `subtype: string` | Subtype. |
+| `parameters: array` | Parameters with normalized names; values retain case except charset. |
+| `raw: string` | Original input. |
+| `charset: ?string` | Charset or null. |
+| `boundary: ?string` | Multipart boundary or null. |
+
+#### `__construct()`
+
+`__construct(string $value)`
+
+Validates and normalizes a concrete MIME type. Supports quoted parameters and escapes; rejects duplicates, wildcards and prohibited control characters.
+
+| Argument | Description |
+| --- | --- |
+| `$value` | Media type string with optional parameters. |
+
+**Exceptions:** `InvalidMimeTypeException`.
+
+
+#### `tryCreate()`
+
+`tryCreate(string $value): ?self`
+
+Static method for non-throwing construction.
+
+| Argument | Description |
+| --- | --- |
+| `$value` | Candidate string. |
+
+**Returns:** The object, or `null` for invalid input.
+
+
+#### `isValid()`
+
+`isValid(string $value): bool`
+
+Static method validating the same grammar as the constructor.
+
+| Argument | Description |
+| --- | --- |
+| `$value` | Candidate string. |
+
+**Returns:** `true` if valid.
+
+
+#### `hasParameters()`
+
+`hasParameters(): bool`
+
+Checks whether the media type has parameters.
+
+**Returns:** `true` if parameters are present.
+
+
+#### `getParameter()`
+
+`getParameter(string $name): ?string`
+
+Looks up a parameter by case-insensitive name.
+
+| Argument | Description |
+| --- | --- |
+| `$name` | Parameter name. |
+
+**Returns:** Value or `null`.
+
+
+#### `equals()`
+
+`equals(self|string ...$types): bool`
+
+Compares normalized type/subtype, ignoring parameters. Wildcards are not exact types.
+
+| Argument | Description |
+| --- | --- |
+| `$types` | Zero or more candidate types. |
+
+**Returns:** `true` if any matches; otherwise `false`.
+
+
+#### `matches()`
+
+`matches(string ...$ranges): bool`
+
+Matches bare exact types, `image/*` or `*/*`. Does not parse Accept headers or quality weights.
+
+| Argument | Description |
+| --- | --- |
+| `$ranges` | Candidate types and wildcards. |
+
+**Returns:** `true` if any matches.
+
+
+#### Classification and enums
+
+Classification methods inspect the MIME type name, not content. All methods below take no arguments.
+
+| Signature | Result |
+| --- | --- |
+| `__toString(): string` | Type/subtype without parameters. |
+| `isImage(): bool` | Top-level type is `image`. |
+| `isAudio(): bool` | Top-level type is `audio`. |
+| `isVideo(): bool` | Top-level type is `video`. |
+| `isText(): bool` | Top-level type is `text`. |
+| `isApplication(): bool` | Top-level type is `application`. |
+| `isModel(): bool` | Top-level type is `model`. |
+| `isMessage(): bool` | Top-level type is `message`. |
+| `isMultipart(): bool` | Top-level type is `multipart`. |
+| `isFont(): bool` | Font, including known legacy application/font labels. |
+| `isMedia(): bool` | Image, video or audio. |
+| `toImageEnum(): ?Image` | Matching `Image` enum case or null. |
+| `toAudioEnum(): ?Audio` | Matching `Audio` enum case or null. |
+| `toVideoEnum(): ?Video` | Matching `Video` enum case or null. |
+| `toTextEnum(): ?Text` | Matching `Text` enum case or null. |
+| `toApplicationEnum(): ?Application` | Matching `Application` enum case or null. |
+| `toFontEnum(): ?Font` | Matching `Font` enum case or null. |
+| `toModelEnum(): ?Model` | Matching `Model` enum case or null. |
+| `toMessageEnum(): ?Message` | Matching `Message` enum case or null. |
+| `toMultipartEnum(): ?Multipart` | Matching `Multipart` enum case or null. |
+
+## [`Ext`](src/Ext.php)
+
+```php
+use Componenta\Detector\Ext;
+
+$ext = new Ext('.TAR.GZ');
+echo $ext->value;     // tar.gz
+echo $ext->withDot(); // .tar.gz
+```
+
+Immutable extension value. The `value: string` property contains the normalized suffix without a leading dot.
+
+#### `__construct()`
+
+`__construct(string $value)`
+
+Accepts a simple or compound ASCII extension, optionally with a leading dot. Paths and empty or malformed values are invalid; this does not extract a suffix from a filename.
+
+| Argument | Description |
+| --- | --- |
+| `$value` | Extension. |
+
+**Exceptions:** `InvalidArgumentException`.
+
+
+#### `tryCreate()`
+
+`tryCreate(string $value): ?self`
+
+Static construction without throwing for an invalid extension.
+
+| Argument | Description |
+| --- | --- |
+| `$value` | Extension. |
+
+**Returns:** Object or `null`.
+
+
+#### `equals()`
+
+`equals(self|string ...$extensions): bool`
+
+Checks normalized extension equality.
+
+| Argument | Description |
+| --- | --- |
+| `$extensions` | Candidate extensions. |
+
+**Returns:** `true` if any matches.
+
+
+#### `withDot()`
+
+`withDot(): string`
+
+Returns the extension with a leading dot.
+
+**Returns:** String such as `.tar.gz`.
+
+
+#### `__toString()`
+
+`__toString(): string`
+
+Returns the normalized extension without a leading dot.
+
+**Returns:** String such as `tar.gz`.
+
+
+## [`MimeMap`](src/MimeMap.php)
+
+Configurable extension catalog. Lookup is defined by [MimeMapInterface](src/MimeMapInterface.php). Order matters: the first extension is preferred; reverse lookup selects the first MIME type. Mutations are atomic. An extension association is not evidence of type equivalence or content safety.
 
 ```php
 use Componenta\Detector\FinfoDetector;
 use Componenta\Detector\MimeMap;
 
 $map = new MimeMap();
-$map->getExtension('image/jpeg');      // jpg
-$map->getExtensions('image/jpeg');     // ['jpg', 'jpeg', 'jpe']
-$map->getMimeType('.JPG');             // image/jpeg
-$map->getMimeTypes('xml');             // includes application/xml and text/xml
-$map->hasMimeType('text/plain');       // true
-$map->hasExtension('jpg');             // true
-$map->isValidExtension('image/jpeg', 'jpg'); // true
-
 $map->extend(['application/x-custom' => ['.CUSTOM']]);
-$map->extend(['text/plain' => ['text']], override: true);
-$map->remove('application/x-custom');
-$map->setMap(['text/plain' => ['txt']]);
-
-$map->getAllMimeTypes();
-$map->getAllExtensions();
-$map->getMimeTypesByCategory('text');
-
+$map->getExtension('application/x-custom'); // custom
 $detector = new FinfoDetector($map);
 ```
 
-Map keys use the normalized concrete media type without parameters. Extension lookups and writes use the same Ext normalization. Associations are ordered: the first extension is preferred, and reverse lookup returns the first MIME type for that extension. getMimeTypes() returns all associated types in order, including legacy labels where applicable. Known types may have an empty extension list. Mutations are atomic; invalid input leaves the previous map and index intact. MIME-to-extension mappings are not claims that two different media types are semantically equivalent.
+#### `getExtensions()`
 
-## Enumerations and catalog
+`getExtensions(string $mimeType): array`
 
-The enums under Componenta\Detector\MimeTypes provide canonical lower-case media type values, values() and category-specific curated subsets (for example, Image::common() and Image::commonWebFormats()). Deprecated duplicate case names remain constants referencing the canonical cases. commonWebFormats() indicates common browser-oriented formats, not their safety or guaranteed browser support.
+Gets the extensions for a MIME type.
 
-The editable source is resources/mime-catalog.json. It includes extension associations, legacy extension aliases and enum member names; it is a curated local catalog, not a complete IANA registry. Generate and verify PHP files with:
+| Argument | Description |
+| --- | --- |
+| `$mimeType` | Concrete MIME type; parameters are ignored for lookup. |
 
-```bash
-composer catalog-generate
-composer catalog-check
+**Returns:** Ordered `list<string>`, or an empty list.
+
+
+#### `getExtension()`
+
+`getExtension(string $mimeType): ?string`
+
+Gets the preferred extension.
+
+| Argument | Description |
+| --- | --- |
+| `$mimeType` | Concrete MIME type; parameters are ignored for lookup. |
+
+**Returns:** String or `null`.
+
+
+#### `getMimeType()`
+
+`getMimeType(string $extension): ?string`
+
+Gets the first associated MIME type.
+
+| Argument | Description |
+| --- | --- |
+| `$extension` | Extension, optionally prefixed by a dot. |
+
+**Returns:** String or `null`.
+
+
+#### `getMimeTypes()`
+
+`getMimeTypes(string $extension): array`
+
+Gets all MIME types associated with an extension.
+
+| Argument | Description |
+| --- | --- |
+| `$extension` | Extension, optionally prefixed by a dot. |
+
+**Returns:** Ordered `list<string>`, or an empty list.
+
+
+#### `isValidExtension()`
+
+`isValidExtension(string $mimeType, string $extension): bool`
+
+Checks whether the association exists in the map.
+
+| Argument | Description |
+| --- | --- |
+| `$mimeType` | Concrete MIME type; parameters are ignored for lookup. |
+| `$extension` | Extension, optionally prefixed by a dot. |
+
+**Returns:** `true` if associated.
+
+
+#### `hasMimeType()`
+
+`hasMimeType(string $mimeType): bool`
+
+Checks registration even if the extension list is empty.
+
+| Argument | Description |
+| --- | --- |
+| `$mimeType` | Concrete MIME type; parameters are ignored for lookup. |
+
+**Returns:** `true` if registered.
+
+
+#### `hasExtension()`
+
+`hasExtension(string $extension): bool`
+
+Checks for at least one associated media type.
+
+| Argument | Description |
+| --- | --- |
+| `$extension` | Extension, optionally prefixed by a dot. |
+
+**Returns:** `true` if associated.
+
+
+#### `getAllMimeTypes()`
+
+`getAllMimeTypes(): array`
+
+Gets all registered MIME types.
+
+**Returns:** `list<string>` in map order.
+
+
+#### `getAllExtensions()`
+
+`getAllExtensions(): array`
+
+Gets unique extensions.
+
+**Returns:** `list<string>` in first-registration order.
+
+
+#### `getMimeTypesByCategory()`
+
+`getMimeTypesByCategory(string $category): array`
+
+Gets mappings for a top-level media type.
+
+| Argument | Description |
+| --- | --- |
+| `$category` | For example, `image` or `text`. |
+
+**Returns:** `array<string, list<string>>`.
+
+
+#### `__construct()`
+
+`__construct()`
+
+Creates a map with the default local catalog.
+
+
+#### `extend()`
+
+`extend(array $map, bool $override = false): self`
+
+Adds or merges mappings; preserves existing order.
+
+| Argument | Description |
+| --- | --- |
+| `$map` | MIME types mapped to extension lists (`array<string, list<string>>`). |
+| `$override` | `true` replaces an existing type's list; defaults to merging. |
+
+**Returns:** The same map instance.
+
+**Exceptions:** `InvalidArgumentException`.
+
+
+#### `remove()`
+
+`remove(string ...$mimeTypes): self`
+
+Atomically removes mappings for supplied types.
+
+| Argument | Description |
+| --- | --- |
+| `$mimeTypes` | Concrete MIME type; parameters are ignored for lookup. |
+
+**Returns:** The same map instance.
+
+**Exceptions:** `InvalidMimeTypeException`.
+
+
+#### `setMap()`
+
+`setMap(array $map): self`
+
+Atomically replaces the entire map.
+
+| Argument | Description |
+| --- | --- |
+| `$map` | MIME types mapped to extension lists (`array<string, list<string>>`). |
+
+**Returns:** The same map instance.
+
+**Exceptions:** `InvalidArgumentException`.
+
+
+#### `getDefaultMap()`
+
+`getDefaultMap(): array`
+
+Statically returns the default associations.
+
+**Returns:** `array<string, list<string>>`.
+
+
+## Exceptions
+
+Library exceptions live in `Componenta\Detector\Exception`. The categories are independent.
+
+| Contract | Purpose |
+| --- | --- |
+| `DetectorExceptionInterface` | Detection, extension resolution and configuration failures. |
+| `FileExceptionInterface` | File source acquisition failures. |
+| `StreamExceptionInterface` | Stream reading or positioning failures. |
+| `StreamPositionRestoreExceptionInterface` | Position restoration failure; specializes the stream contract. |
+
+| Exception | Cause |
+| --- | --- |
+| `DetectorException` | Unable to detect a type or resolve an extension. |
+| `DetectorConfigurationException` | Invalid configuration; extends InvalidArgumentException. |
+| `FileUnavailableException` | File is missing or inaccessible during resolution. |
+| `InvalidFileException` | Invalid file path or type. |
+| `FileReadException` | Failure opening, reading, inspecting the opened file or closing it. |
+| `StreamReadException` | Stream reading or initial positioning failure. |
+| `StreamPositionRestoreException` | The original position could not be restored. |
+| `InvalidMimeTypeException` | Invalid MIME type; extends InvalidArgumentException. |
+
+On position restoration failure, `getPrevious()` contains the restoration cause and `readFailure` retains an earlier failure, if any. If file closing also fails, `FileReadException::$readFailure` preserves the preceding failure. Programming errors are not converted to normal negative results.
+
+```php
+use Componenta\Detector\Exception\DetectorExceptionInterface;
+use Componenta\Detector\Exception\FileExceptionInterface;
+
+try {
+    $mime = $detector->detectFileMimeType($path);
+} catch (FileExceptionInterface $error) {
+    // File source failure.
+} catch (DetectorExceptionInterface $error) {
+    // Detection failure.
+}
 ```
+
+## MIME type enumerations
+
+The enums in `Componenta\Detector\MimeTypes` contain canonical lowercase types and a `values()` method. Curated subsets, e.g. `Image::commonWebFormats()`, are not security checks or guarantees of browser support. The catalog is local, not an exhaustive IANA registry.
 
 ## Dependency injection
 
-ConfigProvider registers MimeMap as the default MimeMapInterface, and FinfoDetector via a factory that resolves that interface from the container. DetectorInterface combines four narrow contracts: MimeTypeDetectorInterface, ExtensionDetectorInterface, FileMimeTypeDetectorInterface and FileExtensionDetectorInterface. Each resolves to the same detector service according to the container's service lifetime policy. Override the map binding to customize extension resolution.
+`ConfigProvider` registers `MimeMap` as the default `MimeMapInterface` and `FinfoDetector` through a factory. All four contracts and `DetectorInterface` resolve to the same service according to container lifetime policy. Override `MimeMapInterface` to customize extension resolution.
 
-To verify integration in a consumer with Config 4, DI 6 and this package version installed:
+```php
+use Componenta\Detector\MimeTypeDetectorInterface;
 
-```bash
-php tests/integration/config-consumer.php /path/to/consumer/vendor/autoload.php
+$detector = $container->get(MimeTypeDetectorInterface::class);
 ```
 
 ## Security
 
-MIME and extension detection alone cannot establish file safety, authenticity or full format validity. Never authorize uploads or inline web rendering using only these values. Validate content independently, use an explicit allowlist, apply size limits and use appropriate response headers, isolation and storage policy. HTML, JavaScript, SVG and other types can contain active content.
-
-## Development
-
-```bash
-composer install
-composer check
-composer bench
-```
-
-Tests use Pest. PHPStan analyzes the production source at its maximum level; PHPBench measures the principal public operations. Run the checks with both PHP 8.4 and 8.5. The release workflow verifies a release commit before publishing.
+MIME types and extensions do not prove file safety, authenticity or full format validity. Validate content independently, use allowlists, size limits, appropriate response headers, isolation and storage policy. HTML, JavaScript, SVG and other formats can contain active content.

@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Componenta\Detector;
 
+use Componenta\Detector\Exception\InvalidMimeTypeException;
 use Componenta\Detector\Internal\MediaTypeParser;
 use Componenta\Detector\MimeTypes\{Application, Audio, Font, Image, Message, Model, Multipart, Text, Video};
 
@@ -20,6 +21,7 @@ final readonly class MimeType implements \Stringable
     public ?string $charset;
     public ?string $boundary;
 
+    /** @throws InvalidMimeTypeException */
     public function __construct(string $value)
     {
         [$type, $subtype, $parameters] = MediaTypeParser::parse($value);
