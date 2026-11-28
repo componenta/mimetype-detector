@@ -10,7 +10,7 @@ Detect MIME types and preferred extensions from content using a configurable ext
 composer require componenta/mimetype-detector:^2.0
 ```
 
-Documentation for the revised version 2.0.0. Requires PHP 8.4+, ext-fileinfo, PSR-7 2.x, Componenta Config 4.x and [Componenta File Reader 1.x](https://github.com/componenta/file-reader). A DI container is not required for standalone use. [Upgrade guide](UPGRADE.md).
+Documentation for the revised version 2.0.0. Requires PHP 8.4+, ext-fileinfo, PSR-7 2.x, Componenta Config 4.x and [Componenta File Reader 1.x](https://github.com/componenta/file-reader) and [Componenta Stream Reader 1.x](https://github.com/componenta/stream-reader). A DI container is not required for standalone use. [Upgrade guide](UPGRADE.md).
 
 ## Quick start
 

@@ -47,3 +47,5 @@ Extension detection now uses the injected map as its sole source and returns its
 Enum backed values are normalized to lowercase. Previously duplicated case names are constants referring to their canonical cases, so they are not separate entries in cases(). Serialized enum case names and stored media type strings may need migration. The package now requires Componenta Config 4.x.
 
 The detector does not guarantee file safety or exact identification. File paths must be authorized by the application. Non-seekable stream reads consume the prefix.
+
+- Stream acquisition uses `componenta/stream-reader:^1.0`; seekable streams still restore their original position, nonseekable streams consume a bounded prefix, and the detector retains its stream exception contract.
