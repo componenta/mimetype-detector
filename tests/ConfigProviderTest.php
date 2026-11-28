@@ -49,7 +49,8 @@ test('the invokable factory validates resolver bindings through ContainerValue',
         Assert::fail('Expected a detector configuration failure.');
     } catch (DetectorConfigurationException $error) {
         Assert::assertInstanceOf(InvalidContainerValueException::class, $error->getPrevious());
-        Assert::assertStringContainsString(ExtensionResolverInterface::class, $error->getMessage());
+        Assert::assertSame('The configured extension resolver must implement ExtensionResolverInterface.', $error->getMessage());
+        Assert::assertStringContainsString(ExtensionResolverInterface::class, $error->getPrevious()->getMessage());
     }
 })->with([
     'unrelated object' => [new \stdClass()],
