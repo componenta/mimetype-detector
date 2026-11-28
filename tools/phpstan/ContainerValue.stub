@@ -1,0 +1,23 @@
+<?php
+
+namespace Componenta\Config;
+
+use Componenta\Config\Exception\InvalidContainerValueException;
+use Psr\Container\ContainerExceptionInterface;
+
+/**
+ * Config 4's get() implementation throws on typed lookup mismatch, but the
+ * released method's PHPDoc omits that exception. Remove this stub once the
+ * minimum supported Config release declares the exception contract itself.
+ */
+final readonly class ContainerValue
+{
+    /**
+     * @template T of object
+     * @param class-string<T>|null $type
+     * @return ($type is null ? mixed : T)
+     * @throws InvalidContainerValueException
+     * @throws ContainerExceptionInterface
+     */
+    public function get(string $id, ?string $type = null): mixed {}
+}
