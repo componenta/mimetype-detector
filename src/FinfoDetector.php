@@ -26,7 +26,15 @@ final readonly class FinfoDetector implements DetectorInterface
             throw new DetectorConfigurationException('The detection byte limit must be positive.');
         }
 
-        $this->finfo = new finfo(FILEINFO_MIME_TYPE);
+        set_error_handler(self::throwNativeWarning(...), E_WARNING | E_NOTICE);
+        try {
+            $this->finfo = new finfo(FILEINFO_MIME_TYPE);
+        } catch (\Exception|\ValueError $error) {
+            // Fileinfo's constructor throws a plain Exception if libmagic cannot initialize.
+            throw new DetectorConfigurationException('Unable to initialize MIME detection.', previous: $error);
+        } finally {
+            restore_error_handler();
+        }
         $this->mimeMap = $mimeMap ?? new MimeMap();
     }
 
@@ -69,10 +77,13 @@ final readonly class FinfoDetector implements DetectorInterface
             return null;
         }
 
+        set_error_handler(self::throwNativeWarning(...), E_WARNING | E_NOTICE);
         try {
-            $value = @$this->finfo->buffer($buffer);
+            $value = $this->finfo->buffer($buffer);
         } catch (\ErrorException|\ValueError $error) {
             throw new DetectorException('Unable to classify content.', previous: $error);
+        } finally {
+            restore_error_handler();
         }
 
         if ($value === false) {
@@ -84,6 +95,11 @@ final readonly class FinfoDetector implements DetectorInterface
 
         return MimeType::tryCreate($value)
             ?? throw new DetectorException('The MIME detection backend returned an invalid media type.');
+    }
+
+    private static function throwNativeWarning(int $severity, string $message): never
+    {
+        throw new \ErrorException($message, 0, $severity);
     }
 
     /** @throws DetectorExceptionInterface */

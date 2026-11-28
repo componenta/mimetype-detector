@@ -512,3 +512,24 @@ test('a real unreadable regular file is classified as a file acquisition failure
         unlink($path);
     }
 });
+
+test('native initialization failure is a configuration failure and restores the warning handler', function (): void {
+    if (!function_exists('proc_open') || !function_exists('putenv')) {
+        $this->markTestSkipped('Subprocess and environment support required.');
+    }
+
+    $process = proc_open(
+        [PHP_BINARY, __DIR__ . '/fixtures/finfo-initialization-failure.php'],
+        [0 => ['pipe', 'r'], 1 => ['pipe', 'w'], 2 => ['pipe', 'w']],
+        $pipes,
+    );
+    Assert::assertIsResource($process);
+    fclose($pipes[0]);
+    $output = stream_get_contents($pipes[1]);
+    $errors = stream_get_contents($pipes[2]);
+    fclose($pipes[1]);
+    fclose($pipes[2]);
+
+    Assert::assertSame(0, proc_close($process), (string) $errors);
+    Assert::assertSame("Configuration failure preserved; handler restored.\n", $output);
+});
