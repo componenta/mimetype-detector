@@ -533,3 +533,43 @@ test('native initialization failure is a configuration failure and restores the 
     Assert::assertSame(0, proc_close($process), (string) $errors);
     Assert::assertSame("Configuration failure preserved; handler restored.\n", $output);
 });
+
+test('unexpected stream state-query failures propagate unchanged', function (string $method): void {
+    $error = new \RuntimeException('Unexpected state query failure.');
+    $stream = $this->createMock(StreamInterface::class);
+    if ($method !== 'isReadable') {
+        $stream->method('isReadable')->willReturn(true);
+    }
+    if ($method === 'eof') {
+        $stream->method('isSeekable')->willReturn(true);
+        $stream->method('tell')->willReturn(4);
+        $stream->expects(TestCase::once())->method('seek')->with(4);
+    } else {
+        $stream->expects(TestCase::never())->method('seek');
+    }
+    $stream->method($method)->willThrowException($error);
+    $stream->expects(TestCase::never())->method('read');
+
+    try {
+        (new FinfoDetector())->detectMimeType($stream);
+        Assert::fail('Expected the original stream state-query failure.');
+    } catch (\RuntimeException $caught) {
+        Assert::assertSame($error, $caught);
+    }
+})->with(['isReadable', 'isSeekable', 'eof']);
+
+test('a declared stream read failure is not wrapped again', function (): void {
+    $error = new StreamReadException('Already classified.');
+    $stream = $this->createStub(StreamInterface::class);
+    $stream->method('isReadable')->willReturn(true);
+    $stream->method('isSeekable')->willReturn(false);
+    $stream->method('eof')->willReturn(false);
+    $stream->method('read')->willThrowException($error);
+
+    try {
+        (new FinfoDetector())->detectMimeType($stream);
+        Assert::fail('Expected the original stream failure.');
+    } catch (StreamReadException $caught) {
+        Assert::assertSame($error, $caught);
+    }
+});

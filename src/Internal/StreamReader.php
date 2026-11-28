@@ -25,8 +25,12 @@ final class StreamReader
                 throw new StreamReadException('Stream is not readable.');
             }
             if ($stream->isSeekable()) {
-                $position = $stream->tell();
-                $stream->rewind();
+                try {
+                    $position = $stream->tell();
+                    $stream->rewind();
+                } catch (\RuntimeException $error) {
+                    throw self::readFailure($error);
+                }
             }
 
             $content = '';
@@ -38,7 +42,11 @@ final class StreamReader
                 }
 
                 $length = min(self::READ_CHUNK_BYTES, $remaining);
-                $chunk = $stream->read($length);
+                try {
+                    $chunk = $stream->read($length);
+                } catch (\RuntimeException $error) {
+                    throw self::readFailure($error);
+                }
                 $bytes = strlen($chunk);
                 if ($bytes > $length) {
                     throw new StreamReadException('Stream returned more bytes than requested.');
@@ -50,10 +58,8 @@ final class StreamReader
 
             return $content;
         } catch (\Throwable $error) {
-            $failure = $error instanceof \RuntimeException && !$error instanceof StreamExceptionInterface
-                ? new StreamReadException('Unable to read stream content.', previous: $error)
-                : $error;
-            throw $failure;
+            $failure = $error;
+            throw $error;
         } finally {
             if ($position !== null) {
                 try {
@@ -63,5 +69,12 @@ final class StreamReader
                 }
             }
         }
+    }
+
+    private static function readFailure(\RuntimeException $error): \RuntimeException
+    {
+        return $error instanceof StreamExceptionInterface
+            ? $error
+            : new StreamReadException('Unable to read stream content.', previous: $error);
     }
 }
