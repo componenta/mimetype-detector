@@ -1,8 +1,8 @@
-# Upgrading to 3.x
+# Migrating to the revised 2.0.0 edition
 
-This major version reorganizes the exception and factory namespaces and separates detection failures from source I/O failures.
+The revised 2.0.0 edition reorganizes exception and factory namespaces and separates detection failures from source I/O failures. It replaces the original 2.0.0 edition; existing consumers must review these source-level changes even though the version number is retained.
 
-| 2.x | 3.x |
+| Original 2.0.0 | Revised 2.0.0 |
 | --- | --- |
 | `Componenta\Detector\DetectorException` | `Componenta\Detector\Exception\DetectorException` |
 | `FileNotFoundException` | `Exception\FileUnavailableException` (missing or inaccessible path) |
@@ -16,13 +16,13 @@ Names in the table are relative to `Componenta\Detector` unless fully qualified.
 - Catch detection failures through `Exception\DetectorExceptionInterface`, file failures through `Exception\FileExceptionInterface`, and stream failures through `Exception\StreamExceptionInterface`. The three categories are independent. A single catch of the old `DetectorException` no longer covers source I/O.
 - Stream restoration failures implement `Exception\StreamPositionRestoreExceptionInterface`; `getPrevious()` retains the restoration cause and `readFailure` may be any earlier throwable.
 - Invalid detector configuration is reported as `Exception\DetectorConfigurationException` (an `InvalidArgumentException`). Invalid MIME types remain argument errors.
-- Detector method names, parameters, nullable value results, map APIs and DI service identifiers are unchanged. Local file methods continue to read at most the configured prefix. Symbolic links to regular files are allowed; non-local paths and special files are rejected.
+- Detector method names, parameter names, nullable value results, existing map APIs and DI service identifiers are unchanged. The detector now accepts the narrower `ExtensionResolverInterface`; existing `MimeMapInterface` implementations remain valid. Local file methods continue to read at most the configured prefix. Symbolic links to regular files are allowed; non-local paths and special files are rejected.
 - Programming errors in injected maps and streams are not blanket-converted into ordinary detector failures. Custom MIME maps must implement `Exception\DetectorExceptionInterface` on expected lookup failures; undeclared exceptions propagate unchanged.
-- Consumers pinned to `^2.0` must explicitly migrate to `^3.0` before installing this version. In particular, callers that catch the old detector exception (including image converter/compressor) must update their exception translation. No changes to those packages are included in this branch.
+- Consumers pinned to `^2.0` must review these changes before updating the revised edition. In particular, callers that catch the old detector exception (including image converter/compressor) must update their exception translation. No changes to those packages are included in this branch. Existing lockfiles or cached archives may still refer to the original commit; verify the resolved source reference when migrating.
 
 ---
 
-## Upgrading to 2.x
+## Upgrading from 1.x to 2.0.0
 
 This version changes the public contracts.
 

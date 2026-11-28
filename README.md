@@ -10,7 +10,7 @@ Detect MIME types and preferred extensions from content using a configurable ext
 composer require componenta/mimetype-detector:dev-refactor/mimetype-detector-v3
 ```
 
-Documentation for version 3.x (development branch). Requires PHP 8.4+, ext-fileinfo, PSR-7 2.x and Componenta Config 4.x. A DI container is not required for standalone use. [Upgrade guide](UPGRADE.md).
+Documentation for the revised version 2.0.0 (development branch). Requires PHP 8.4+, ext-fileinfo, PSR-7 2.x and Componenta Config 4.x. A DI container is not required for standalone use. [Upgrade guide](UPGRADE.md).
 
 ## Quick start
 
@@ -35,16 +35,16 @@ Default implementation of all four detection contracts. Use directly or through 
 
 #### `__construct()`
 
-`__construct(?MimeMapInterface $mimeMap = null, int $maxBytes = 8192)`
+`__construct(?ExtensionResolverInterface $mimeMap = null, int $maxBytes = 8192)`
 
 Creates a detector.
 
 | Argument | Description |
 | --- | --- |
-| `$mimeMap` | Extension map. `null` uses the default `MimeMap`. |
+| `$mimeMap` | Preferred-extension resolver. `null` uses the default `MimeMap`. |
 | `$maxBytes` | Positive maximum number of bytes inspected for any source. |
 
-**Exceptions:** `DetectorConfigurationException`.
+**Exceptions:** `DetectorConfigurationException` if the limit is invalid or Fileinfo cannot initialize.
 
 
 #### `detectMimeType()`
@@ -554,7 +554,7 @@ Library exceptions live in `Componenta\Detector\Exception`. The categories are i
 | `StreamPositionRestoreException` | The original position could not be restored. |
 | `InvalidMimeTypeException` | Invalid MIME type; extends InvalidArgumentException. |
 
-On position restoration failure, `getPrevious()` contains the restoration cause and `readFailure` retains an earlier failure, if any. If file closing also fails, `FileReadException::$readFailure` preserves the preceding failure. Programming errors are not converted to normal negative results.
+On position restoration failure, `getPrevious()` contains the restoration cause and `readFailure` retains an earlier failure, if any. If file closing also fails, `FileReadException::$readFailure` preserves the preceding failure. Programming errors are not converted to normal negative results. Unexpected stream state-query failures propagate unchanged if position restoration succeeds.
 
 ```php
 use Componenta\Detector\Exception\DetectorExceptionInterface;
@@ -573,9 +573,27 @@ try {
 
 The enums in `Componenta\Detector\MimeTypes` contain canonical lowercase types and a `values()` method. Curated subsets, e.g. `Image::commonWebFormats()`, are not security checks or guarantees of browser support. The catalog is local, not an exhaustive IANA registry.
 
+## [`ExtensionResolverInterface`](src/ExtensionResolverInterface.php)
+
+The narrow contract for providing a preferred extension independently of a full MIME catalog. `MimeMapInterface` extends this contract.
+
+#### `getExtension()`
+
+`getExtension(string $mimeType): ?string`
+
+Resolves a normalized preferred extension without a leading dot. The MIME type is a concrete type; parameters are ignored.
+
+| Argument | Description |
+| --- | --- |
+| `$mimeType` | Concrete MIME type to look up. |
+
+**Returns:** Extension, or `null` for invalid or unmapped types.
+
+**Exceptions:** `DetectorExceptionInterface` if an external mapping backend fails. Unexpected defects propagate unchanged.
+
 ## Dependency injection
 
-`ConfigProvider` registers `MimeMap` as the default `MimeMapInterface` and `FinfoDetector` through a factory. All four contracts and `DetectorInterface` resolve to the same service according to container lifetime policy. Override `MimeMapInterface` to customize extension resolution. A custom map must report expected lookup failures through `DetectorExceptionInterface`; other exceptions propagate unchanged.
+`ConfigProvider` registers `MimeMap` as the default `MimeMapInterface` and `FinfoDetector` through a factory. All four contracts and `DetectorInterface` resolve to the same service according to container lifetime policy. The default `ExtensionResolverInterface` alias points to `MimeMapInterface`, so overriding the map still affects detection. Override `ExtensionResolverInterface` directly when only preferred-extension lookup is required. A custom resolver must report expected lookup failures through `DetectorExceptionInterface`; other exceptions propagate unchanged.
 
 ```php
 use Componenta\Detector\MimeTypeDetectorInterface;
